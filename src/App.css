@@ -94,10 +94,10 @@ body{
   border: 1px solid #3edd22; */
   
 }
-.button4:hover{
+.button4:hover
   /* background-color: #23a80b;
   border: 1px solid #23a80b; */
-}
+
 .floatLeft{
   float: left;
 }

@@ -225,21 +225,29 @@ const Diagrams = React.memo(() => {
   console.log(localStorage)
   const handleDelete = (event) => {
     event.preventDefault()
-    localStorage.removeItem(String(event.currentTarget.id-2))
+    localStorage.removeItem(String(event.currentTarget.id-1))
     setShow3(false)
   }
 
     localS.forEach((value, index) => {
       value = JSON.parse(value)
+      let bodyVal = value.body
+      let descVal = value.desc
+      if(String(bodyVal).length > 10){
+        bodyVal = bodyVal.slice(0,10)+" ..."
+      }
+      if(String(descVal).length > 30){
+        descVal = descVal.slice(0,30)+" ..."
+      }
       fucArr.push(
-      
+        
         <div key={index} className="row ">
           <div className="col-6">
           <button title="Wczytaj" id={index} onClick={handleGetSaved} onChange={handleChange} className='btn btn-secondary modalPlusBtn'><FontAwesomeIcon icon={faPlus} /></button>
-            <label >{value.body}</label>
+            <label title={value.body}>{bodyVal}</label>
           </div>
           <div className="col-5">
-            <label>{value.type} - {value.desc}</label>
+            <label title={descVal}>{value.type} - {value.desc}</label>
           </div>
           <div className="col-1 ">
           <button title="Usuń" id={index} disabled={value.editable} onClick={handleDelete} className='btn btn-secondary modalMinusBtn'><FontAwesomeIcon icon={faMinus} /></button>
@@ -597,7 +605,7 @@ const Diagrams = React.memo(() => {
                 <option value="KPI">KPI</option>
                 <option value="KPS">KPS</option>
             </select>
-            <label for="newField">Typ funkcji</label>
+            <label >Typ funkcji</label>
         </div>
           </div>
           <div className="mb-3">
