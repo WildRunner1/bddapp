@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "main": "public/electron.js",
-  "homepage": "https://github.com/WildRunner1/bddapp/",
+  "homepage": "./",
   "author": "JakubBlaszyk",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",

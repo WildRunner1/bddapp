@@ -194,6 +194,8 @@ const Diagrams = React.memo(() => {
   const handleClose = () => setShow(false);
   const handleClose2 = () => setShow2(false);
   const handleClose3 = () => setShow3(false);
+  const [valid, setValid] = useState(true)
+  
 
   
   const fucArr = []
@@ -212,7 +214,7 @@ const Diagrams = React.memo(() => {
     setShow3(false)
   }
     logFunctions.forEach((value, index) => {
-      fucArr.push(<div key={index}><button title="Sprawdź" id={index} onClick={handleGetSaved} onChange={handleChange} className='btn btn-success modalPlusBtn'>+</button><label title={value.type}>{value.body}</label></div>)
+      fucArr.push(<div key={index} className="divFuncMod"><button title="Sprawdź" id={index} onClick={handleGetSaved} onChange={handleChange} className='btn btn-success modalPlusBtn'>+</button><label title={value.type}>{value.body}</label></div>)
     })
 
 
@@ -251,8 +253,9 @@ const Diagrams = React.memo(() => {
     setVarItems(dragVar)
       
   };
-
+ 
   const handleSubmit = (event) => {
+    setValid(true)
     event.preventDefault();
     truthMapToPass.clear()
     newVarMapToPass.clear()
@@ -265,6 +268,7 @@ const Diagrams = React.memo(() => {
     table.forEach((value1) => {
       if (v1 === value1) {
         setShow(true)
+        setValid(false)
         setExMessage("Podwójny znak lub zmienna np. ** lub AA")
       }
       v1 = value1
@@ -320,6 +324,7 @@ const Diagrams = React.memo(() => {
 
     if (expressions.length === 0) {
       setShow(true)
+      setValid(false)
       setExMessage("Nie zmapowano wyrażeń, sprawdź składnię.")
     }
 
@@ -342,7 +347,7 @@ const Diagrams = React.memo(() => {
 
     })
 
-    if (formValues.logFunction !== ""){
+    if (formValues.logFunction !== "" && valid === true && formValues.logType !== ""){
       //setPage(ROBDD)
       setPage(TrueTable)
       setClass("ROBDD", "button1")
@@ -454,7 +459,7 @@ const Diagrams = React.memo(() => {
       <div className="container px-5 my-5">
         <form id="contactForm" onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label className="form-label" onClick={handleToolTip}>Funkcja Logiczna (<FontAwesomeIcon icon={faQuestion} />)</label>
+            <label className="form-label" onClick={handleToolTip}>Funkcja Logiczna (<FontAwesomeIcon title="Instrukcja" icon={faQuestion} />)</label>
             <input className="form-control" name="logFunction" onChange={handleChange} id="funkcjaLogiczna" type="text" placeholder="Funkcja Logiczna" required/>
           </div>
           <div className="mb-3 ">
@@ -489,8 +494,8 @@ const Diagrams = React.memo(() => {
           </div>
 
           {/* <div className="d-grid"> */}
-            <button className="btn btn-secondary btn-lg button3" id="submitButton" onClick={handleSubmit} type="submit">Generuj</button>
-            <button className="btn btn-success button4" onClick={storedFunctions} type="submit"><FontAwesomeIcon icon={faSave}/></button>
+            <button title="Generuj" className="btn btn-secondary btn-lg button3" id="submitButton" onClick={handleSubmit} type="submit">Generuj</button>
+            <button className="btn btn-success button4" title="Wyświetl zapisane funkcje" onClick={storedFunctions} type="submit"><FontAwesomeIcon icon={faSave}/></button>
           {/* </div> */}
         </form>
       </div>

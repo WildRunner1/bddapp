@@ -87,9 +87,12 @@ body{
   width: calc(100% - 2.5em);
 }
 .button4{
-  width: 2.5em;
+  width: 3.1em;
+  height: 3.1em;
+}
+.button4:hover{
   background-color: #DF7676;
-  border: 1px solid #a6a6a6;
+  border: 1px solid #DF7676;
 }
 .floatLeft{
   float: left;
@@ -404,4 +407,16 @@ a:hover{
 .inModal{
   max-height: 5px;
 }
-
+.my_modal{
+  width: 70vw;  
+  max-width: 70vw;
+  font-size: 1.2em;
+}
+.modalPlusBtn{
+  
+  margin: 5px 10px 5px 5px;
+  /* max-width: 2em;
+  max-height: 2em; */
+}
+.divFuncMod{
+}

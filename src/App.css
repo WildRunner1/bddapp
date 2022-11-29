@@ -410,11 +410,13 @@ a:hover{
 .my_modal{
   width: 70vw;  
   max-width: 70vw;
-  font-size: 2em;
+  font-size: 1.2em;
 }
 .modalPlusBtn{
   
-  margin: 0px 10px 0px 5px;
+  margin: 5px 10px 5px 5px;
   /* max-width: 2em;
   max-height: 2em; */
+}
+.divFuncMod{
 }

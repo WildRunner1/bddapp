@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuestion } from '@fortawesome/free-solid-svg-icons';
+import { faQuestion, faSave } from '@fortawesome/free-solid-svg-icons';
 import { Bdd } from './';
 import { Robdd } from './';
 import { TruthTable } from './';
+import {logFunctions} from '../data.json';
 
 
 
+console.log(logFunctions)
 //get the variables from expressions
 function Variables(strs) {
   let strs1 = []
@@ -188,8 +190,34 @@ const Diagrams = React.memo(() => {
   const dragOverItem = React.useRef(null)
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
+  const [show3, setShow3] = useState(false);
   const handleClose = () => setShow(false);
   const handleClose2 = () => setShow2(false);
+  const handleClose3 = () => setShow3(false);
+  const [valid, setValid] = useState(true)
+  
+
+  
+  const fucArr = []
+  const handleGetSaved = (event) =>{
+    event.preventDefault()
+    let body = logFunctions[event.currentTarget.id].body
+    let type = logFunctions[event.currentTarget.id].type
+    document.getElementById("funkcjaLogiczna").value = body
+    // if(type === "KPS"){
+    //   document.getElementById("optionA").checked = true
+    // } else {
+    //   document.getElementById("optionB").checked = true
+    // }
+    
+    setFormValues({logFunction : body})
+    setShow3(false)
+  }
+    logFunctions.forEach((value, index) => {
+      fucArr.push(<div key={index} className="divFuncMod"><button title="Sprawdź" id={index} onClick={handleGetSaved} onChange={handleChange} className='btn btn-success modalPlusBtn'>+</button><label title={value.type}>{value.body}</label></div>)
+    })
+
+
 
   const [formValues, setFormValues] = useState({
     logFunction: "",
@@ -225,8 +253,9 @@ const Diagrams = React.memo(() => {
     setVarItems(dragVar)
       
   };
-
+ 
   const handleSubmit = (event) => {
+    setValid(true)
     event.preventDefault();
     truthMapToPass.clear()
     newVarMapToPass.clear()
@@ -239,6 +268,7 @@ const Diagrams = React.memo(() => {
     table.forEach((value1) => {
       if (v1 === value1) {
         setShow(true)
+        setValid(false)
         setExMessage("Podwójny znak lub zmienna np. ** lub AA")
       }
       v1 = value1
@@ -294,6 +324,7 @@ const Diagrams = React.memo(() => {
 
     if (expressions.length === 0) {
       setShow(true)
+      setValid(false)
       setExMessage("Nie zmapowano wyrażeń, sprawdź składnię.")
     }
 
@@ -316,7 +347,7 @@ const Diagrams = React.memo(() => {
 
     })
 
-    if (formValues.logFunction !== ""){
+    if (formValues.logFunction !== "" && valid === true && formValues.logType !== ""){
       //setPage(ROBDD)
       setPage(TrueTable)
       setClass("ROBDD", "button1")
@@ -411,6 +442,10 @@ const Diagrams = React.memo(() => {
   const handleToolTip = () => {
     setShow2(true)
   }
+  const storedFunctions = () => {
+    setShow3(true)
+  }
+
 
   let alertKPIKPS
   if (formValues.logType === "KPS") {
@@ -424,7 +459,7 @@ const Diagrams = React.memo(() => {
       <div className="container px-5 my-5">
         <form id="contactForm" onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label className="form-label" onClick={handleToolTip}>Funkcja Logiczna (<FontAwesomeIcon icon={faQuestion} />)</label>
+            <label className="form-label" onClick={handleToolTip}>Funkcja Logiczna (<FontAwesomeIcon title="Instrukcja" icon={faQuestion} />)</label>
             <input className="form-control" name="logFunction" onChange={handleChange} id="funkcjaLogiczna" type="text" placeholder="Funkcja Logiczna" required/>
           </div>
           <div className="mb-3 ">
@@ -458,9 +493,10 @@ const Diagrams = React.memo(() => {
 
           </div>
 
-          <div className="d-grid">
-            <button className="btn btn-secondary btn-lg " id="submitButton" onClick={handleSubmit} type="submit">Generuj</button>
-          </div>
+          {/* <div className="d-grid"> */}
+            <button title="Generuj" className="btn btn-secondary btn-lg button3" id="submitButton" onClick={handleSubmit} type="submit">Generuj</button>
+            <button className="btn btn-success button4" title="Wyświetl zapisane funkcje" onClick={storedFunctions} type="submit"><FontAwesomeIcon icon={faSave}/></button>
+          {/* </div> */}
         </form>
       </div>
       <div className='d-flex justify-content-center'>
@@ -489,6 +525,7 @@ const Diagrams = React.memo(() => {
         Negacja: <label className='inst1'>/</label><br></br>
         Przykładowa funkcja KPS: <label className='inst1'>ABC+/ABC+A/BC</label><br></br>
         Przykładowa funkcja KPI: <label className='inst1'>(A+B+C)*(/A+B+C)*(A+/B+C)</label><br></br>
+        
         {/* Kolejność zmiennych można zdefinować po wpisaniu funkcji przez mechanizm drag'n'drop<br></br> */}
         <label className='inst2'>*nie wszystkie przypdaki złej składni są uwzględnione, dla większej kontroli w konsoli przeglądarki (f12) wyswietlane są 
         zmapowane zmienne i wyrażenia</label>
@@ -497,6 +534,18 @@ const Diagrams = React.memo(() => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose2}>
+            Zamknij
+          </Button>
+
+        </Modal.Footer>
+      </Modal>
+      <Modal dialogClassName="my_modal" show={show3} onHide={handleClose3}>
+        <Modal.Header closeButton>
+          <Modal.Title>Przykładowe funkcje</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{fucArr}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleClose3} onKeyUp={(e) => { if (e.key === "Enter" && !e.defaultPrevented) e.currentTarget.click(); }}>
             Zamknij
           </Button>
 
