@@ -4,21 +4,14 @@
       "type":"KPS",
       "desc":"Przykładowa funkcja testowa KPS",
       "relation":"(A+B+C)*(A+/B+C)*(/A+B+C)*(/A+/B+/C)*(/A+B+/C)*(/A+/B+C)",
-      "editable":false
+      "editable":true
     },
     {
       "body":"(A+B+C)*(A+/B+C)*(/A+B+C)*(/A+/B+/C)*(/A+B+/C)*(/A+/B+C)",
       "type":"KPI",
       "desc":"Przykładowa funkcja testowa KPI",
       "relation":"/A/BC+/ABC",
-      "editable":false
-    },
-    {
-      "body":"ABC+AB/C+/A/BC+/ABC",
-      "type":"KPS",
-      "desc":"Przykładowy deMorgan - KPS",
-      "relation":"",
-      "editable":false
+      "editable":true
     }
   ] 
 }

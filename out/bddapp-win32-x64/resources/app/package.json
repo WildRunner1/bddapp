@@ -34,7 +34,7 @@
     "dev": "concurrently --kill-others \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "publish": "electron-builder build --win --publish always"
+    "publish": " build --win --publish always"
   },
   "eslintConfig": {
     "extends": [

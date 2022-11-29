@@ -87,12 +87,16 @@ body{
   width: calc(100% - 2.5em);
 }
 .button4{
-  width: 3em;
-  height: 3em;
+  /* width: 3em;
+  height:3em; */
+  font-size: 1.19em;
+  /* background-color: #3edd22;
+  border: 1px solid #3edd22; */
+  
 }
 .button4:hover{
-  background-color: #DF7676;
-  border: 1px solid #DF7676;
+  /* background-color: #23a80b;
+  border: 1px solid #23a80b; */
 }
 .floatLeft{
   float: left;
@@ -119,9 +123,11 @@ body{
   background-color: #cc0000;
   transform: scale(1);
 }
-.table-hover tbody tr:hover td 
-  /* background-color: #DF7676;
-  border: 2px solid black */
+.table-hover tbody tr:hover {
+background-color: #DF7676;
+  border: 2px solid black
+} 
+  
 
 
 tr:hover{
@@ -413,8 +419,37 @@ a:hover{
   font-size: 1.2em;
 }
 .modalPlusBtn{
-  
   margin: 5px 10px 5px 5px;
-  /* max-width: 2em;
-  max-height: 2em; */
+}
+.modalPlusBtn:hover{
+  background-color: #86df76;
+  border: 1px solid #86df76;
+}
+.modalMinusBtn{
+  margin: 5px 10px 5px 5px;
+ 
+}
+
+.modalMinusBtn:hover{
+  background-color: #DF7676;
+  border: 1px solid #DF7676;
+}
+.btnSave{
+  background-color: #86df76;
+  border: 1px solid #86df76;
+}
+.btnSave:hover{
+  background-color: #3edd22;
+  border: 1px solid #3edd22;
+}
+.spinM{
+  animation: rotation 6s infinite linear;
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }
