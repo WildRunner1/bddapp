@@ -1,0 +1,10 @@
+{ "logFunctions":[
+    {
+      "body":"ABC+/ABC",
+      "type":"KPS",
+      "desc":"test",
+      "relation":"KPI - A+B",
+      "editable":true
+    }
+  ] 
+}

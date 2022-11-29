@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "main": "public/electron.js",
-  "homepage": "./",
+  "homepage": "https://github.com/WildRunner1/bddapp/",
   "author": "JakubBlaszyk",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
@@ -25,7 +25,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start && electron-forge start",
+    "start": "react-scripts start",
     "start-electron": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -64,33 +64,16 @@
     "electron": "^6.1.12",
     "wait-on": "^6.0.1"
   },
-  "build": {
-    "mac": {
-      "publish": {
-        "provider": "github",
-        "owner": "Github Owner",
-        "repo": "Repository Name",
-        "private": true,
-        "token": ""
-      }
-    },
-    "win": {
-      "publish": {
-        "provider": "github",
-        "owner": "Github Owner",
-        "repo": "Repository Name",
-        "private": true,
-        "token": ""
-      }
-    },
-    "files": [
-      "build/**/*",
-      "node_modules/**/*"
-    ],
-    "publish": {
-      "provider": "github",
-      "private": true,
-      "owner": "Github Owner"
-    }
+  "description": "BDD make app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WildRunner1/bddapp.git"
+  },
+  "keywords": [
+    "bdd"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WildRunner1/bddapp/issues"
   }
 }
