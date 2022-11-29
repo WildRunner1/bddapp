@@ -12,6 +12,13 @@
       "desc":"Przykładowa funkcja testowa KPI",
       "relation":"/A/BC+/ABC",
       "editable":false
+    },
+    {
+      "body":"ABC+AB/C+/A/BC+/ABC",
+      "type":"KPS",
+      "desc":"Przykładowy deMorgan - KPS",
+      "relation":"",
+      "editable":false
     }
   ] 
 }
