@@ -124,8 +124,8 @@ body{
   transform: scale(1);
 }
 .table-hover tbody tr:hover {
-background-color: #DF7676;
-  border: 2px solid black
+
+  border: 1px solid black
 } 
   
 
