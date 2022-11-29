@@ -2,15 +2,13 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuestion, faSave } from '@fortawesome/free-solid-svg-icons';
+import { faQuestion, faSave, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { Bdd } from './';
 import { Robdd } from './';
 import { TruthTable } from './';
 import {logFunctions} from '../data.json';
 
 
-
-console.log(logFunctions)
 //get the variables from expressions
 function Variables(strs) {
   let strs1 = []
@@ -43,7 +41,6 @@ function Variables(strs) {
   console.log(variables)
   return (variables)
 }
-
 // get expressions from given function
 function Expressions(strs, functionType) {
   let rx
@@ -171,14 +168,12 @@ function ExprTotrueKey(expressions, varMap, userVarMap, functionType) {
   }
   return (keysToSet2)
 }
-
 function getByValue(map, searchValue) {
   for (let [key, value] of map.entries()) {
     if (value === searchValue)
       return key;
   }
 }
-
 const Diagrams = React.memo(() => {
 
   const [truthMapToPass, setTruthMapToPass] = useState(new Map())
@@ -195,14 +190,28 @@ const Diagrams = React.memo(() => {
   const handleClose2 = () => setShow2(false);
   const handleClose3 = () => setShow3(false);
   const [valid, setValid] = useState(true)
+  const localS = []
+  //localStorage.clear()
+  logFunctions.forEach( (element, index) => {
+    // localStorage.setItem(index, JSON.stringify(element))
+    localS.push(JSON.stringify(element))
+  })
   
-
   
+  for (var i = 0; i < localStorage.length; i++){
+    localS.push(localStorage.getItem(localStorage.key(i)));
+}
+  // localStorage.forEach(element => {
+  //   localS.push(JSON.parse(element))
+  // })
+  console.log("localS")
+  console.log(localS)
   const fucArr = []
   const handleGetSaved = (event) =>{
     event.preventDefault()
-    let body = logFunctions[event.currentTarget.id].body
-    let type = logFunctions[event.currentTarget.id].type
+    let i = parseInt(event.currentTarget.id)
+    let body = JSON.parse(localS[i]).body
+    let type = JSON.parse(localS[i]).type
     document.getElementById("funkcjaLogiczna").value = body
     // if(type === "KPS"){
     //   document.getElementById("optionA").checked = true
@@ -213,9 +222,41 @@ const Diagrams = React.memo(() => {
     setFormValues({logFunction : body})
     setShow3(false)
   }
-    logFunctions.forEach((value, index) => {
-      fucArr.push(<div key={index} className="divFuncMod"><button title={value.desc} id={index} onClick={handleGetSaved} onChange={handleChange} className='btn btn-success modalPlusBtn'>+</button><label title={value.type}>{value.body}</label></div>)
+  console.log(localStorage)
+  const handleDelete = (event) => {
+    event.preventDefault()
+    localStorage.removeItem(String(event.currentTarget.id-2))
+    setShow3(false)
+  }
+
+    localS.forEach((value, index) => {
+      value = JSON.parse(value)
+      fucArr.push(
+      
+        <div key={index} className="row ">
+          <div className="col-6">
+          <button title="Wczytaj" id={index} onClick={handleGetSaved} onChange={handleChange} className='btn btn-secondary modalPlusBtn'><FontAwesomeIcon icon={faPlus} /></button>
+            <label >{value.body}</label>
+          </div>
+          <div className="col-5">
+            <label>{value.type} - {value.desc}</label>
+          </div>
+          <div className="col-1 ">
+          <button title="Usuń" id={index} disabled={value.editable} onClick={handleDelete} className='btn btn-secondary modalMinusBtn'><FontAwesomeIcon icon={faMinus} /></button>
+          </div>
+        </div>
+      )
     })
+
+  const handleSave = (event) => {
+    event.preventDefault()
+    let body = document.getElementById("body").value
+    let type = document.getElementById("type").value
+    let desc = document.getElementById("desc").value
+    let locLength = localStorage.length
+    localStorage.setItem(String(locLength), JSON.stringify({"body":body, "type":type, "desc":desc, "editable":false}))
+    setShow3(false)
+  }
 
 
 
@@ -541,9 +582,35 @@ const Diagrams = React.memo(() => {
       </Modal>
       <Modal dialogClassName="my_modal" show={show3} onHide={handleClose3}>
         <Modal.Header closeButton>
-          <Modal.Title>Przykładowe funkcje</Modal.Title>
+          <Modal.Title>Zapisz/Wczytaj fukcję</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{fucArr}</Modal.Body>
+        <Modal.Body>
+          <form >
+          <div className="mb-3">
+          <p className='text-center'>----------  Zapisz  ----------</p>
+            <label className="form-label" >Funkcja Logiczna</label>
+            <input className="form-control" name="body" onChange={handleChange} defaultValue={formValues.logFunction} id="body" type="text" placeholder="Funkcja Logiczna" required/>
+          </div>
+          <div className="mb-3 ">
+          <div className="form-floating mb-3">
+            <select className="form-select" id="type" onChange={handleChange} defaultValue={formValues.logType} aria-label="New Field">
+                <option value="KPI">KPI</option>
+                <option value="KPS">KPS</option>
+            </select>
+            <label for="newField">Typ funkcji</label>
+        </div>
+          </div>
+          <div className="mb-3">
+            <label className="form-label" >Opis</label>
+            <input className="form-control" name="desc" onChange={handleChange} id="desc" type="text" placeholder="Funkcja Logiczna" required/>
+          </div>
+            <input className='="btn btn-lg btnSave' type='submit' onClick={handleSave} value="Zapisz"/>
+          </form>
+          <p className='text-center'>----------  Wczytaj  ----------</p>
+          {fucArr}
+        
+        
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={handleClose3} onKeyUp={(e) => { if (e.key === "Enter" && !e.defaultPrevented) e.currentTarget.click(); }}>
             Zamknij
