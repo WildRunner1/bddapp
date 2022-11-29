@@ -1,10 +1,17 @@
 { "logFunctions":[
     {
-      "body":"ABC+/ABC",
+      "body":"/A/BC+/ABC",
       "type":"KPS",
-      "desc":"test",
-      "relation":"KPI - A+B",
-      "editable":true
+      "desc":"Przykładowa funkcja testowa KPS",
+      "relation":"(A+B+C)*(A+/B+C)*(/A+B+C)*(/A+/B+/C)*(/A+B+/C)*(/A+/B+C)",
+      "editable":false
+    },
+    {
+      "body":"(A+B+C)*(A+/B+C)*(/A+B+C)*(/A+/B+/C)*(/A+B+/C)*(/A+/B+C)",
+      "type":"KPI",
+      "desc":"Przykładowa funkcja testowa KPI",
+      "relation":"/A/BC+/ABC",
+      "editable":false
     }
   ] 
 }
