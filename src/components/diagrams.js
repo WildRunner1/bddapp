@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFloppyDisk, faListUl, faQuestion } from '@fortawesome/free-solid-svg-icons';
+import { faQuestion } from '@fortawesome/free-solid-svg-icons';
 import { Bdd } from './';
 import { Robdd } from './';
 import { TruthTable } from './';
-import { saveAs } from 'file-saver';
-
 
 
 
@@ -192,11 +190,7 @@ const Diagrams = React.memo(() => {
   const [show2, setShow2] = useState(false);
   const handleClose = () => setShow(false);
   const handleClose2 = () => setShow2(false);
-  
 
- 
-
-  
   const [formValues, setFormValues] = useState({
     logFunction: "",
     logType: ""
@@ -207,11 +201,7 @@ const Diagrams = React.memo(() => {
   const ROBDD = <div className="bddContainer"> <Robdd truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
   const TrueTable = <div className="bddContainer"> <TruthTable truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
   
-  
-  const dataA = require('../data.json') 
-  // dataA.logFunctions.forEach(element => {
-  //   console.log(element.body)
-  // });
+
 
   const handleChange = (event) => {
     // event.preventDefault()
@@ -421,9 +411,6 @@ const Diagrams = React.memo(() => {
   const handleToolTip = () => {
     setShow2(true)
   }
-  
-
-  
 
   let alertKPIKPS
   if (formValues.logType === "KPS") {
@@ -432,12 +419,57 @@ const Diagrams = React.memo(() => {
     alertKPIKPS = "(A+B+C)*(/A+B+C)"
   }
 
- /* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
-
-
   return (
     <div>
+      <div className="container px-5 my-5">
+        <form id="contactForm" onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label className="form-label" onClick={handleToolTip}>Funkcja Logiczna (<FontAwesomeIcon icon={faQuestion} />)</label>
+            <input className="form-control" name="logFunction" onChange={handleChange} id="funkcjaLogiczna" type="text" placeholder="Funkcja Logiczna" required/>
+          </div>
+          <div className="mb-3 ">
+            <label className="form-label d-block">Typ Funkcji</label>
+            <div className='ff'>
+              <div className="form-check form-check-inline ">
+                <input className="form-check-input" id="optionA" type="radio" value="KPS" onChange={handleChange} name="logType" required/>
+                <label className="form-check-label" >KPS</label>
+              </div>
+              <div className="form-check form-check-inline">
+                <input className="form-check-input" id="optionB" type="radio" value="KPI" onChange={handleChange} name="logType" required/>
+                <label className="form-check-label" >KPI</label>
+              </div>
+            </div>
+          </div>
+          <label>Zmień kolejność zmiennych (drag'n'drop)</label>
+          <div className='d-flex justify-content-center ff' >
+            {varItems.map((item, index) => (
+              <div
+                key={index}
+                className="list-item"
+                draggable
+                onDragStart={(e) => {(dragItem.current = index)}}
+                onDragEnter={(e) => {e.preventDefault()
+                                    dragOverItem.current = index}}
+                onDragEnd={handleSort}
+                onDragOver={(e) => {e.preventDefault();}}>
+                <h3>{item}</h3>
+              </div>
+            ))}
+
+          </div>
+
+          <div className="d-grid">
+            <button className="btn btn-secondary btn-lg " id="submitButton"  type="submit">Generuj</button>
+          </div>
+        </form>
+      </div>
+      <div className='d-flex justify-content-center'>
+        <button id='BDD' className="button1" onClick={handleClickPage}>BDD/OBDD</button>
+        <button id='ROBDD'  className="button1" onClick={handleClickPage}>ROBDD</button>
+        <button id='TrueTable'  className="button1" onClick={handleClickPage}>Tablica Prawdy</button>
+      </div>
+      
+      {page}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Błąd składni</Modal.Title>
@@ -471,66 +503,6 @@ toggle between hiding and showing the dropdown content */
 
         </Modal.Footer>
       </Modal>
-     
-      
-
-      
-      <div className="container px-5 my-5">
-      
-        <form id="contactForm " onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label className="form-label" onClick={handleToolTip}>Funkcja Logiczna (<FontAwesomeIcon icon={faQuestion} />)</label>
-            <input className="form-control" name="logFunction" onChange={handleChange} id="funkcjaLogiczna" type="text" placeholder="Funkcja Logiczna" required/>
-            
-          </div>
-          <div className="mb-3 ">
-            <label className="form-label d-block">Typ Funkcji</label>
-            <div className='ff'>
-              <div className="form-check form-check-inline ">
-                <input className="form-check-input" id="optionA" type="radio" value="KPS" onChange={handleChange} name="logType" required/>
-                <label className="form-check-label" >KPS</label>
-              </div>
-              <div className="form-check form-check-inline">
-                <input className="form-check-input" id="optionB" type="radio" value="KPI" onChange={handleChange} name="logType" required/>
-                <label className="form-check-label" >KPI</label>
-              </div>
-            </div>
-          </div>
-          <label>Zmień kolejność zmiennych (drag'n'drop)</label>
-          <div className='d-flex justify-content-center ff' >
-            {varItems.map((item, index) => (
-              <div
-                key={index}
-                className="list-item"
-                draggable
-                onDragStart={(e) => {(dragItem.current = index)}}
-                onDragEnter={(e) => {e.preventDefault()
-                                    dragOverItem.current = index}}
-                onDragEnd={handleSort}
-                onDragOver={(e) => {e.preventDefault();}}>
-                <h3>{item}</h3>
-              </div>
-            ))}
-
-          </div>
-
-          <div className="d-grid ">
-            <button className="btn btn-secondary btn-lg " id="submitButton"  type="submit">Generuj</button>
-            
-          </div>
-        </form>
-        
-        </div>
-        
-      
-      <div className='d-flex justify-content-center'>
-        <button id='BDD' className="button1" onClick={handleClickPage}>BDD/OBDD</button>
-        <button id='ROBDD'  className="button1" onClick={handleClickPage}>ROBDD</button>
-        <button id='TrueTable'  className="button1" onClick={handleClickPage}>Tablica Prawdy</button>
-      </div>
-      
-      {page}
-      
     </div>
   )
 })

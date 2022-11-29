@@ -96,7 +96,7 @@ function makeItShort(myGraph,map,orgMap,side,n,varM,parent,tree){
     if(parseInt(sum)===0 || parseInt(sum)===mapLeft.size){
       myGraph.nodes.push({id: leftKeys[position],parent: parent, label: leftValues[0],side: side, n: n, to: id, hidden: false, cut: 0, type: "terminal",  shape: "box",  font:{size:30}, borderWidth:2})
     } else {
-      makeItShort(myGraph,mapLeft,orgMap,tree,n+1,varM,parent,side)
+      makeItShort(myGraph,mapLeft,orgMap,side,n+1,varM,parent,side)
     }
   }
 }
@@ -172,8 +172,6 @@ function Robdd(props){
   const thruMap = props.truthMap
   const newVarMap = props.newVarMap
   const functionType = props.functionType
-  
-
     let n = 1
     makeItShort(myGraph,thruMap,thruMap,"start",n,newVarMap,0)
     makeEdges(myGraph)
