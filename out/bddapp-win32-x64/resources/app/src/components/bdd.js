@@ -148,7 +148,7 @@ function Bdd(props){
       },
   
   },
-    height: "850px"
+    height: "700px"
   };
   let important
   if(functionType === "KPS"){

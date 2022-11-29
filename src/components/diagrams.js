@@ -214,7 +214,7 @@ const Diagrams = React.memo(() => {
     setShow3(false)
   }
     logFunctions.forEach((value, index) => {
-      fucArr.push(<div key={index} className="divFuncMod"><button title="Sprawdź" id={index} onClick={handleGetSaved} onChange={handleChange} className='btn btn-success modalPlusBtn'>+</button><label title={value.type}>{value.body}</label></div>)
+      fucArr.push(<div key={index} className="divFuncMod"><button title={value.desc} id={index} onClick={handleGetSaved} onChange={handleChange} className='btn btn-success modalPlusBtn'>+</button><label title={value.type}>{value.body}</label></div>)
     })
 
 

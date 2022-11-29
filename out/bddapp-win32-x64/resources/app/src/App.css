@@ -287,7 +287,7 @@ ul, #myUL {
 }
 .parent{
   position: relative;
-  height: 850px;
+  height: 700px;
 }
 .stat1{
   
@@ -417,6 +417,4 @@ a:hover{
   margin: 5px 10px 5px 5px;
   /* max-width: 2em;
   max-height: 2em; */
-}
-.divFuncMod{
 }
