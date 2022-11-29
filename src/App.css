@@ -87,8 +87,8 @@ body{
   width: calc(100% - 2.5em);
 }
 .button4{
-  width: 3.1em;
-  height: 3.1em;
+  width: 3em;
+  height: 3em;
 }
 .button4:hover{
   background-color: #DF7676;
