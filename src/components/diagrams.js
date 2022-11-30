@@ -16,14 +16,8 @@ function Variables(strs) {
   const variables = []
   let func = []
   const rx = /\/?([A-Z]|[a-z])/g;
-
-  //strs1.forEach((x, index) => {
     const matches = [...strs.matchAll(rx)];
-
-    // console.log("index")
-    // console.log(index)
     func = Array.from(matches, m => m[1])
-
     func.forEach(y => {
       let g = String(y)
       for (let c of g) {
@@ -214,20 +208,20 @@ const Diagrams = React.memo(() => {
     locSort2.set(localStorage.key(i), localStorage.getItem(localStorage.key(i)))
   }
   locSort.sort()
-  console.log("locSort")
-  console.log(locSort)
+  //console.log("locSort")
+  //console.log(locSort)
   localStorage.clear()
   locSort.forEach(element =>{
     localStorage.setItem(element, locSort2.get(element))
   })
   for ( let i = 0; i < locSort.length; i++){
     localS.push(localStorage.getItem(locSort[i]));
-    console.log(localStorage.getItem(localStorage.key(locSort[i])))
+    //console.log(localStorage.getItem(localStorage.key(locSort[i])))
   }
   
   
-  console.log("localS")
-  console.log(localS)
+  //console.log("localS")
+  //console.log(localS)
   const fucArr = []
   const handleGetSaved = (event) =>{
     event.preventDefault()
@@ -244,7 +238,7 @@ const Diagrams = React.memo(() => {
     setFormValues({logFunction : body})
     setShow3(false)
   }
-  console.log(localStorage)
+  //console.log(localStorage)
   const handleDelete = (event) => {
     event.preventDefault()
     localStorage.removeItem(event.currentTarget.id)
@@ -323,12 +317,20 @@ const Diagrams = React.memo(() => {
     
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
-    console.log(({ ...formValues, [name]: value }))
-    console.log(formValues.logFunction)
+    //console.log(({ ...formValues, [name]: value }))
+    //console.log(formValues.logFunction)
     const strs = document.getElementById("funkcjaLogiczna").value
     //String(formValues.logFunction)//["(/A*B*C)+(/A*/B*C)+(/A*B*/C)+(/A*/B*/C)+(A*B*/C)"]
     
+    
     const variables = Variables(strs)
+    if(variables.length > 10){
+      setShow6(true)
+      setValid(false)
+      setExTitle("Zbyt duża ilość zmiennych")
+      setExMessage(<p>Funkcja zawiera zbyt dużą ilośc zmiennych,<br></br> program jest w stanie obsłużyć maksymalnie 10 zmiennych.<br></br>
+      Wprowadzono {variables.length} zmiennych</p>)
+    } else {
     const varMap = new Map()
     for (let i = 1; i < variables.length + 1; i++) {
       varMap.set(i, variables[i - 1])
@@ -338,7 +340,7 @@ const Diagrams = React.memo(() => {
       dragVar.push(value)
     })
     setVarItems(dragVar)
-      
+   }
   };
  
   const handleSubmit = (event) => {
@@ -355,11 +357,7 @@ const Diagrams = React.memo(() => {
     Variables(formValues.logFunction).forEach( (element, index) => {
       varMap.set(index+1,element)
     })
-    // console.log("varMap")
-    // console.log(varMap)
-    // for (let i = 1; i < variables.length + 1; i++) {
-    //   varMap.set(i, variables[i - 1])
-    // }
+    
     let userVarMap = new Map()
     varItems.forEach((value, index) => {
       userVarMap.set(index + 1, getByValue(varMap, value))
@@ -414,10 +412,7 @@ const Diagrams = React.memo(() => {
       v1 = value1
     })
     if(variables.length > 10){
-      setShow6(true)
-      setExTitle("Zbyt duża ilość zmiennych")
-      setExMessage(<p>Funkcja zawiera zbyt dużą ilośc zmiennych,<br></br> program jest w stanie obsłużyć maksymalnie 10 zmiennych.<br></br>
-      Wprowadzono {variables.length} zmiennych</p>)
+      setValid(false)
     } else {
       setValid(true)
     }
@@ -444,7 +439,7 @@ const Diagrams = React.memo(() => {
     thruMap.forEach((value, key) => {
       setTruthMapToPass(new Map(truthMapToPass.set(key, value)))
     })
-    console.log(truthMapToPass)
+    //console.log(truthMapToPass)
     newVarMap.forEach((value, key) => {
       setNewVarMapToPass(new Map(newVarMapToPass.set(key, value)))
 

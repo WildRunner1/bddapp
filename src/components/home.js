@@ -71,6 +71,11 @@ function Home(){
               </div>
               
             </div>
+            <div className='articleHeader'>Ograniczenia</div>
+            <div className='articleBody'>
+            Ograniczeniem aplikacji jest pojemność typu zmiennej Integer. Jest to ograniczenie wynikające z zastosowanej logiki przechowywania i działania na węzłach. Gdzie klucz w przypadku 11 zmiennych jest liczbą powyżej górnego zakresu Integera tj. 2 147 483 647, klucz składa się z 11 cyfr np. 10 000 000 000 .
+            
+            </div>
   
             
             
