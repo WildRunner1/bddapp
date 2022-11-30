@@ -405,15 +405,16 @@ const Diagrams = React.memo(() => {
         setShow(true)
         setValid(false)
         setExMessage("Podwójny znak lub zmienna np. ** lub AA")
-      }
+      } 
       v1 = value1
     })
-    if (expressions.length === 0) {
+    if ((valid === true && expressions.length === 0) || (valid === false && expressions.length === 0)) {
       setShow(true)
       setExMessage("Nie zmapowano wyrażeń, sprawdź składnię.")
     } else {
       setValid(true)
     }
+    
 
     // truth table map (kays and values) inicjalization - expresion values
     let keysToSet = ExprTotrueKey(expressions, newVarMap, userVarMap, functionType)
