@@ -39,6 +39,7 @@ function Variables(strs) {
   variables.sort() //sort variables A-Z order
   console.log("Zmienne")
   console.log(variables)
+  
   return (variables)
 }
 // get expressions from given function
@@ -179,6 +180,7 @@ const Diagrams = React.memo(() => {
   const [truthMapToPass, setTruthMapToPass] = useState(new Map())
   const [newVarMapToPass, setNewVarMapToPass] = useState(new Map())
   const [exMessage, setExMessage] = useState("")
+  const [exTitle, setExTitle] = useState("")
   const [page, setPage] = useState() 
   const [varItems, setVarItems] = React.useState([])
   const dragItem = React.useRef(null)
@@ -188,11 +190,13 @@ const Diagrams = React.memo(() => {
   const [show3, setShow3] = useState(false);
   const [show4, setShow4] = useState(false);
   const [show5, setShow5] = useState(false);
+  const [show6, setShow6] = useState(false);
   const handleClose = () => setShow(false);
   const handleClose2 = () => setShow2(false);
   const handleClose3 = () => setShow3(false);
   const handleClose4 = () => setShow4(false);
   const handleClose5 = () => setShow5(false);
+  const handleClose6 = () => setShow6(false);
   const [valid, setValid] = useState(true)
   const localS = []
   //localStorage.clear()
@@ -205,7 +209,7 @@ const Diagrams = React.memo(() => {
   })
   const locSort = []
   const locSort2 = new Map() 
-  for (var i = 0; i < localStorage.length; i++){
+  for (let i = 0; i < localStorage.length; i++){
     locSort.push(localStorage.key(i))
     locSort2.set(localStorage.key(i), localStorage.getItem(localStorage.key(i)))
   }
@@ -216,7 +220,7 @@ const Diagrams = React.memo(() => {
   locSort.forEach(element =>{
     localStorage.setItem(element, locSort2.get(element))
   })
-  for (var i = 0; i < locSort.length; i++){
+  for ( let i = 0; i < locSort.length; i++){
     localS.push(localStorage.getItem(locSort[i]));
     console.log(localStorage.getItem(localStorage.key(locSort[i])))
   }
@@ -404,12 +408,23 @@ const Diagrams = React.memo(() => {
       if (v1 === value1) {
         setShow(true)
         setValid(false)
+        setExTitle("Błąd składni")
         setExMessage("Podwójny znak lub zmienna np. ** lub AA")
       } 
       v1 = value1
     })
+    if(variables.length > 10){
+      setShow6(true)
+      setExTitle("Zbyt duża ilość zmiennych")
+      setExMessage(<p>Funkcja zawiera zbyt dużą ilośc zmiennych,<br></br> program jest w stanie obsłużyć maksymalnie 10 zmiennych.<br></br>
+      Wprowadzono {variables.length} zmiennych</p>)
+    } else {
+      setValid(true)
+    }
+    
     if ((valid === true && expressions.length === 0) || (valid === false && expressions.length === 0)) {
       setShow(true)
+      setExTitle("Błąd składni")
       setExMessage("Nie zmapowano wyrażeń, sprawdź składnię.")
     } else {
       setValid(true)
@@ -595,11 +610,23 @@ const Diagrams = React.memo(() => {
       {page}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Błąd składni</Modal.Title>
+          <Modal.Title>{exTitle}</Modal.Title>
         </Modal.Header>
         <Modal.Body>{exMessage}<br></br>Składnia dla {formValues.logType} powinna wyglądać np: {alertKPIKPS}</Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={handleClose} onKeyUp={(e) => { if (e.key === "Enter" && !e.defaultPrevented) e.currentTarget.click(); }}>
+            Zamknij
+          </Button>
+
+        </Modal.Footer>
+      </Modal>
+      <Modal show={show6} onHide={handleClose6}>
+        <Modal.Header closeButton>
+          <Modal.Title>{exTitle}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{exMessage}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleClose6} onKeyUp={(e) => { if (e.key === "Enter" && !e.defaultPrevented) e.currentTarget.click(); }}>
             Zamknij
           </Button>
 
