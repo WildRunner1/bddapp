@@ -186,24 +186,42 @@ const Diagrams = React.memo(() => {
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
   const [show3, setShow3] = useState(false);
+  const [show4, setShow4] = useState(false);
+  const [show5, setShow5] = useState(false);
   const handleClose = () => setShow(false);
   const handleClose2 = () => setShow2(false);
   const handleClose3 = () => setShow3(false);
+  const handleClose4 = () => setShow4(false);
+  const handleClose5 = () => setShow5(false);
   const [valid, setValid] = useState(true)
   const localS = []
   //localStorage.clear()
+  
   logFunctions.forEach( (element, index) => {
-    // localStorage.setItem(index, JSON.stringify(element))
-    localS.push(JSON.stringify(element))
+    if(localStorage.length < 3){
+    localStorage.setItem(index,JSON.stringify(element))
+    }
+    //localS.push(JSON.stringify(element))
   })
-  
-  
+  const locSort = []
+  const locSort2 = new Map() 
   for (var i = 0; i < localStorage.length; i++){
-    localS.push(localStorage.getItem(localStorage.key(i)));
-}
-  // localStorage.forEach(element => {
-  //   localS.push(JSON.parse(element))
-  // })
+    locSort.push(localStorage.key(i))
+    locSort2.set(localStorage.key(i), localStorage.getItem(localStorage.key(i)))
+  }
+  locSort.sort()
+  console.log("locSort")
+  console.log(locSort)
+  localStorage.clear()
+  locSort.forEach(element =>{
+    localStorage.setItem(element, locSort2.get(element))
+  })
+  for (var i = 0; i < locSort.length; i++){
+    localS.push(localStorage.getItem(locSort[i]));
+    console.log(localStorage.getItem(localStorage.key(locSort[i])))
+  }
+  
+  
   console.log("localS")
   console.log(localS)
   const fucArr = []
@@ -225,14 +243,22 @@ const Diagrams = React.memo(() => {
   console.log(localStorage)
   const handleDelete = (event) => {
     event.preventDefault()
-    localStorage.removeItem(String(event.currentTarget.id-1))
-    setShow3(false)
+    localStorage.removeItem(event.currentTarget.id)
+    localS.length = 0
+    for (var i = 0; i < locSort.length; i++){
+      localS.push(localStorage.getItem(localStorage.key(locSort[i])));
+    }
+    
+    setShow5(true)
   }
-
+  
     localS.forEach((value, index) => {
+    // Object.keys(localStorage).forEach( index => {
+    //   let value = localStorage.getItem(index)
       value = JSON.parse(value)
       let bodyVal = value.body
       let descVal = value.desc
+      let locIndex = value.locIndex
       if(String(bodyVal).length > 10){
         bodyVal = bodyVal.slice(0,10)+" ..."
       }
@@ -250,7 +276,7 @@ const Diagrams = React.memo(() => {
             <label title={descVal}>{value.type} - {value.desc}</label>
           </div>
           <div className="col-1 ">
-          <button title="Usuń" id={index} disabled={value.editable} onClick={handleDelete} className='btn btn-secondary modalMinusBtn'><FontAwesomeIcon icon={faMinus} /></button>
+          <button title="Usuń" id={locIndex} disabled={value.editable} onClick={handleDelete} className='btn btn-secondary modalMinusBtn'><FontAwesomeIcon icon={faMinus} /></button>
           </div>
         </div>
       )
@@ -261,9 +287,17 @@ const Diagrams = React.memo(() => {
     let body = document.getElementById("body").value
     let type = document.getElementById("type").value
     let desc = document.getElementById("desc").value
-    let locLength = localStorage.length
-    localStorage.setItem(String(locLength), JSON.stringify({"body":body, "type":type, "desc":desc, "editable":false}))
-    setShow3(false)
+    let max = 0
+    Object.keys(localStorage).forEach( index => {
+      if(parseInt(index) > max){
+        max = parseInt(index)
+      }
+    })
+    max = max+1
+    localS.push(JSON.stringify({"body":body, "type":type, "desc":desc, "editable":false, "locIndex": max}))
+   
+    localStorage.setItem(max, JSON.stringify({"body":body, "type":type, "desc":desc, "editable":false, "locIndex": max}))
+    setShow4(true)
   }
 
 
@@ -304,24 +338,14 @@ const Diagrams = React.memo(() => {
   };
  
   const handleSubmit = (event) => {
-    setValid(true)
+    setValid(false)
     event.preventDefault();
     truthMapToPass.clear()
     newVarMapToPass.clear()
 
     const functionType = formValues.logType//"KPS" / "KPI"
     const strs = document.getElementById("funkcjaLogiczna").value//String(formValues.logFunction)//["(/A*B*C)+(/A*/B*C)+(/A*B*/C)+(/A*/B*/C)+(A*B*/C)"]
-    let table = []
-    let v1 = ""
-    table = Array.from(strs)
-    table.forEach((value1) => {
-      if (v1 === value1) {
-        setShow(true)
-        setValid(false)
-        setExMessage("Podwójny znak lub zmienna np. ** lub AA")
-      }
-      v1 = value1
-    })
+    
     const variables = Variables(strs)
     const varMap = new Map()
     Variables(formValues.logFunction).forEach( (element, index) => {
@@ -371,10 +395,24 @@ const Diagrams = React.memo(() => {
     }
     const expressions = Expressions(strs, functionType)
 
+    //Walidacja formularza
+    let table = []
+    let v1 = ""
+    table = Array.from(strs)
+    table.forEach((value1) => {
+      setValid(true)
+      if (v1 === value1) {
+        setShow(true)
+        setValid(false)
+        setExMessage("Podwójny znak lub zmienna np. ** lub AA")
+      }
+      v1 = value1
+    })
     if (expressions.length === 0) {
       setShow(true)
-      setValid(false)
       setExMessage("Nie zmapowano wyrażeń, sprawdź składnię.")
+    } else {
+      setValid(true)
     }
 
     // truth table map (kays and values) inicjalization - expresion values
@@ -396,7 +434,7 @@ const Diagrams = React.memo(() => {
 
     })
 
-    if (formValues.logFunction !== "" && valid === true && formValues.logType !== ""){
+    if (formValues.logFunction !== "" && valid === true && formValues.logType !== "" ){
       //setPage(ROBDD)
       setPage(TrueTable)
       setClass("ROBDD", "button1")
@@ -621,6 +659,29 @@ const Diagrams = React.memo(() => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={handleClose3} onKeyUp={(e) => { if (e.key === "Enter" && !e.defaultPrevented) e.currentTarget.click(); }}>
+            Zamknij
+          </Button>
+
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={show4} onHide={handleClose4} >
+        <Modal.Header  closeButton>
+          <Modal.Title>Zapisano</Modal.Title>
+        </Modal.Header>
+        <Modal.Footer className="savedMod">
+          <Button variant="secondary" onClick={handleClose4}>
+            Zamknij
+          </Button>
+
+        </Modal.Footer>
+      </Modal>
+      <Modal show={show5} onHide={handleClose5} >
+        <Modal.Header closeButton>
+          <Modal.Title>Usunięto</Modal.Title>
+        </Modal.Header>
+        <Modal.Footer className="savedMod2">
+          <Button variant="secondary" onClick={handleClose5}>
             Zamknij
           </Button>
 

@@ -198,15 +198,29 @@ const Diagrams = React.memo(() => {
   //localStorage.clear()
   
   logFunctions.forEach( (element, index) => {
-    //localStorage.setItem(String(index),JSON.stringify(element))
-    localS.push(JSON.stringify(element))
+    if(localStorage.length < 3){
+    localStorage.setItem(index,JSON.stringify(element))
+    }
+    //localS.push(JSON.stringify(element))
   })
-  // Object.keys(localStorage).forEach( index => {
-  //   localS.push(localStorage.getItem(index));
-  // })
+  const locSort = []
+  const locSort2 = new Map() 
   for (var i = 0; i < localStorage.length; i++){
-    localS.push(localStorage.getItem(localStorage.key(i)));
+    locSort.push(localStorage.key(i))
+    locSort2.set(localStorage.key(i), localStorage.getItem(localStorage.key(i)))
   }
+  locSort.sort()
+  console.log("locSort")
+  console.log(locSort)
+  localStorage.clear()
+  locSort.forEach(element =>{
+    localStorage.setItem(element, locSort2.get(element))
+  })
+  for (var i = 0; i < locSort.length; i++){
+    localS.push(localStorage.getItem(locSort[i]));
+    console.log(localStorage.getItem(localStorage.key(locSort[i])))
+  }
+  
   
   console.log("localS")
   console.log(localS)
@@ -229,21 +243,22 @@ const Diagrams = React.memo(() => {
   console.log(localStorage)
   const handleDelete = (event) => {
     event.preventDefault()
-    localStorage.removeItem(String(event.currentTarget.id))
+    localStorage.removeItem(event.currentTarget.id)
     localS.length = 0
-    for (var i = 0; i < localStorage.length; i++){
-      localS.push(localStorage.getItem(localStorage.key(i)));
+    for (var i = 0; i < locSort.length; i++){
+      localS.push(localStorage.getItem(localStorage.key(locSort[i])));
     }
     
     setShow5(true)
   }
   
-    //localS.forEach((value, index) => {
-    Object.keys(localStorage).forEach( index => {
-      let value = localStorage.getItem(index)
+    localS.forEach((value, index) => {
+    // Object.keys(localStorage).forEach( index => {
+    //   let value = localStorage.getItem(index)
       value = JSON.parse(value)
       let bodyVal = value.body
       let descVal = value.desc
+      let locIndex = value.locIndex
       if(String(bodyVal).length > 10){
         bodyVal = bodyVal.slice(0,10)+" ..."
       }
@@ -261,7 +276,7 @@ const Diagrams = React.memo(() => {
             <label title={descVal}>{value.type} - {value.desc}</label>
           </div>
           <div className="col-1 ">
-          <button title="Usuń" id={index} disabled={value.editable} onClick={handleDelete} className='btn btn-secondary modalMinusBtn'><FontAwesomeIcon icon={faMinus} /></button>
+          <button title="Usuń" id={locIndex} disabled={value.editable} onClick={handleDelete} className='btn btn-secondary modalMinusBtn'><FontAwesomeIcon icon={faMinus} /></button>
           </div>
         </div>
       )
@@ -279,9 +294,9 @@ const Diagrams = React.memo(() => {
       }
     })
     max = max+1
-    localS.push(JSON.stringify({"body":body, "type":type, "desc":desc, "editable":false}))
+    localS.push(JSON.stringify({"body":body, "type":type, "desc":desc, "editable":false, "locIndex": max}))
    
-    localStorage.setItem(String(max), JSON.stringify({"body":body, "type":type, "desc":desc, "editable":false}))
+    localStorage.setItem(max, JSON.stringify({"body":body, "type":type, "desc":desc, "editable":false, "locIndex": max}))
     setShow4(true)
   }
 
@@ -390,15 +405,16 @@ const Diagrams = React.memo(() => {
         setShow(true)
         setValid(false)
         setExMessage("Podwójny znak lub zmienna np. ** lub AA")
-      }
+      } 
       v1 = value1
     })
-    if (expressions.length === 0) {
+    if ((valid === true && expressions.length === 0) || (valid === false && expressions.length === 0)) {
       setShow(true)
       setExMessage("Nie zmapowano wyrażeń, sprawdź składnię.")
     } else {
       setValid(true)
     }
+    
 
     // truth table map (kays and values) inicjalization - expresion values
     let keysToSet = ExprTotrueKey(expressions, newVarMap, userVarMap, functionType)

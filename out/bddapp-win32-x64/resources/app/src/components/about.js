@@ -27,7 +27,10 @@ function About(){
             </div>
             <div className='articleHeader'>Links</div>
             <div className='articleBody'>
-              <div className="techStackList"><label className="labelTech"><h4><a href="https://github.com/WildRunner1/bddapp">https://github.com/WildRunner1/bddapp</a></h4></label><br></br></div>
+              <div className="techStackList"><label className="labelTech"><h4>
+                
+              
+                <a href="https://github.com/WildRunner1/bddapp">https://github.com/WildRunner1/bddapp</a></h4></label><br></br></div>
               
               
             </div>
