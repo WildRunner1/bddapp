@@ -324,12 +324,12 @@ const Diagrams = React.memo(() => {
     
     
     const variables = Variables(strs)
-    if(variables.length > 14){
+    if(variables.length > 10){
       setShow6(true)
-      setValid(false)
-      setExTitle("Zbyt duża ilość zmiennych")
-      setExMessage(<p>Funkcja zawiera zbyt dużą ilośc zmiennych,<br></br> program jest w stanie obsłużyć maksymalnie 10 zmiennych.<br></br>
-      Wprowadzono {variables.length} zmiennych</p>)
+      ///setValid(false)
+      setExTitle("UWAGA!!")
+      setExMessage(<p>Funkcja zawiera {variables.length} zmiennyc,<br></br> program jest w stanie stabilnie obsłużyć fukcję zawierająca do 12 zmiennych<br></br>
+      Generowanie fukcji powyżej 12 zmienny może spowodować zawieszenie programu</p>)
     } else {
     const varMap = new Map()
     for (let i = 1; i < variables.length + 1; i++) {
@@ -407,24 +407,18 @@ const Diagrams = React.memo(() => {
         setShow(true)
         setValid(false)
         setExTitle("Błąd składni")
-        setExMessage("Podwójny znak lub zmienna np. ** lub AA")
+        setExMessage("Podwójny znak lub zmienna np. ** lub // lub AA")
       } 
       v1 = value1
     })
-    if(variables.length > 13){
-      setValid(false)
-    } else {
-      setValid(true)
-    }
     
-    if ((valid === true && expressions.length === 0) || (valid === false && expressions.length === 0)) {
-      setShow(true)
-      setExTitle("Błąd składni")
-      setExMessage("Nie zmapowano wyrażeń, sprawdź składnię.")
-    } else {
-      setValid(true)
-    }
-    
+      if ((valid === true && expressions.length === 0) || (valid === false && expressions.length === 0)) {
+        setShow(true)
+        setExTitle("Błąd składni")
+        setExMessage("Nie zmapowano wyrażeń, sprawdź składnię.")
+      } else {
+        setValid(true)
+      }
 
     // truth table map (kays and values) inicjalization - expresion values
     let keysToSet = ExprTotrueKey(expressions, newVarMap, userVarMap, functionType)
@@ -564,11 +558,11 @@ const Diagrams = React.memo(() => {
             <label className="form-label d-block">Typ Funkcji</label>
             <div className='ff'>
               <div className="form-check form-check-inline ">
-                <input className="form-check-input" id="optionA" type="radio" value="KPS" onChange={handleChange} name="logType" required/>
+                <input className="form-check-input" id="optionA" type="radio" value="KPS" onChange={handleChange} name="logType" required />
                 <label className="form-check-label" >KPS</label>
               </div>
               <div className="form-check form-check-inline">
-                <input className="form-check-input" id="optionB" type="radio" value="KPI" onChange={handleChange} name="logType" required/>
+                <input className="form-check-input" id="optionB" type="radio" value="KPI" onChange={handleChange} name="logType" required />
                 <label className="form-check-label" >KPI</label>
               </div>
             </div>
@@ -592,7 +586,7 @@ const Diagrams = React.memo(() => {
           </div>
 
           {/* <div className="d-grid"> */}
-            <button title="Generuj" className="btn btn-secondary btn-lg button3" id="submitButton" onClick={handleSubmit} type="submit">Generuj</button>
+            <button title="Generuj" className="btn btn-secondary btn-lg button3" id="submitButton"  type="submit">Generuj</button>
             <button className="btn btn-success button4" title="Wyświetl zapisane funkcje" onClick={storedFunctions} type="submit"><FontAwesomeIcon icon={faSave}/></button>
           {/* </div> */}
         </form>
