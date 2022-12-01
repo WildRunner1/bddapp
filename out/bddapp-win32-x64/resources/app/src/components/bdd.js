@@ -52,20 +52,20 @@ function Bdd(props){
     for(let j=Math.pow(2,(key-1)); j>=1; j--){
       let value = "" 
       for(let k=0; k<key-1; k++){
-        let val = (j & Math.pow(2,k)) ? 1 : 0
-        value = value+val
+        let val = (j & Math.pow(2,k)) ? "1" : "0"
+        value = String(value+val)
       }
-      id = key+value
+      id = String(element+value)
       if(i%2===0){
-        myGraph.nodes.push({hidden: false, cut: 0, type: "nonterminal",id: id, label: element, shape: "eclipse",parent: String(key-1)+String(value).slice(0,String(value).length-1),  font:{size:30}, borderWidth:2})
+        myGraph.nodes.push({hidden: false, cut: 0, type: "nonterminal",id: String(id), label: element, shape: "eclipse",parent: String(newVarMap.get(key-1))+String(value).slice(0,String(value).length-1),  font:{size:30}, borderWidth:2})
       } else {
-        myGraph.nodes.push({hidden: false,cut: 0, type: "nonterminal",id: id, label: element, shape: "eclipse",parent: String(key-1)+String(value).slice(0,String(value).length-1), font:{size:30}, borderWidth:2})
+        myGraph.nodes.push({hidden: false, cut: 0, type: "nonterminal",id: String(id), label: element, shape: "eclipse",parent: String(newVarMap.get(key-1))+String(value).slice(0,String(value).length-1), font:{size:30}, borderWidth:2})
       } 
     }
   }
   // value nodes - terminal
   for (const [key, value] of thruMap.entries()) {
-    myGraph.nodes.push({hidden: false, cut: 0, type: "terminal",id: String(key), label: String(value),parent: String(newVarMap.size)+String(key).slice(0,String(key).length-1), shape: "box", font:{size:30}})
+    myGraph.nodes.push({hidden: false, cut: 0, type: "terminal",id: String(key), label: String(value),parent: String(newVarMap.get(newVarMap.size))+String(key).slice(0,String(key).length-1), shape: "box", font:{size:30}})
   }
 
   
@@ -168,7 +168,7 @@ function Bdd(props){
   myGraph.edges.forEach( e =>{
     countEdges=countEdges+1
   })
-   
+  console.log(myGraph.nodes)
       return (
         <div className="parent">
           

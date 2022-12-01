@@ -66,7 +66,7 @@ function truthTable(variables) {
 
   for (var i = (Math.pow(2, variables.length) - 1); i >= 0; i--) {
     for (var j = (variables.length - 1); j >= 0; j--) {
-      truthTable[j] = (i & Math.pow(2, j)) ? 1 : 0
+      truthTable[j] = (i & Math.pow(2, j)) ? "1" : "0"
     }
     let s = String(truthTable)
     truthTable2.push(s.toString().replace(/,/g, ''))
@@ -139,7 +139,7 @@ function ExprTotrueKey(expressions, varMap, userVarMap, functionType) {
       miss[i] = value
       for (var j = (String(element).length - 1); j >= 0; j--) {
         k = element[((j - String(element).length) * -1) - 1]
-        let val = (i & Math.pow(2, j)) ? 1 : 0
+        let val = (i & Math.pow(2, j)) ? "1" : "0"
         miss[i] = String(miss[i]).slice(0, k - 1) + val + String(miss[i]).slice(k - 1, String(miss[i]).length)
       }
       keysToSet.push(miss[i])
@@ -324,7 +324,7 @@ const Diagrams = React.memo(() => {
     
     
     const variables = Variables(strs)
-    if(variables.length > 10){
+    if(variables.length > 14){
       setShow6(true)
       setValid(false)
       setExTitle("Zbyt duża ilość zmiennych")
@@ -411,7 +411,7 @@ const Diagrams = React.memo(() => {
       } 
       v1 = value1
     })
-    if(variables.length > 10){
+    if(variables.length > 13){
       setValid(false)
     } else {
       setValid(true)

@@ -61,14 +61,14 @@ function makeItShort(myGraph,map,orgMap,side,n,varM,parent,tree){
   if(same === false){
     if(side === "start"){
       let label = varM.get(n)
-       id = String(n)
+       id = label//String(n)
       myGraph.nodes.push({id: id, label: label,side: "start", n: n, tree: tree, hidden: false, cut: 0, type: "nonterminal",  shape: "eclipse",parent: String(parent),  font:{size:30}, borderWidth:2})
     } else if(side === "left"){
       if(n<=varM.size){
         type="nonterminal"
          label = varM.get(n)
          shape = "eclipse"
-         id = n+String(parent).slice(1,String(parent).length)+"0"
+         id = label+String(parent).slice(1,String(parent).length)+"0"
        } 
         myGraph.nodes.push({id: id, label: label,side: "left", n: n, tree: tree, hidden: false, cut: 0, type: type,  shape: shape,parent: parent,  font:{size:30}, borderWidth:2})  
     } else if(side === "right"){
@@ -76,7 +76,7 @@ function makeItShort(myGraph,map,orgMap,side,n,varM,parent,tree){
         type="nonterminal"
          label = varM.get(n)
          shape = "eclipse"
-         id = n+String(parent).slice(1,String(parent).length)+"1"
+         id = label+String(parent).slice(1,String(parent).length)+"1"
        }
         myGraph.nodes.push({id: id, label: label,side: "right", n: n, tree: tree, hidden: false, cut: 0, type: type,  shape: shape,parent: parent,  font:{size:30}, borderWidth:2})  
     } 
@@ -86,15 +86,15 @@ function makeItShort(myGraph,map,orgMap,side,n,varM,parent,tree){
         makeItShort(myGraph,mapRight,orgMap,"right",n+1,varM,parent,side)
     }
     if(n===varM.size){
-      myGraph.nodes.push({id: leftKeys[position],parent: parent, label: leftValues[0],side: "left", n: n, to: id, hidden: false, cut: 0, type: "terminal",  shape: "box",  font:{size:30}, borderWidth:2})
-      myGraph.nodes.push({id: rightKeys[position],parent: parent, label: rightValues[0],side: "right", n: n, hidden: false, cut: 0, type: "terminal",  shape: "box",  font:{size:30}, borderWidth:2})
+      myGraph.nodes.push({id: String(leftKeys[position]),parent: parent, label: leftValues[0],side: "left", n: n, to: id, hidden: false, cut: 0, type: "terminal",  shape: "box",  font:{size:30}, borderWidth:2})
+      myGraph.nodes.push({id: String(rightKeys[position]),parent: parent, label: rightValues[0],side: "right", n: n, hidden: false, cut: 0, type: "terminal",  shape: "box",  font:{size:30}, borderWidth:2})
     }
   }  else {
     if(parent === ""){
       parent = varM.get(1)
     }
     if(parseInt(sum)===0 || parseInt(sum)===mapLeft.size){
-      myGraph.nodes.push({id: leftKeys[position],parent: parent, label: leftValues[0],side: side, n: n, to: id, hidden: false, cut: 0, type: "terminal",  shape: "box",  font:{size:30}, borderWidth:2})
+      myGraph.nodes.push({id: String(leftKeys[position]),parent: parent, label: leftValues[0],side: side, n: n, to: id, hidden: false, cut: 0, type: "terminal",  shape: "box",  font:{size:30}, borderWidth:2})
     } else {
       makeItShort(myGraph,mapLeft,orgMap,side,n+1,varM,parent,side)
     }
@@ -256,7 +256,7 @@ function Robdd(props){
       
       countEdges=countEdges+1
     })
-
+    console.log(myGraph.nodes)
       return (
         <div className="parent">
           <Modal show={show} onHide={handleClose}>
