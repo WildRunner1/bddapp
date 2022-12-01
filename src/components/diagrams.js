@@ -324,12 +324,12 @@ const Diagrams = React.memo(() => {
     
     
     const variables = Variables(strs)
-    if(variables.length > 14){
+    if(variables.length > 12){
       setShow6(true)
-      setValid(false)
-      setExTitle("Zbyt duża ilość zmiennych")
-      setExMessage(<p>Funkcja zawiera zbyt dużą ilośc zmiennych,<br></br> program jest w stanie obsłużyć maksymalnie 10 zmiennych.<br></br>
-      Wprowadzono {variables.length} zmiennych</p>)
+      ///setValid(false)
+      setExTitle("UWAGA!!")
+      setExMessage(<p>Funkcja zawiera {variables.length} zmiennyc,<br></br> program jest w stanie stabilnie obsłużyć fukcję zawierająca do 14 zmiennych<br></br>
+      Generowanie fukcji powyżej 14 zmienny może spowodować zawieszenie programu</p>)
     } else {
     const varMap = new Map()
     for (let i = 1; i < variables.length + 1; i++) {
@@ -411,11 +411,11 @@ const Diagrams = React.memo(() => {
       } 
       v1 = value1
     })
-    if(variables.length > 13){
-      setValid(false)
-    } else {
-      setValid(true)
-    }
+    // if(variables.length > 1){
+    //   setValid(false)
+    // } else {
+    //   setValid(true)
+    // }
     
     if ((valid === true && expressions.length === 0) || (valid === false && expressions.length === 0)) {
       setShow(true)
