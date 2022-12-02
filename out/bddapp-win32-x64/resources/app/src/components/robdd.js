@@ -256,7 +256,7 @@ function Robdd(props){
       
       countEdges=countEdges+1
     })
-    console.log(myGraph.nodes)
+    //console.log(myGraph.nodes)
       return (
         <div className="parent">
           <Modal show={show} onHide={handleClose}>

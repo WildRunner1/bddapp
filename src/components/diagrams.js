@@ -87,7 +87,7 @@ function ExprTotrueKey(expressions, varMap, userVarMap, functionType) {
     nextV10="0"
   }
 
-  const rx = /([A-Z])/g
+  const rx = /([A-Z a-z])/g
   let i = 0
   const matches = []
   expressions.forEach(x => {
