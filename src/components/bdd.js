@@ -1,4 +1,4 @@
-import React, {  } from 'react';
+import React, { useState } from 'react';
 import Graph from "react-graph-vis";
 
 function getByValue(map, searchValue) {
@@ -42,6 +42,7 @@ function Bdd(props){
   const thruMap = props.truthMap
   const newVarMap = props.newVarMap
   const functionType = props.functionType
+  const [loading, setLoading] = useState()
 
 
   // variable nodes - nonterminal

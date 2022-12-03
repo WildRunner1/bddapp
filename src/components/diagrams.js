@@ -192,6 +192,7 @@ const Diagrams = React.memo(() => {
   const handleClose5 = () => setShow5(false);
   const handleClose6 = () => setShow6(false);
   const [valid, setValid] = useState(true)
+  
   const localS = []
   //localStorage.clear()
   
@@ -330,7 +331,7 @@ const Diagrams = React.memo(() => {
       setExTitle("UWAGA!!")
       setExMessage(<p>Funkcja zawiera {variables.length} zmiennyc,<br></br> program jest w stanie stabilnie obsłużyć fukcję zawierająca do 12 zmiennych<br></br>
       Generowanie fukcji powyżej 12 zmienny może spowodować zawieszenie programu</p>)
-    } else {
+    } 
     const varMap = new Map()
     for (let i = 1; i < variables.length + 1; i++) {
       varMap.set(i, variables[i - 1])
@@ -340,7 +341,8 @@ const Diagrams = React.memo(() => {
       dragVar.push(value)
     })
     setVarItems(dragVar)
-   }
+    truthMapToPass.clear()
+    newVarMapToPass.clear()
   };
  
   const handleSubmit = (event) => {
@@ -586,7 +588,7 @@ const Diagrams = React.memo(() => {
           </div>
 
           {/* <div className="d-grid"> */}
-            <button title="Generuj" className="btn btn-secondary btn-lg button3" id="submitButton"  type="submit">Generuj</button>
+            <button title="Generuj" className="btn btn-secondary  btn-lg button3" id="submitButton"  type="submit">Generuj</button>
             <button className="btn btn-success button4" title="Wyświetl zapisane funkcje" onClick={storedFunctions} type="submit"><FontAwesomeIcon icon={faSave}/></button>
           {/* </div> */}
         </form>
@@ -651,7 +653,7 @@ const Diagrams = React.memo(() => {
           <form >
           <div className="mb-3">
           <p className='text-center'>----------  Zapisz  ----------</p>
-            <label className="form-label" >Funkcja Logiczna</label>
+            {/* <label className="form-label" >Funkcja Logiczna</label> */}
             <input className="form-control" name="body" onChange={handleChange} defaultValue={formValues.logFunction} id="body" type="text" placeholder="Funkcja Logiczna" required/>
           </div>
           <div className="mb-3 ">
@@ -664,8 +666,8 @@ const Diagrams = React.memo(() => {
         </div>
           </div>
           <div className="mb-3">
-            <label className="form-label" >Opis</label>
-            <input className="form-control" name="desc" onChange={handleChange} id="desc" type="text" placeholder="Funkcja Logiczna" required/>
+            {/* <label className="form-label" >Opis</label> */}
+            <input className="form-control" name="desc" onChange={handleChange} id="desc" type="text" placeholder="Opis" required/>
           </div>
             <input className='="btn btn-lg btnSave' type='submit' onClick={handleSave} value="Zapisz"/>
           </form>

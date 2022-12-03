@@ -256,6 +256,8 @@ function Robdd(props){
       
       countEdges=countEdges+1
     })
+
+    
     //console.log(myGraph.nodes)
       return (
         <div className="parent">
