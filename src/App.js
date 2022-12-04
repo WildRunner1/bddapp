@@ -16,18 +16,22 @@ function App() {
     event.preventDefault()
     
       switch (event.currentTarget.id) {
+        // eslint-disable-next-line
         case 'home': {
             setPage2(<div className="container-fluid artic"><Home /></div>)
         }
           break;
+        // eslint-disable-next-line
         case 'about': {
             setPage2(<div className="container-fluid artic" ><About /></div>)
         }
           break;
+        // eslint-disable-next-line
         case 'diagrams': {
-            setPage2(<div className="container-fluid "><Diagrams /></div>)
+            setPage2(<div className="container-fluid diagra"><Diagrams /></div>)
         }
           break;
+        // eslint-disable-next-line
         case 'theory': {
             setPage2(<div className="container-fluid artic"><Teory /></div>)
         }

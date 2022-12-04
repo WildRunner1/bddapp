@@ -1,7 +1,5 @@
-import React, {useState} from 'react';
+import React, { useEffect} from 'react';
 import Graph from "react-graph-vis";
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 
 function splitMap(map, side){
   const tempMap1 = new Map()
@@ -139,7 +137,6 @@ function makeItColor(myGraph, functionType){
   let type = functionType
   myGraph.edges.forEach(element => {
     let to = element.to
-    let label = element.label
     let type1 = element.type
     const index = myGraph.nodes.findIndex(object => {
       return object.id === to;
@@ -166,9 +163,6 @@ function makeItColor(myGraph, functionType){
 
 function Robdd(props){
   const myGraph = { nodes:[], edges:[] }
-  const [show, setShow] = useState(false)
-  const handleClose = () => setShow(false)
-  const [message, setMessage] = useState()
   const thruMap = props.truthMap
   const newVarMap = props.newVarMap
   const functionType = props.functionType
@@ -183,7 +177,7 @@ function Robdd(props){
 
    const events = {
       select: function(event) {
-        var { nodes, edges } = event;
+        //var { nodes, edges } = event;
         // setMessage(nodes + " nodes")
         // setShow(true)
       },
@@ -256,23 +250,16 @@ function Robdd(props){
       
       countEdges=countEdges+1
     })
-
+    useEffect(() => {
+      setTimeout( () => {
+      props.setLoading(10)},2000)
+    })
+    
     
     //console.log(myGraph.nodes)
       return (
         <div className="parent">
-          <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Błąd składni</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>{message}</Modal.Body>
-        <Modal.Footer>
-          <Button variant="danger" onClick={handleClose} onKeyUp={(e) => { if (e.key === "Enter" && !e.defaultPrevented) e.currentTarget.click(); }}>
-            Zamknij
-          </Button>
-
-        </Modal.Footer>
-      </Modal>
+          
           <Graph
             graph={myGraph}
             options={options}

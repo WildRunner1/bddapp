@@ -7,6 +7,7 @@ import { Bdd } from './';
 import { Robdd } from './';
 import { TruthTable } from './';
 import {logFunctions} from '../data.json';
+import { BallTriangle } from 'react-loader-spinner'
 
 
 //get the variables from expressions
@@ -40,6 +41,7 @@ function Variables(strs) {
 function Expressions(strs, functionType) {
   let rx
   if (functionType === "KPS") {
+    // eslint-disable-next-line
     rx = /(([\/A-Z a-z][*]*)+)/g;
     strs = "+" + strs + "+"
   } else {
@@ -169,7 +171,7 @@ function getByValue(map, searchValue) {
       return key;
   }
 }
-const Diagrams = React.memo(() => {
+function Diagrams() {
 
   const [truthMapToPass, setTruthMapToPass] = useState(new Map())
   const [newVarMapToPass, setNewVarMapToPass] = useState(new Map())
@@ -192,6 +194,12 @@ const Diagrams = React.memo(() => {
   const handleClose5 = () => setShow5(false);
   const handleClose6 = () => setShow6(false);
   const [valid, setValid] = useState(true)
+  const [loading, setLoading] = useState(10)
+  const [formValues, setFormValues] = useState({
+    logFunction: "",
+    logType: ""
+
+  });
   
   const localS = []
   //localStorage.clear()
@@ -228,7 +236,7 @@ const Diagrams = React.memo(() => {
     event.preventDefault()
     let i = parseInt(event.currentTarget.id)
     let body = JSON.parse(localS[i]).body
-    let type = JSON.parse(localS[i]).type
+    //let type = JSON.parse(localS[i]).type
     document.getElementById("funkcjaLogiczna").value = body
     // if(type === "KPS"){
     //   document.getElementById("optionA").checked = true
@@ -301,15 +309,11 @@ const Diagrams = React.memo(() => {
 
 
 
-  const [formValues, setFormValues] = useState({
-    logFunction: "",
-    logType: ""
+  
 
-  });
-
-  const BDD = <div className="bddContainer"> <Bdd truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
-  const ROBDD = <div className="bddContainer"> <Robdd truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
-  const TrueTable = <div className="bddContainer"> <TruthTable truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
+  const BDD = <div className="bddContainer"> <Bdd setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
+  const ROBDD = <div className="bddContainer"> <Robdd setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
+  const TrueTable = <div className="bddContainer"> <TruthTable setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
   
 
 
@@ -452,6 +456,7 @@ const Diagrams = React.memo(() => {
       setDisable("BDD", false)
       console.log("Wartości z fromularza");
       console.log(formValues);
+      setLoading(1)
     } 
 
   }
@@ -466,6 +471,7 @@ const Diagrams = React.memo(() => {
     event.preventDefault()
     if (formValues.logFunction !== "") {
       switch (event.currentTarget.id) {
+        // eslint-disable-next-line
         case 'BDD': {
           if (page !== BDD) {
             setPage(BDD)
@@ -475,9 +481,11 @@ const Diagrams = React.memo(() => {
             setDisable("TrueTable", false)
             setClass("BDD", "button2")
             setDisable("BDD", true)
+            setLoading(1)
           }
         }
           break;
+        // eslint-disable-next-line
         case 'ROBDD': {
           if (page !== ROBDD) {
             setPage(ROBDD)
@@ -487,9 +495,11 @@ const Diagrams = React.memo(() => {
             setDisable("TrueTable", false)
             setClass("BDD", "button1")
             setDisable("BDD", false)
+            setLoading(1)
           }
         }
           break;
+        // eslint-disable-next-line
         case 'TrueTable': {
           if (page !== TrueTable) {
             setPage(TrueTable)
@@ -499,6 +509,7 @@ const Diagrams = React.memo(() => {
             setDisable("TrueTable", true)
             setClass("BDD", "button1")
             setDisable("BDD", false)
+            setLoading(1)
           }
         }
           break;
@@ -511,6 +522,7 @@ const Diagrams = React.memo(() => {
             setDisable("TrueTable", true)
             setClass("BDD", "button1")
             setDisable("BDD", false)
+            setLoading(1)
           }
         }
       }
@@ -547,10 +559,30 @@ const Diagrams = React.memo(() => {
   } else {
     alertKPIKPS = "(A+B+C)*(/A+B+C)"
   }
-
+  
+  
   return (
     <div>
-      <div className="container px-5 my-5">
+    {loading===12 ? (
+        
+      <div className="d-flex justify-content-center align-self-center ">
+        <div className="aagg">
+      <BallTriangle
+        height={100}
+        width={100}
+        radius={5}
+        color="#DF7676"
+        ariaLabel="ball-triangle-loading"
+        wrapperClass={{}}
+        wrapperStyle=""
+        visible={true}
+      />
+      </div>
+      </div>
+   
+  ) : (<div></div>)}
+    <div className={loading===12 ? "hide" : "visiable"}>
+      <div className="container px-5 my-5 ">
         <form id="contactForm" onSubmit={handleSubmit}>
           <div className="mb-3">
             <label className="form-label" onClick={handleToolTip}>Funkcja Logiczna (<FontAwesomeIcon title="Instrukcja" icon={faQuestion} />)</label>
@@ -587,18 +619,22 @@ const Diagrams = React.memo(() => {
 
           </div>
 
-          {/* <div className="d-grid"> */}
+         
             <button title="Generuj" className="btn btn-secondary  btn-lg button3" id="submitButton"  type="submit">Generuj</button>
             <button className="btn btn-success button4" title="Wyświetl zapisane funkcje" onClick={storedFunctions} type="submit"><FontAwesomeIcon icon={faSave}/></button>
-          {/* </div> */}
+          
         </form>
       </div>
       <div className='d-flex justify-content-center'>
         <button id='BDD' className="button1" onClick={handleClickPage}>BDD/OBDD</button>
         <button id='ROBDD'  className="button1" onClick={handleClickPage}>ROBDD</button>
         <button id='TrueTable'  className="button1" onClick={handleClickPage}>Tablica Prawdy</button>
-      </div>
+      </div> 
+      
+     {/* <div className={loading===1 ? "hide" : "visiable"}> */}
       {page}
+      {/* </div>  */}
+
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>{exTitle}</Modal.Title>
@@ -706,9 +742,12 @@ const Diagrams = React.memo(() => {
 
         </Modal.Footer>
       </Modal>
+     
+    </div>
     </div>
   )
-})
+  
+}
 
 
 export default Diagrams;

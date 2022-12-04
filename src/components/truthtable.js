@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {useEffect} from 'react';
 
 function header(props){
   const varMap = new Map(props.newVarMap)
@@ -53,7 +53,11 @@ function TruthTable(props){
 
   const headerTable = header(props)
   const valueTable = bodyValues(props)
-
+  useEffect(() => {
+    setTimeout( () => {
+    props.setLoading(10)},2000)
+  })
+  
   //console.log(headerTable)
   //console.log(valueTable)
   const varNum = newVarMap.size
