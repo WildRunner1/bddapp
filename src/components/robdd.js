@@ -254,12 +254,24 @@ function Robdd(props){
       setTimeout( () => {
       props.setLoading(10)},2000)
     })
+    let newFunc = []
     
+    // myGraph.edges.forEach(element => {
+    //   let newExpr = ""
+    //   if(element.label==="1" && element.type === "terminal"){
+    //     for(let i=0 ; i<newVarMap.size; i++){
+    //       const index = myGraph.edges.findIndex(object => {
+    //         return object.to === element.from;
+    //        });
+    //       myGraph.edges
+    //     }
+    //   }
+    // })
     
     //console.log(myGraph.nodes)
       return (
         <div className="parent">
-          
+          <div><p></p></div>
           <Graph
             graph={myGraph}
             options={options}
