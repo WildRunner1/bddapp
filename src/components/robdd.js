@@ -329,7 +329,7 @@ function Robdd(props){
       return (
         <div className="parent">
           {/* <div className="shorterFunction">({functionType}) f(x): {shorterFunction}  </div> */}
-          <div className="shorterFunction">({functionType}) funkcja uproszczona: {shorterFunction}  </div>
+          <div className="shorterFunction">Fukncja uproszczona ({functionType}): {shorterFunction}  </div>
           <Graph
             graph={myGraph}
             options={options}
