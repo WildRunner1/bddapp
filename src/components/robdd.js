@@ -60,7 +60,8 @@ function makeItShort(myGraph,map,orgMap,side,n,varM,parent,tree){
     if(side === "start"){
       let label = varM.get(n)
        id = label//String(n)
-      myGraph.nodes.push({id: id, label: label,side: "start", n: n, tree: tree, hidden: false, cut: 0, type: "nonterminal",  shape: "eclipse",parent: String(parent),  font:{size:30}, borderWidth:2})
+      parent = "-1"
+      myGraph.nodes.push({id: id, exp: "",  label: label,side: "start", n: n, tree: tree, hidden: false, cut: 0, type: "nonterminal",  shape: "eclipse",parent: String(parent),  font:{size:30}, borderWidth:2})
     } else if(side === "left"){
       if(n<=varM.size){
         type="nonterminal"
@@ -68,7 +69,7 @@ function makeItShort(myGraph,map,orgMap,side,n,varM,parent,tree){
          shape = "eclipse"
          id = label+String(parent).slice(1,String(parent).length)+"0"
        } 
-        myGraph.nodes.push({id: id, label: label,side: "left", n: n, tree: tree, hidden: false, cut: 0, type: type,  shape: shape,parent: parent,  font:{size:30}, borderWidth:2})  
+        myGraph.nodes.push({id: id, exp: "",  label: label,side: "left", n: n, tree: tree, hidden: false, cut: 0, type: type,  shape: shape,parent: parent,  font:{size:30}, borderWidth:2})  
     } else if(side === "right"){
       if(n<=varM.size){
         type="nonterminal"
@@ -76,7 +77,7 @@ function makeItShort(myGraph,map,orgMap,side,n,varM,parent,tree){
          shape = "eclipse"
          id = label+String(parent).slice(1,String(parent).length)+"1"
        }
-        myGraph.nodes.push({id: id, label: label,side: "right", n: n, tree: tree, hidden: false, cut: 0, type: type,  shape: shape,parent: parent,  font:{size:30}, borderWidth:2})  
+        myGraph.nodes.push({id: id, exp: "", label: label,side: "right", n: n, tree: tree, hidden: false, cut: 0, type: type,  shape: shape,parent: parent,  font:{size:30}, borderWidth:2})  
     } 
     parent = id
     if(n<varM.size){
@@ -84,15 +85,15 @@ function makeItShort(myGraph,map,orgMap,side,n,varM,parent,tree){
         makeItShort(myGraph,mapRight,orgMap,"right",n+1,varM,parent,side)
     }
     if(n===varM.size){
-      myGraph.nodes.push({id: String(leftKeys[position]),parent: parent, label: leftValues[0],side: "left", n: n, to: id, hidden: false, cut: 0, type: "terminal",  shape: "box",  font:{size:30}, borderWidth:2})
-      myGraph.nodes.push({id: String(rightKeys[position]),parent: parent, label: rightValues[0],side: "right", n: n, hidden: false, cut: 0, type: "terminal",  shape: "box",  font:{size:30}, borderWidth:2})
+      myGraph.nodes.push({id: String(leftKeys[position]), exp: "",  parent: parent, label: leftValues[0],side: "left", n: n, to: id, hidden: false, cut: 0, type: "terminal",  shape: "box",  font:{size:30}, borderWidth:2})
+      myGraph.nodes.push({id: String(rightKeys[position]), exp: "",  parent: parent, label: rightValues[0],side: "right", n: n, hidden: false, cut: 0, type: "terminal",  shape: "box",  font:{size:30}, borderWidth:2})
     }
   }  else {
     if(parent === ""){
       parent = varM.get(1)
     }
     if(parseInt(sum)===0 || parseInt(sum)===mapLeft.size){
-      myGraph.nodes.push({id: String(leftKeys[position]),parent: parent, label: leftValues[0],side: side, n: n, to: id, hidden: false, cut: 0, type: "terminal",  shape: "box",  font:{size:30}, borderWidth:2})
+      myGraph.nodes.push({id: String(leftKeys[position]), exp: "",  parent: parent, label: leftValues[0],side: side, n: n, to: id, hidden: false, cut: 0, type: "terminal",  shape: "box",  font:{size:30}, borderWidth:2})
     } else {
       makeItShort(myGraph,mapLeft,orgMap,side,n+1,varM,parent,side)
     }
@@ -133,6 +134,50 @@ function makeEdges(myGraph){
 //       return key;
 //   }
 // }
+
+function makeExpressions(myGraph, functionType, varM){
+
+  for(let i=0; i<2 ;i++){
+    myGraph.nodes.forEach(element => {
+      let parentExp = ""
+      let parentLabel = ""
+      if(element.parent !== "-1"){
+        const index6 = myGraph.nodes.findIndex(object => {
+          return object.id === element.parent;
+        });
+        parentExp = myGraph.nodes[index6].exp
+        parentLabel = myGraph.nodes[index6].label
+      }
+
+      if(functionType === "KPS"){
+          if(element.side === "left"){
+            element.exp = parentExp +"/"+ parentLabel
+            element.title = element.exp
+          } else if(element.side === "right") { //element.side==="right"
+            element.exp = parentExp + parentLabel
+            element.title = element.exp
+          }
+      } else { //function.type==="KPI"
+        if(element.side === "left"){
+          if(parentExp.length === 0){
+            element.exp = parentExp + parentLabel
+          }else {
+            element.exp = parentExp +"+"+ parentLabel
+          }
+          element.title = element.exp
+        } else if(element.side === "right") { //element.side==="right"
+          if(parentExp.length === 0){
+            element.exp = parentExp +"/"+ parentLabel
+          }else {
+            element.exp = parentExp +"+/"+ parentLabel
+          }
+          element.title = element.exp
+        }
+      } 
+    })
+  }
+ 
+}
 function makeItColor(myGraph, functionType){
   let type = functionType
   myGraph.edges.forEach(element => {
@@ -159,8 +204,25 @@ function makeItColor(myGraph, functionType){
       }
     }
   })
+  myGraph.nodes.forEach(element => {
+    if(type === "KPS"){
+      if(element.type === "terminal" && element.label === "1" ){
+        element.color = "#86df76"
+      } 
+      if(element.type === "terminal" && element.label === "0" ){
+        
+      }
+    } else {
+      if(element.type === "terminal" && element.label === "0" ){
+        element.color = "#86df76"
+      } 
+      if(element.type === "terminal" && element.label === "1" ){
+        
+      }
+    }
+  })
+  
 }
-
 function Robdd(props){
   const myGraph = { nodes:[], edges:[] }
   const thruMap = props.truthMap
@@ -177,20 +239,11 @@ function Robdd(props){
 
    const events = {
       select: function(event) {
-        //var { nodes, edges } = event;
-        // setMessage(nodes + " nodes")
-        // setShow(true)
-      },
-      // click: ({nodes,edges}) =>{
-      //   setShow(true)
-      // }
-
-      
-      
+      }
     };
     
     const options = {
-      
+      interaction:{hover:true},
       physics:{
         enabled: true
       },
@@ -223,13 +276,13 @@ function Robdd(props){
             background: '#DF7676'
           },
           hover: {
-            border: '#2B7CE9',
-            background: '#D2E5FF'
+            border: '#cc0000',
+            background: '#DF7676'
           }
         },
     
     },
-      height: "700px"
+      height: "660px"
     };
     let important
     if(functionType === "KPS"){
@@ -254,24 +307,29 @@ function Robdd(props){
       setTimeout( () => {
       props.setLoading(10)},2000)
     })
-    let newFunc = []
     
-    // myGraph.edges.forEach(element => {
-    //   let newExpr = ""
-    //   if(element.label==="1" && element.type === "terminal"){
-    //     for(let i=0 ; i<newVarMap.size; i++){
-    //       const index = myGraph.edges.findIndex(object => {
-    //         return object.to === element.from;
-    //        });
-    //       myGraph.edges
-    //     }
-    //   }
-    // })
+    makeExpressions(myGraph, functionType, newVarMap)
+    let shorterFunction = ""
+    myGraph.nodes.forEach(element => {
+      if(functionType === "KPS" && element.label === "1"){
+          if(shorterFunction.length > 0){
+            shorterFunction+= " + "+element.exp
+          } else {
+            shorterFunction+= element.exp
+          }
+      } else if(functionType === "KPI" && element.label === "0"){
+        if(shorterFunction.length > 0){
+          shorterFunction+= "* ("+element.exp+") "
+        } else {
+          shorterFunction+= "("+element.exp+") "
+        }
+      }
+    })
     
-    //console.log(myGraph.nodes)
       return (
         <div className="parent">
-          <div><p></p></div>
+          {/* <div className="shorterFunction">({functionType}) f(x): {shorterFunction}  </div> */}
+          <div className="shorterFunction">({functionType}) funkcja uproszczona: {shorterFunction}  </div>
           <Graph
             graph={myGraph}
             options={options}

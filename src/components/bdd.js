@@ -34,6 +34,67 @@ function makeItColor(myGraph, functionType){
       }
     }
   })
+  myGraph.nodes.forEach(element => {
+    if(type === "KPS"){
+      if(element.type === "terminal" && element.label === "1" ){
+        element.color = "#86df76"
+      } 
+      if(element.type === "terminal" && element.label === "0" ){
+      }
+    } else {
+      if(element.type === "terminal" && element.label === "0" ){
+        element.color = "#86df76"
+      } 
+      if(element.type === "terminal" && element.label === "1" ){
+      }
+    }
+  })
+}
+function makeExpressions(myGraph, functionType, varM){
+
+  for(let i=0; i<2 ;i++){
+    myGraph.nodes.forEach(element => {
+      let parentExp = ""
+      let parentLabel = ""
+      if(element.parent !== undefined){
+        const index6 = myGraph.nodes.findIndex(object => {
+          return object.id === element.parent;
+        });
+        if(index6 >= 0){
+          parentExp = myGraph.nodes[index6].exp
+          parentLabel = myGraph.nodes[index6].label
+        }
+        
+      }
+
+      if(functionType === "KPS"){
+          if(element.id.slice(element.id.length-1,element.id.length) === "0"){
+            element.exp = parentExp +"/"+ parentLabel
+            element.title = element.exp
+          } else if(element.id.slice(element.id.length-1,element.id.length) === "1") { //element.side==="right"
+            element.exp = parentExp + parentLabel
+            element.title = element.exp
+          }
+      } else { //function.type==="KPI"
+        if(String(element.id.slice(element.id.length-1,element.id.length)) === "0"){
+          if(parentExp.length === 0){
+            element.exp = parentExp + parentLabel
+          }else {
+            element.exp = parentExp +"+"+ parentLabel
+          }
+          element.title = element.exp
+        } else if(element.id.slice(element.id.length-1,element.id.length) === "1") { //element.side==="right"
+          if(parentExp.length === 0){
+            element.exp = parentExp +"/"+ parentLabel
+          }else {
+            element.exp = parentExp +"+/"+ parentLabel
+          }
+          element.title = element.exp
+        }
+      } 
+    })
+  }
+ 
 }
 function Bdd(props){
   
@@ -61,16 +122,12 @@ function Bdd(props){
         value = String(value+val)
       }
       id = String(element+value)
-      // if(i%2===0){
-        myGraph.nodes.push({type: "nonterminal",id: String(id), label: element, shape: "eclipse",parent: String(newVarMap.get(key-1))+String(value).slice(0,String(value).length-1),  font:{size:30}, borderWidth:2})
-      // } else {
-       // myGraph.nodes.push({type: "nonterminal",id: String(id), label: element, shape: "eclipse",parent: String(newVarMap.get(key-1))+String(value).slice(0,String(value).length-1), font:{size:30}, borderWidth:2})
-      // } 
+        myGraph.nodes.push({type: "nonterminal",exp:"",  id: String(id), label: element, shape: "eclipse",parent: String(newVarMap.get(key-1))+String(value).slice(0,String(value).length-1),  font:{size:30}, borderWidth:2})
     }
   }
   // value nodes - terminal
   for (const [key, value] of thruMap.entries()) {
-    myGraph.nodes.push({type: "terminal",id: String(key), label: String(value),parent: String(newVarMap.get(newVarMap.size))+String(key).slice(0,String(key).length-1), shape: "box", font:{size:30}})
+    myGraph.nodes.push({type: "terminal", exp:"", id: String(key), label: String(value),parent: String(newVarMap.get(newVarMap.size))+String(key).slice(0,String(key).length-1), shape: "box", font:{size:30}})
   }
 
   myGraph.nodes.sort(function(a, b){
@@ -175,6 +232,7 @@ function Bdd(props){
   })
 
   countEdges = countEdges -1
+  makeExpressions(myGraph, functionType, newVarMap)
   // console.log(myGraph.nodes)
   // console.log(myGraph.edges)
       return (

@@ -88,7 +88,6 @@ function ExprTotrueKey(expressions, varMap, userVarMap, functionType) {
     nextV01="1"
     nextV10="0"
   }
-
   const rx = /([A-Z a-z])/g
   let i = 0
   const matches = []
@@ -96,7 +95,7 @@ function ExprTotrueKey(expressions, varMap, userVarMap, functionType) {
     matches[i] = [...x.matchAll(rx)];
     i++
   })
-  console.log(matches)
+  
   let exptrue = []
   for (let i = 0; i < matches.length; i++) {
     for (let j = 0; j < matches[i].length; j++) {
@@ -229,12 +228,9 @@ function Diagrams() {
   })
   for ( let i = 0; i < locSort.length; i++){
     localS.push(localStorage.getItem(locSort[i]));
-    //console.log(localStorage.getItem(localStorage.key(locSort[i])))
+   
   }
   
-  
-  //console.log("localS")
-  //console.log(localS)
   const fucArr = []
   const handleGetSaved = (event) =>{
     event.preventDefault()
@@ -243,9 +239,9 @@ function Diagrams() {
     //let type = JSON.parse(localS[i]).type
     document.getElementById("funkcjaLogiczna").value = body
     // if(type === "KPS"){
-    //   document.getElementById("optionA").checked = true
+      document.getElementById("optionA").checked = false
     // } else {
-    //   document.getElementById("optionB").checked = true
+      document.getElementById("optionB").checked = false
     // }
     
     setFormValues({logFunction : body})
