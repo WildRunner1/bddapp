@@ -1,4 +1,4 @@
-import React, {  } from 'react';
+import React, { useEffect } from 'react';
 import Graph from "react-graph-vis";
 
 function getByValue(map, searchValue) {
@@ -12,7 +12,6 @@ function makeItColor(myGraph, functionType){
   let type = functionType
   myGraph.edges.forEach(element => {
     let to = element.to
-    let label = element.label
     let type1 = element.type
     const index = myGraph.nodes.findIndex(object => {
       return object.id === to;
@@ -42,7 +41,13 @@ function Bdd(props){
   const thruMap = props.truthMap
   const newVarMap = props.newVarMap
   const functionType = props.functionType
-
+  
+  
+  useEffect(() => {
+    setTimeout( () => {
+    props.setLoading(10)},2000)
+  })
+  
 
   // variable nodes - nonterminal
   for(let i=Math.pow(2,(newVarMap.size-1)); i>=0; i--){
@@ -105,7 +110,7 @@ function Bdd(props){
    
    const events = {
         select: function(event) {
-          var { nodes, edges } = event;
+          //var { nodes, edges } = event;
         },
         
       };
@@ -168,11 +173,12 @@ function Bdd(props){
   myGraph.edges.forEach( e =>{
     countEdges=countEdges+1
   })
+
   countEdges = countEdges -1
   // console.log(myGraph.nodes)
   // console.log(myGraph.edges)
       return (
-        <div className="parent">
+        <div className="parent" >
           
           <Graph
             graph={myGraph}
@@ -180,7 +186,7 @@ function Bdd(props){
             events={events}
           />
          
-            <div className="stats">
+            <div className="stats" >
               <label className="stat1">STATYSTYKI </label>
               <label className="stat1">Ilość węzłów nieterminalowych: {countNonTerminalNodes}</label>
               <label className="stat1">Ilość węzłów terminalowych: {countTerminalNodes}</label>
