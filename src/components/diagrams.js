@@ -6,7 +6,7 @@ import { faQuestion, faSave, faPlus, faMinus } from '@fortawesome/free-solid-svg
 import { Bdd } from './';
 import { Robdd } from './';
 import { TruthTable } from './';
-import {logFunctions} from '../data.json';
+import { logFunctions } from '../data.json';
 import { BallTriangle } from 'react-loader-spinner'
 
 
@@ -96,6 +96,7 @@ function ExprTotrueKey(expressions, varMap, userVarMap, functionType) {
     matches[i] = [...x.matchAll(rx)];
     i++
   })
+  console.log(matches)
   let exptrue = []
   for (let i = 0; i < matches.length; i++) {
     for (let j = 0; j < matches[i].length; j++) {
@@ -130,10 +131,10 @@ function ExprTotrueKey(expressions, varMap, userVarMap, functionType) {
       }
     }
   }
+ 
   let keysToSet = []
-  missingMap.forEach(element => {
-
-    let key = getByValue(missingMap, element)
+  missingMap.forEach((element, key) => {
+    
     let value = exptrue[key]
     let miss = []
     for (var i = (Math.pow(2, String(element).length) - 1); i >= 0; i--) {
@@ -141,12 +142,14 @@ function ExprTotrueKey(expressions, varMap, userVarMap, functionType) {
       miss[i] = value
       for (var j = (String(element).length - 1); j >= 0; j--) {
         k = element[((j - String(element).length) * -1) - 1]
+      
         let val = (i & Math.pow(2, j)) ? "1" : "0"
         miss[i] = String(miss[i]).slice(0, k - 1) + val + String(miss[i]).slice(k - 1, String(miss[i]).length)
       }
       keysToSet.push(miss[i])
     }
   })
+ 
   exptrue.forEach(element => {
     if (String(element).length === varMap.size) {
       keysToSet.push(element)
@@ -163,6 +166,7 @@ function ExprTotrueKey(expressions, varMap, userVarMap, functionType) {
     }
     keysToSet2.push(String(charArr2).replace(/,/g, ''))
   }
+  
   return (keysToSet2)
 }
 function getByValue(map, searchValue) {
