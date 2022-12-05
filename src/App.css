@@ -481,4 +481,3 @@ a:hover{
 .vis-tooltip{
   z-index: 2000;
 }
-@import url("../node_modules/vis-network/dist/dist/vis-network.min.css")
