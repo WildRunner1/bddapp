@@ -229,22 +229,7 @@ function Diagrams() {
    
   }
   
-  const fucArr = []
-  const handleGetSaved = (event) =>{
-    event.preventDefault()
-    let i = parseInt(event.currentTarget.id)
-    let body = JSON.parse(localS[i]).body
-    //let type = JSON.parse(localS[i]).type
-    document.getElementById("funkcjaLogiczna").value = body
-    // if(type === "KPS"){
-      document.getElementById("optionA").checked = false
-    // } else {
-      document.getElementById("optionB").checked = false
-    // }
-    
-    setFormValues({logFunction : body})
-    setShow3(false)
-  }
+  
   //console.log(localStorage)
   const handleDelete = (event) => {
     event.preventDefault()
@@ -305,16 +290,10 @@ function Diagrams() {
     setShow4(true)
   }
 
-
-
-  
-
   const BDD = <div className="bddContainer"> <Bdd setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
   const ROBDD = <div className="bddContainer"> <Robdd setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
   const TrueTable = <div className="bddContainer"> <TruthTable setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
   
-
-
   const handleChange = (event) => {
     // event.preventDefault()
     
@@ -346,7 +325,7 @@ function Diagrams() {
     truthMapToPass.clear()
     newVarMapToPass.clear()
   };
- 
+  
   const handleSubmit = (event) => {
     setValid(false)
     event.preventDefault();
