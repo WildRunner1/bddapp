@@ -402,6 +402,7 @@ function Diagrams() {
     const expressions = Expressions(strs, functionType)
 
     //Walidacja formularza
+    let valid2 = true
     let table = []
     let v1 = ""
     table = Array.from(strs)
@@ -410,6 +411,7 @@ function Diagrams() {
       if (v1 === value1) {
         setShow(true)
         setValid(false)
+        valid2 = false
         setExTitle("Błąd składni")
         setExMessage("Podwójny znak lub zmienna np. ** lub // lub AA")
       } 
@@ -420,6 +422,8 @@ function Diagrams() {
         setShow(true)
         setExTitle("Błąd składni")
         setExMessage("Nie zmapowano wyrażeń, sprawdź składnię.")
+        setValid(false)
+        valid2 = false
       } else {
         setValid(true)
       }
@@ -442,8 +446,7 @@ function Diagrams() {
       setNewVarMapToPass(new Map(newVarMapToPass.set(key, value)))
 
     })
-
-    if (formValues.logFunction !== "" && valid === true && formValues.logType !== "" ){
+    if ( valid2 === true ){
       //setPage(ROBDD)
       setPage(TrueTable)
       setClass("ROBDD", "button1")
@@ -467,7 +470,7 @@ function Diagrams() {
 
   const handleClickPage = (event) => {
     event.preventDefault()
-    if (formValues.logFunction !== "") {
+    if (valid === true) {
       switch (event.currentTarget.id) {
         // eslint-disable-next-line
         case 'BDD': {
