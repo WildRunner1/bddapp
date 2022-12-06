@@ -52,19 +52,23 @@ function makeItColor(myGraph, functionType){
 }
 function makeExpressions(myGraph, functionType, varM){
 
-  for(let i=0; i<2 ;i++){
+  for(let i=0; i<varM.size ;i++){
     myGraph.nodes.forEach(element => {
-      let parentExp = ""
+      let parentExp = "varM.get(1)"
       let parentLabel = ""
       if(element.parent !== undefined){
         const index6 = myGraph.nodes.findIndex(object => {
           return object.id === element.parent;
         });
+        
         if(index6 >= 0){
           parentExp = myGraph.nodes[index6].exp
           parentLabel = myGraph.nodes[index6].label
+        } else {
         }
         
+      } else {
+        parentLabel = varM.get(1)
       }
 
       if(functionType === "KPS"){
@@ -143,7 +147,7 @@ function Bdd(props){
      
       myGraph.edges.push(
         { from: parent,
-          hoverWidth: 5,//1.5,
+          hoverWidth: 3,//1.5,
           physics: false,
           shadow:{
             enabled: true,
@@ -172,6 +176,7 @@ function Bdd(props){
         
       };
   const options = {
+    interaction:{hover:true},
     physics:{
       enabled: true
     },
@@ -195,7 +200,7 @@ function Bdd(props){
     },
     nodes: {
       //color: "#FFFFFF",
-      borderWidth: 1,
+      //borderWidth: 1,
       color: {
         border: '#a6a6a6',
         background: '#FFFFFF',
@@ -204,8 +209,8 @@ function Bdd(props){
           background: '#DF7676'
         },
         hover: {
-          border: '#2B7CE9',
-          background: '#D2E5FF'
+          border: '#cc0000',
+          background: '#DF7676'
         }
       },
   
