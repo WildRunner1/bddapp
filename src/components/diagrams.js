@@ -89,11 +89,11 @@ function ExprTotrueKey(expressions, varMap, userVarMap, functionType) {
     nextV10="0"
   }
   const rx = /([A-Z a-z])/g
-  let i = 0
+  let mx = 0
   const matches = []
   expressions.forEach(x => {
-    matches[i] = [...x.matchAll(rx)];
-    i++
+    matches[mx] = [...x.matchAll(rx)];
+    mx++
   })
   
   let exptrue = []
@@ -141,8 +141,7 @@ function ExprTotrueKey(expressions, varMap, userVarMap, functionType) {
       miss[i] = value
       for (var j = (String(element).length - 1); j >= 0; j--) {
         k = element[((j - String(element).length) * -1) - 1]
-      
-        let val = (i & Math.pow(2, j)) ? "1" : "0"
+        let val  = (i & Math.pow(2, j)) ? "1" : "0"
         miss[i] = String(miss[i]).slice(0, k - 1) + val + String(miss[i]).slice(k - 1, String(miss[i]).length)
       }
       keysToSet.push(miss[i])
@@ -165,7 +164,6 @@ function ExprTotrueKey(expressions, varMap, userVarMap, functionType) {
     }
     keysToSet2.push(String(charArr2).replace(/,/g, ''))
   }
-  
   return (keysToSet2)
 }
 function getByValue(map, searchValue) {
@@ -356,8 +354,8 @@ function Diagrams() {
     newVarMapToPass.clear()
 
     const functionType = formValues.logType//"KPS" / "KPI"
-    const strs = document.getElementById("funkcjaLogiczna").value//String(formValues.logFunction)//["(/A*B*C)+(/A*/B*C)+(/A*B*/C)+(/A*/B*/C)+(A*B*/C)"]
-    
+    let strs1 = document.getElementById("funkcjaLogiczna").value//String(formValues.logFunction)//["(/A*B*C)+(/A*/B*C)+(/A*B*/C)+(/A*/B*/C)+(A*B*/C)"]
+    const strs = strs1.replace(/ /g, '')
     const variables = Variables(strs)
     const varMap = new Map()
     Variables(formValues.logFunction).forEach( (element, index) => {

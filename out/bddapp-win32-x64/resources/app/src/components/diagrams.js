@@ -6,7 +6,7 @@ import { faQuestion, faSave, faPlus, faMinus } from '@fortawesome/free-solid-svg
 import { Bdd } from './';
 import { Robdd } from './';
 import { TruthTable } from './';
-import {logFunctions} from '../data.json';
+import { logFunctions } from '../data.json';
 import { BallTriangle } from 'react-loader-spinner'
 
 
@@ -88,14 +88,14 @@ function ExprTotrueKey(expressions, varMap, userVarMap, functionType) {
     nextV01="1"
     nextV10="0"
   }
-
   const rx = /([A-Z a-z])/g
-  let i = 0
+  let mx = 0
   const matches = []
   expressions.forEach(x => {
-    matches[i] = [...x.matchAll(rx)];
-    i++
+    matches[mx] = [...x.matchAll(rx)];
+    mx++
   })
+  
   let exptrue = []
   for (let i = 0; i < matches.length; i++) {
     for (let j = 0; j < matches[i].length; j++) {
@@ -130,10 +130,10 @@ function ExprTotrueKey(expressions, varMap, userVarMap, functionType) {
       }
     }
   }
+ 
   let keysToSet = []
-  missingMap.forEach(element => {
-
-    let key = getByValue(missingMap, element)
+  missingMap.forEach((element, key) => {
+    
     let value = exptrue[key]
     let miss = []
     for (var i = (Math.pow(2, String(element).length) - 1); i >= 0; i--) {
@@ -141,12 +141,13 @@ function ExprTotrueKey(expressions, varMap, userVarMap, functionType) {
       miss[i] = value
       for (var j = (String(element).length - 1); j >= 0; j--) {
         k = element[((j - String(element).length) * -1) - 1]
-        let val = (i & Math.pow(2, j)) ? "1" : "0"
+        let val  = (i & Math.pow(2, j)) ? "1" : "0"
         miss[i] = String(miss[i]).slice(0, k - 1) + val + String(miss[i]).slice(k - 1, String(miss[i]).length)
       }
       keysToSet.push(miss[i])
     }
   })
+ 
   exptrue.forEach(element => {
     if (String(element).length === varMap.size) {
       keysToSet.push(element)
@@ -225,12 +226,9 @@ function Diagrams() {
   })
   for ( let i = 0; i < locSort.length; i++){
     localS.push(localStorage.getItem(locSort[i]));
-    //console.log(localStorage.getItem(localStorage.key(locSort[i])))
+   
   }
   
-  
-  //console.log("localS")
-  //console.log(localS)
   const fucArr = []
   const handleGetSaved = (event) =>{
     event.preventDefault()
@@ -239,9 +237,9 @@ function Diagrams() {
     //let type = JSON.parse(localS[i]).type
     document.getElementById("funkcjaLogiczna").value = body
     // if(type === "KPS"){
-    //   document.getElementById("optionA").checked = true
+      document.getElementById("optionA").checked = false
     // } else {
-    //   document.getElementById("optionB").checked = true
+      document.getElementById("optionB").checked = false
     // }
     
     setFormValues({logFunction : body})
@@ -356,8 +354,8 @@ function Diagrams() {
     newVarMapToPass.clear()
 
     const functionType = formValues.logType//"KPS" / "KPI"
-    const strs = document.getElementById("funkcjaLogiczna").value//String(formValues.logFunction)//["(/A*B*C)+(/A*/B*C)+(/A*B*/C)+(/A*/B*/C)+(A*B*/C)"]
-    
+    let strs1 = document.getElementById("funkcjaLogiczna").value//String(formValues.logFunction)//["(/A*B*C)+(/A*/B*C)+(/A*B*/C)+(/A*/B*/C)+(A*B*/C)"]
+    const strs = strs1.replace(/ /g, '')
     const variables = Variables(strs)
     const varMap = new Map()
     Variables(formValues.logFunction).forEach( (element, index) => {

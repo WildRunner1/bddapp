@@ -472,3 +472,13 @@ a:hover{
 .savedMod2{
   background-color: #DF7676;
 }
+.shorterFunction{
+  font-size: 1.5em;
+  min-width: 100%;
+  background-color: #e0dddd;
+  border: 1px solid rgb(162, 161, 161);
+}
+.vis-tooltip{
+  z-index: 2000;
+}
+/* @import url("../node_modules/vis-network/dist/dist/vis-network.min.css") */
