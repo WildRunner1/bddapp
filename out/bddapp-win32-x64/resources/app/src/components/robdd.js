@@ -115,6 +115,7 @@ function makeEdges(myGraph){
       myGraph.edges.push(
         { from: parent,
           type: type,
+          hoverWidth: 3,
           physics: false,shadow:{
             enabled: true,
             color: 'rgba(0,0,0,0.5)',
@@ -262,24 +263,21 @@ function Robdd(props){
             sortMethod: "directed",
           }
         },
-      edges: {
-        color: "#000000"
-      },
-      nodes: {
-        //color: "#FFFFFF",
-        borderWidth: 1,
-        color: {
-          border: '#a6a6a6',
-          background: '#FFFFFF',
-          highlight: {
-            border: '#cc0000',
-            background: '#DF7676'
+        nodes: {
+          //color: "#FFFFFF",
+          //borderWidth: 1,
+          color: {
+            border: '#a6a6a6',
+            background: '#FFFFFF',
+            highlight: {
+              border: '#cc0000',
+              background: '#DF7676'
+            },
+            hover: {
+              border: '#cc0000',
+              background: '#DF7676'
+            }
           },
-          hover: {
-            border: '#cc0000',
-            background: '#DF7676'
-          }
-        },
     
     },
       height: "660px"
