@@ -309,7 +309,7 @@ ul, #myUL {
 }
 .parent{
   position: relative;
-  height: 700px;
+  height: 720px;
 }
 .stat1{
   
@@ -358,6 +358,7 @@ ul, #myUL {
   font-size: 1em;
 }
 .list-item{
+  transition: all 0.8s;
   float:left;
   margin: 5px;
   padding: 4px;
@@ -376,6 +377,9 @@ ul, #myUL {
 .list-item[disabled]{
 
   cursor: grabbing;
+}
+.list-item:hover{
+  background-color: #b73838;
 }
 
 .myBut{
@@ -486,12 +490,29 @@ a:hover{
   background-color: #DF7676;
 }
 .shorterFunction{
-  font-size: 1.5em;
+  font-size: 1.2em;
   min-width: 100%;
-  background-color: #e0dddd;
-  border: 1px solid rgb(162, 161, 161);
+  background-color: #ede9e9;
+  border: 1px solid rgb(172, 171, 171);
 }
 .vis-tooltip{
   z-index: 2000;
 }
+.shorterFunctionBody1{
+  text-align: right;
+  width: 100%;
+  margin-right: 10px;
+}
+.shorterFunctionBody2{
+  float:left;
+  text-align: left;
+  width: 100%;
+  
+  
+  margin-left: 10px;
+}
+#manual{
+  cursor: pointer;
+}
+
 /* @import url("../node_modules/vis-network/dist/dist/vis-network.min.css") */

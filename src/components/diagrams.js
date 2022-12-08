@@ -211,7 +211,7 @@ function Diagrams() {
   const handleClose4 = () => setShow4(false);
   const handleClose5 = () => setShow5(false);
   const handleClose6 = () => setShow6(false);
-  const [valid, setValid] = useState(true)
+  const [valid, setValid] = useState(false)
   const [loading, setLoading] = useState(10)
   const [formValues, setFormValues] = useState({
     logFunction: "",
@@ -485,9 +485,11 @@ function Diagrams() {
       setExMessage("Nie zmapowano wyrażeń, sprawdź składnię.")
       setValid(false)
       valid2 = false
-    } else {
-      setValid(true)
-    }
+    } 
+
+    // else {
+    //   setValid(true)
+    // }
 
     // truth table map (kays and values) inicjalization - expresion values
     let keysToSet = ExprTotrueKey(expressions, newVarMap, userVarMap, functionType)
@@ -519,7 +521,8 @@ function Diagrams() {
       console.log("Wartości z fromularza");
       console.log(formValues);
       setLoading(1)
-    } 
+      setValid(true)
+    } else {setValid(false)}
 
   }
   const setClass = (id, cssClass) =>{

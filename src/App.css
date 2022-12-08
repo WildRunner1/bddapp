@@ -500,13 +500,13 @@ a:hover{
 }
 .shorterFunctionBody1{
   text-align: right;
-  min-width: 100%;
+  width: 100%;
   margin-right: 10px;
 }
 .shorterFunctionBody2{
   float:left;
   text-align: left;
-  min-width: 100%;
+  width: 100%;
   
   
   margin-left: 10px;
@@ -515,4 +515,4 @@ a:hover{
   cursor: pointer;
 }
 
-@import url("../node_modules/vis-network/dist/dist/vis-network.min.css")
+/* @import url("../node_modules/vis-network/dist/dist/vis-network.min.css") */

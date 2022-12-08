@@ -28,7 +28,7 @@ function App() {
           break;
         // eslint-disable-next-line
         case 'diagrams': {
-            setPage2(<div className="container-fluid diagra"><Diagrams /></div>)
+            setPage2(<div  className="container-fluid diagra"><Diagrams /></div>)
         }
           break;
         // eslint-disable-next-line
@@ -50,7 +50,7 @@ function App() {
   return (
     <div className="d-flex flex-column min-vh-100 App" >
       
-      <header className=" navbar navbar-expand-lg navbar-dark bg-dark  justify-content-center fixed-top ">
+      <header id="min2" className=" navbar navbar-expand-lg navbar-dark bg-dark  justify-content-center fixed-top ">
       
         <div className="containerMenu">
         

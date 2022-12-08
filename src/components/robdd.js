@@ -298,7 +298,7 @@ function Robdd(props){
           },
     
     },
-      height: "680px"
+      height: "650px"
     };
     let important
     if(functionType === "KPS"){
@@ -371,17 +371,20 @@ function Robdd(props){
           {/* <div className="shorterFunction">({functionType}) f(x): {shorterFunction}  </div> */}
           <div className="shorterFunction">
             <div className="row">
-              <div className=" col-md-2">
+              <div className=" col-md-3">
                 <div className="shorterFunctionBody1">funkcja uproszczona ({functionType==="KPS" ? functionType : reverseFuncType}):</div>
               </div>
-              <div className=" col-md-4">
+              <div className=" col-md-9">
                 <div className="shorterFunctionBody2">{functionType==="KPS" ? shorterFunction : shorterFunction2}</div>
                 
               </div>
-              <div className=" col-md-2">
+              
+            </div>
+            <div className="row">
+              <div className=" col-md-3">
                 <div className="shorterFunctionBody1">funkcja uproszczona ({functionType==="KPI" ? functionType : reverseFuncType}):</div>
               </div>
-              <div className=" col-md-4">
+              <div className=" col-md-9">
                 <div className="shorterFunctionBody2">{functionType==="KPI" ? shorterFunction : shorterFunction2}</div>
                </div>
             </div>

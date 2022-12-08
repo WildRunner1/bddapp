@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuestion, faSave, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faQuestion, faPlus, faMinus, faListUl } from '@fortawesome/free-solid-svg-icons';
 import { Bdd } from './';
 import { Robdd } from './';
 import { TruthTable } from './';
@@ -211,7 +211,7 @@ function Diagrams() {
   const handleClose4 = () => setShow4(false);
   const handleClose5 = () => setShow5(false);
   const handleClose6 = () => setShow6(false);
-  const [valid, setValid] = useState(true)
+  const [valid, setValid] = useState(false)
   const [loading, setLoading] = useState(10)
   const [formValues, setFormValues] = useState({
     logFunction: "",
@@ -485,9 +485,11 @@ function Diagrams() {
       setExMessage("Nie zmapowano wyrażeń, sprawdź składnię.")
       setValid(false)
       valid2 = false
-    } else {
-      setValid(true)
-    }
+    } 
+
+    // else {
+    //   setValid(true)
+    // }
 
     // truth table map (kays and values) inicjalization - expresion values
     let keysToSet = ExprTotrueKey(expressions, newVarMap, userVarMap, functionType)
@@ -519,7 +521,8 @@ function Diagrams() {
       console.log("Wartości z fromularza");
       console.log(formValues);
       setLoading(1)
-    } 
+      setValid(true)
+    } else {setValid(false)}
 
   }
   const setClass = (id, cssClass) =>{
@@ -644,10 +647,10 @@ function Diagrams() {
    
   ) : (<div></div>)}
     <div className={loading===12 ? "hide" : "visiable"}>
-      <div className="container px-5 my-5 ">
+      <div id="min1"className="container px-5 my-5 ">
         <form id="contactForm" onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label className="form-label" onClick={handleToolTip}>Funkcja Logiczna (<FontAwesomeIcon title="Instrukcja" icon={faQuestion} />)</label>
+            <label className="form-label" onClick={handleToolTip}>Funkcja Logiczna (<FontAwesomeIcon id="manual" title="Instrukcja" icon={faQuestion} />)</label>
             <input className="form-control" name="logFunction" onChange={handleChange} id="funkcjaLogiczna" type="text" placeholder="Funkcja Logiczna" required/>
           </div>
           <div className="mb-3 ">
@@ -683,7 +686,7 @@ function Diagrams() {
 
          
             <button title="Generuj" className="btn btn-secondary  btn-lg button3" id="submitButton"  type="submit">Generuj</button>
-            <button className="btn btn-success button4" title="Wyświetl zapisane funkcje" onClick={storedFunctions} type="submit"><FontAwesomeIcon icon={faSave}/></button>
+            <button className="btn btn-success button4" title="Wyświetl zapisane funkcje" onClick={storedFunctions} type="submit"><FontAwesomeIcon icon={faListUl}/></button>
           
         </form>
       </div>

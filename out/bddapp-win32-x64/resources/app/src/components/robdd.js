@@ -61,7 +61,7 @@ function makeItShort(myGraph,map,orgMap,side,n,varM,parent,tree){
       let label = varM.get(n)
        id = label//String(n)
       parent = "-1"
-      myGraph.nodes.push({id: id, exp: "", label: label,side: "start", n: n, tree: tree, hidden: false, cut: 0, type: "nonterminal",  shape: "eclipse",parent: String(parent),  font:{size:30}, borderWidth:2})
+      myGraph.nodes.push({id: id, exp: "",exp2: "", label: label,side: "start", n: n, tree: tree, hidden: false, cut: 0, type: "nonterminal",  shape: "eclipse",parent: String(parent),  font:{size:30}, borderWidth:2})
     } else if(side === "left"){
       if(n<=varM.size){
         type="nonterminal"
@@ -69,7 +69,7 @@ function makeItShort(myGraph,map,orgMap,side,n,varM,parent,tree){
          shape = "eclipse"
          id = label+String(parent).slice(1,String(parent).length)+"0"
        } 
-        myGraph.nodes.push({id: id, exp: "",  label: label,side: "left", n: n, tree: tree, hidden: false, cut: 0, type: type,  shape: shape,parent: parent,  font:{size:30}, borderWidth:2})  
+        myGraph.nodes.push({id: id, exp: "",exp2: "",  label: label,side: "left", n: n, tree: tree, hidden: false, cut: 0, type: type,  shape: shape,parent: parent,  font:{size:30}, borderWidth:2})  
     } else if(side === "right"){
       if(n<=varM.size){
         type="nonterminal"
@@ -77,7 +77,7 @@ function makeItShort(myGraph,map,orgMap,side,n,varM,parent,tree){
          shape = "eclipse"
          id = label+String(parent).slice(1,String(parent).length)+"1"
        }
-        myGraph.nodes.push({id: id, exp: "", label: label,side: "right", n: n, tree: tree, hidden: false, cut: 0, type: type,  shape: shape,parent: parent,  font:{size:30}, borderWidth:2})  
+        myGraph.nodes.push({id: id, exp: "",exp2: "", label: label,side: "right", n: n, tree: tree, hidden: false, cut: 0, type: type,  shape: shape,parent: parent,  font:{size:30}, borderWidth:2})  
     } 
     parent = id
     if(n<varM.size){
@@ -85,15 +85,15 @@ function makeItShort(myGraph,map,orgMap,side,n,varM,parent,tree){
         makeItShort(myGraph,mapRight,orgMap,"right",n+1,varM,parent,side)
     }
     if(n===varM.size){
-      myGraph.nodes.push({id: String(leftKeys[position]), exp: "",  parent: parent, label: leftValues[0],side: "left", n: n, to: id, hidden: false, cut: 0, type: "terminal",  shape: "box",  font:{size:30}, borderWidth:2})
-      myGraph.nodes.push({id: String(rightKeys[position]), exp: "",  parent: parent, label: rightValues[0],side: "right", n: n, hidden: false, cut: 0, type: "terminal",  shape: "box",  font:{size:30}, borderWidth:2})
+      myGraph.nodes.push({id: String(leftKeys[position]), exp: "",exp2: "",  parent: parent, label: leftValues[0],side: "left", n: n, to: id, hidden: false, cut: 0, type: "terminal",  shape: "box",  font:{size:30}, borderWidth:2})
+      myGraph.nodes.push({id: String(rightKeys[position]), exp: "",exp2: "",  parent: parent, label: rightValues[0],side: "right", n: n, hidden: false, cut: 0, type: "terminal",  shape: "box",  font:{size:30}, borderWidth:2})
     }
   }  else {
     if(parent === ""){
       parent = varM.get(1)
     }
     if(parseInt(sum)===0 || parseInt(sum)===mapLeft.size){
-      myGraph.nodes.push({id: String(leftKeys[position]), exp: "",  parent: parent, label: leftValues[0],side: side, n: n, to: id, hidden: false, cut: 0, type: "terminal",  shape: "box",  font:{size:30}, borderWidth:2})
+      myGraph.nodes.push({id: String(leftKeys[position]), exp: "",exp2: "",  parent: parent, label: leftValues[0],side: side, n: n, to: id, hidden: false, cut: 0, type: "terminal",  shape: "box",  font:{size:30}, borderWidth:2})
     } else {
       makeItShort(myGraph,mapLeft,orgMap,side,n+1,varM,parent,side)
     }
@@ -141,36 +141,54 @@ function makeExpressions(myGraph, functionType, varM){
   for(let i=0; i<2 ;i++){
     myGraph.nodes.forEach(element => {
       let parentExp = ""
+      let parentExp2 = ""
       let parentLabel = ""
       if(element.parent !== "-1"){
         const index6 = myGraph.nodes.findIndex(object => {
           return object.id === element.parent;
         });
         parentExp = myGraph.nodes[index6].exp
+        parentExp2 = myGraph.nodes[index6].exp2
         parentLabel = myGraph.nodes[index6].label
       }
 
       if(functionType === "KPS"){
           if(element.side === "left"){
             element.exp = parentExp +"/"+ parentLabel
+            if(parentExp2.length === 0){
+              element.exp2 = parentExp2 + parentLabel
+            }else{
+              element.exp2 = parentExp2 + "+"+ parentLabel
+            }
+            
             element.title = element.exp
           } else if(element.side === "right") { //element.side==="right"
             element.exp = parentExp + parentLabel
+            if(parentExp2.length === 0){
+              element.exp2 = parentExp2 +"/"+ parentLabel
+            }else{
+              element.exp2 = parentExp2 +"+/"+ parentLabel
+            }
+            
             element.title = element.exp
           }
       } else { //function.type==="KPI"
         if(element.side === "left"){
           if(parentExp.length === 0){
             element.exp = parentExp + parentLabel
+            element.exp2 = parentExp2 +"/" + parentLabel
           }else {
             element.exp = parentExp +"+"+ parentLabel
+            element.exp2 = parentExp2 +"/" + parentLabel
           }
           element.title = element.exp
         } else if(element.side === "right") { //element.side==="right"
           if(parentExp.length === 0){
             element.exp = parentExp +"/"+ parentLabel
+            element.exp2 = parentExp2 + parentLabel
           }else {
             element.exp = parentExp +"+/"+ parentLabel
+            element.exp2 = parentExp2 + parentLabel
           }
           element.title = element.exp
         }
@@ -280,7 +298,7 @@ function Robdd(props){
           },
     
     },
-      height: "660px"
+      height: "650px"
     };
     let important
     if(functionType === "KPS"){
@@ -323,17 +341,64 @@ function Robdd(props){
         }
       }
     })
-    
+    let shorterFunction2 = ""
+    myGraph.nodes.forEach(element => {
+      if(functionType === "KPS" && element.label === "0"){
+          if(shorterFunction2.length > 0){
+            shorterFunction2+= " * ("+element.exp2+") "
+          } else {
+            shorterFunction2+= "("+element.exp2+")"
+          }
+      } else if(functionType === "KPI" && element.label === "1"){
+        if(shorterFunction2.length > 0){
+          shorterFunction2+= " + "+element.exp2
+        } else {
+          shorterFunction2+= element.exp2
+        }
+      }
+    })
+      let reverseFuncType = ""
+        if(functionType === "KPS"){
+          reverseFuncType = "KPI"
+        } else {
+          reverseFuncType = "KPS"
+        }
+      
+      
 
       return (
-        <div className="parent">
+        <div  className="parent">
           {/* <div className="shorterFunction">({functionType}) f(x): {shorterFunction}  </div> */}
-          <div className="shorterFunction">Fukncja uproszczona ({functionType}): {shorterFunction}  </div>
-          <Graph
-            graph={myGraph}
-            options={options}
-            events={events}
-          />
+          <div className="shorterFunction">
+            <div className="row">
+              <div className=" col-md-3">
+                <div className="shorterFunctionBody1">funkcja uproszczona ({functionType==="KPS" ? functionType : reverseFuncType}):</div>
+              </div>
+              <div className=" col-md-9">
+                <div className="shorterFunctionBody2">{functionType==="KPS" ? shorterFunction : shorterFunction2}</div>
+                
+              </div>
+              
+            </div>
+            <div className="row">
+              <div className=" col-md-3">
+                <div className="shorterFunctionBody1">funkcja uproszczona ({functionType==="KPI" ? functionType : reverseFuncType}):</div>
+              </div>
+              <div className=" col-md-9">
+                <div className="shorterFunctionBody2">{functionType==="KPI" ? shorterFunction : shorterFunction2}</div>
+               </div>
+            </div>
+           
+          </div>
+          {/* <div className="shorterFunction">Funkcja uproszczona ({reverseFuncType}): {shorterFunction2}  </div> */}
+          
+          <div id="max">
+            <Graph
+              graph={myGraph}
+              options={options}
+              events={events}
+            />
+          </div>
           <div className="stats">
               <label className="stat1">STATYSTYKI </label>
               <label className="stat1">Ilość węzłów nieterminalowych: <label className='stat2'>{countNonTerminalNodes}</label></label>
