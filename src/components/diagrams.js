@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuestion, faSave, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faQuestion, faPlus, faMinus, faListUl } from '@fortawesome/free-solid-svg-icons';
 import { Bdd } from './';
 import { Robdd } from './';
 import { TruthTable } from './';
@@ -644,10 +644,10 @@ function Diagrams() {
    
   ) : (<div></div>)}
     <div className={loading===12 ? "hide" : "visiable"}>
-      <div className="container px-5 my-5 ">
+      <div id="min1"className="container px-5 my-5 ">
         <form id="contactForm" onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label className="form-label" onClick={handleToolTip}>Funkcja Logiczna (<FontAwesomeIcon title="Instrukcja" icon={faQuestion} />)</label>
+            <label className="form-label" onClick={handleToolTip}>Funkcja Logiczna (<FontAwesomeIcon id="manual" title="Instrukcja" icon={faQuestion} />)</label>
             <input className="form-control" name="logFunction" onChange={handleChange} id="funkcjaLogiczna" type="text" placeholder="Funkcja Logiczna" required/>
           </div>
           <div className="mb-3 ">
@@ -683,7 +683,7 @@ function Diagrams() {
 
          
             <button title="Generuj" className="btn btn-secondary  btn-lg button3" id="submitButton"  type="submit">Generuj</button>
-            <button className="btn btn-success button4" title="Wyświetl zapisane funkcje" onClick={storedFunctions} type="submit"><FontAwesomeIcon icon={faSave}/></button>
+            <button className="btn btn-success button4" title="Wyświetl zapisane funkcje" onClick={storedFunctions} type="submit"><FontAwesomeIcon icon={faListUl}/></button>
           
         </form>
       </div>

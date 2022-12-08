@@ -58,7 +58,18 @@ body{
 }
 .aa{
   cursor: pointer;
+  transition: all 0.8s;
+  
 }
+.aa:hover{
+  border-radius: 2px;
+  background-color: #cc0000;
+  transform: scale(1);
+  
+  
+}
+
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -122,22 +133,16 @@ body{
 .diagra{
   margin-top:60px;
 }
-.display-6:hover{
-  background-color: #cc0000;
-  transform: scale(1);
-}
-.table-hover tbody tr:hover {
-
-  border: 1px solid black
-} 
+tr td{
+  transition: all 0.3s;
   
-
+}
 
 tr:hover{
   transform: scale(1);
   /* color: white;  */
-  border: 2px solid black;
- 
+  border: 1px solid rgb(120, 116, 116);
+  
 }
 .form-check-input{
   cursor: pointer;
@@ -148,8 +153,8 @@ ul, #myUL {
 }
 
 .button1{
-  opacity: 0.5;
-  
+  opacity: 0.7;
+  transition: all 0.3s;
   /* margin: 3px 3px 0 0; */
   border-radius: 3px 3px 0 0;
   min-width: 33.3%;
@@ -167,14 +172,14 @@ ul, #myUL {
 .button1:hover{
   background-color: #e3e3e3;
   border-color: #a6a6a6;
-  font-size: 1em;
+  font-size: 1.1em;
   opacity: 1;
   /* transform: scale(1.2); */
   /* color:#e6e6e6 */
 }
 .button2{
   /* margin: 3px 3px 0 0; */
-  
+  transition: all 0.3s;
   border-radius: 3px 3px 0 0;
   min-width: 33.3%;
   min-height: 35px;
@@ -209,6 +214,7 @@ ul, #myUL {
 }
 .containerMenu{
   display: flex;
+  
   justify-content: center;
 }
 .footer {
@@ -276,13 +282,20 @@ ul, #myUL {
   margin: 0 0 2em 2em;
   font-size: 1.5em;
 }
+.headsd{
+  margin-top: -150px;        /* Size of fixed header */
+  padding-bottom: 200px; 
+  display: block; 
+}
 .articleHeader{
   text-align: left;
   font-size: 1.5em;
   font-weight: bold;
+   
 }
 .articleBody{
-  text-align: left;
+  text-align: justify;
+  font-size: 1em;
 }
 .stats{
   position: absolute;
