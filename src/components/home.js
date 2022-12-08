@@ -6,6 +6,7 @@ function Home(){
    
       return (
         <div>
+          
           <h3>GRAFICZNA PREZENTACJA FUNKCJI LOGICZNYCH W FORMIE DIAGRAMÓW BDD</h3>
           <div className='articleHeader'>Cel pracy</div>
             <div className='articleBody'>
@@ -15,9 +16,9 @@ function Home(){
           <div className='articleHeader'>O aplikacji</div>
             <div className='articleBody'>
               Aplikacja powstała w ramach pracy dyplomowej inżynierskiej na kierunku Informatyka na
-              Wydział Informatyki, Elektrotechniki i Automatyki - Uniwesytet Zielonogórski.<br></br>
+              Wydział Informatyki, Elektrotechniki i Automatyki - Uniwesytet Zielonogórski.
               Celem aplikacji jest budowa diagramów BDD i ROBDD na podstwie podanej przez użytkownika funkcji logicznej w postaci KPS lub KPI.
-              <br></br>Wynikową działania jest również budowa tablicy prawdy w układzie kodu Greya.
+              Wynikową działania jest również budowa tablicy prawdy w układzie kodu Greya.
             </div>
             <br></br>
             <div className="container">
@@ -71,11 +72,64 @@ function Home(){
               </div>
               
             </div>
-            {/* <div className='articleHeader'>Ograniczenia</div>
+            <article>
+            <br></br>
+            <br></br>
+            <div className='articleHeader'>Technologie / Biblioteki</div>
             <div className='articleBody'>
-            Ograniczeniem aplikacji jest pojemność typu zmiennej Integer. Jest to ograniczenie wynikające z zastosowanej logiki przechowywania i działania na węzłach. Gdzie klucz w przypadku 11 zmiennych jest liczbą powyżej górnego zakresu Integera tj. 2 147 483 647, klucz składa się z 11 cyfr np. 10 000 000 000 . */}
-            
-            {/* </div> */}
+            <div class="row">
+              <div class="col">
+                <div className="techStackList"><img className="spinM" alt="*" src="icons/electron-icon.svg" width="50px"/><label className="labelTech"><h4>Electron.js</h4></label><br></br></div>
+              </div>
+              <div class="col">
+                <div className="techStackList"><img alt="*" src="icons/html-file-format-icon.svg" width="50px"/><label className="labelTech"><h4>HTML</h4></label><br></br></div>
+              </div>
+              <div class="col">
+                <div className="techStackList"><img alt="*" src="icons/css-file-format-icon.svg" width="50px"/><label className="labelTech"><h4>CSS</h4></label><br></br></div>
+              </div>
+              <div class="col">
+                <div className="techStackList"><img alt="*" src="icons/javascript-programming-language-icon.svg" width="50px"/><label className="labelTech"><h4>JavaScript</h4></label><br></br></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div className="techStackList"><img alt="*" src="icons/node-js-icon.svg" width="50px"/><label className="labelTech"><h4>NodeJS</h4></label><br></br></div>
+              </div>
+              <div class="col">
+                <div className="techStackList"><img className="spinM" alt="*" src="icons/react-js-icon.svg" width="50px"/><label className="labelTech"><h4>React JS</h4></label><br></br></div>
+              </div>
+              <div class="col">
+                <div className="techStackList"><img alt="*" src="icons/visjs_logo.png" width="50px"/><label className="labelTech"><h4>VisJs</h4></label><br></br></div>
+              </div>
+              <div class="col">
+                <div className="techStackList"><img alt="*" src="icons/bootstrap-5-logo-icon.svg" width="50px"/><label className="labelTech"><h4>Bootstrap</h4></label><br></br></div>
+              </div>
+            </div>
+            </div>
+            <div className='articleHeader'>Narzędzia</div>
+            <div className='articleBody'>
+              <div class="row">
+                <div class="col">
+                  <div className="techStackList"><img alt="*" src="icons/vscode.svg" width="50px"/><label className="labelTech"><h4>VisualStudioCode</h4></label><br></br></div>
+                </div>
+                <div class="col">
+                  <div className="techStackList"><img  alt="*" src="icons/github-logo-6532.svg" width="50px"/><label className="labelTech"><h4>GitHub</h4></label><br></br></div>
+                </div>
+                
+                
+              </div>
+            </div>
+            <div className='articleHeader'>Linki</div>
+            <div className='articleBody'>
+              <div className="techStackList">
+                <label className="labelTech">
+                  <h4>
+                    <a href="https://github.com/WildRunner1/bddapp">https://github.com/WildRunner1/bddapp</a>
+                  </h4>
+                </label>
+              </div>
+            </div>
+          </article>
   
             
             

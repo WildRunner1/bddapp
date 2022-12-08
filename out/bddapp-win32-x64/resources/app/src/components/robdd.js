@@ -61,7 +61,7 @@ function makeItShort(myGraph,map,orgMap,side,n,varM,parent,tree){
       let label = varM.get(n)
        id = label//String(n)
       parent = "-1"
-      myGraph.nodes.push({id: id, exp: "",  label: label,side: "start", n: n, tree: tree, hidden: false, cut: 0, type: "nonterminal",  shape: "eclipse",parent: String(parent),  font:{size:30}, borderWidth:2})
+      myGraph.nodes.push({id: id, exp: "", label: label,side: "start", n: n, tree: tree, hidden: false, cut: 0, type: "nonterminal",  shape: "eclipse",parent: String(parent),  font:{size:30}, borderWidth:2})
     } else if(side === "left"){
       if(n<=varM.size){
         type="nonterminal"
@@ -324,6 +324,7 @@ function Robdd(props){
       }
     })
     
+
       return (
         <div className="parent">
           {/* <div className="shorterFunction">({functionType}) f(x): {shorterFunction}  </div> */}

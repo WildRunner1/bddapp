@@ -73,7 +73,7 @@ function TruthTable(props){
        
         <div>
           <div className={tableWidhtClass}>
-            <table className='table table-light table-striped table-hover'>
+            <table className='table table-light table-striped table-hover '>
               <thead>{headerTable}</thead>
               <tbody>{valueTable}</tbody>
             </table>

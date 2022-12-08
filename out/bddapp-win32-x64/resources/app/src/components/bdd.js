@@ -152,9 +152,9 @@ function Bdd(props){
           shadow:{
             enabled: true,
             color: 'rgba(0,0,0,0.5)',
-            size:10,
-            x:5,
-            y:5 
+            size:10
+            // x:5,
+            // y:5 
           },
           to: id,
           type: type,
@@ -200,7 +200,7 @@ function Bdd(props){
     },
     nodes: {
       //color: "#FFFFFF",
-      //borderWidth: 1,
+      borderWidth: 1,
       color: {
         border: '#a6a6a6',
         background: '#FFFFFF',

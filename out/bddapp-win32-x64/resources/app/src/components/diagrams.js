@@ -38,7 +38,7 @@ function Variables(strs) {
   return (variables)
 }
 // get expressions from given function
-function Expressions(strs, functionType) {
+function Expressions(strs, functionType, variables) {
   let rx
   if (functionType === "KPS") {
     // eslint-disable-next-line
@@ -47,7 +47,7 @@ function Expressions(strs, functionType) {
   } else {
     rx = /\(([^()]*)\)/g;
   }
-
+  
   let strs1 = []
   strs1.push(strs)
   let func = []
@@ -56,10 +56,27 @@ function Expressions(strs, functionType) {
     const matches = [...x.matchAll(rx)];
     func = Array.from(matches, m => m[1])
   });
+  let func2 = []
+  func.forEach(element =>{
+    let expTemp = Array.from(element)
+    let funcTemp = ""
+    for(let i=0; i<variables.length; i++){
+      for(let j=0; j<expTemp.length; j++){
+        if(expTemp[j]===variables[i]){
+          if(expTemp[j-1]==='/'){
+            funcTemp = funcTemp + "/"+ expTemp[j]
+          } else {
+            funcTemp = funcTemp + expTemp[j]
+          }
+        }
+      }
+    }
+    func2.push(funcTemp)
+  })
 
   console.log("Wyrażenia")
-  console.log(func)
-  return (func)
+  console.log(func2)
+  return (func2)
 }
 // genetare trutTable keys
 function truthTable(variables) {
@@ -355,7 +372,7 @@ function Diagrams() {
 
     const functionType = formValues.logType//"KPS" / "KPI"
     let strs1 = document.getElementById("funkcjaLogiczna").value//String(formValues.logFunction)//["(/A*B*C)+(/A*/B*C)+(/A*B*/C)+(/A*/B*/C)+(A*B*/C)"]
-    const strs = strs1.replace(/ /g, '')
+    const strs = String(strs1.replace(/ /g, ''))
     const variables = Variables(strs)
     const varMap = new Map()
     Variables(formValues.logFunction).forEach( (element, index) => {
@@ -399,8 +416,8 @@ function Diagrams() {
       }
 
     }
-    const expressions = Expressions(strs, functionType)
-
+    const expressions = Expressions(strs, functionType, variables)
+    
     //Walidacja formularza
     let valid2 = true
     let table = []
@@ -417,16 +434,60 @@ function Diagrams() {
       } 
       v1 = value1
     })
-    
-      if ((valid === true && expressions.length === 0) || (valid === false && expressions.length === 0)) {
-        setShow(true)
-        setExTitle("Błąd składni")
-        setExMessage("Nie zmapowano wyrażeń, sprawdź składnię.")
-        setValid(false)
-        valid2 = false
-      } else {
-        setValid(true)
+    // eslint-disable-next-line
+    let regEx = /[\)][+][\(]/;
+    // eslint-disable-next-line
+    let regEx2 = /[\)][\*][\(]/;
+      
+      if( regEx.test(strs) && functionType === "KPI"){
+        setShow6(true)
+            setExTitle("Błąd składni")
+            setExMessage("Wybrano funkcję KPI, a użyto ' )+( ', co pasuje do KPS")
+            setValid(false)
+            valid2 = false
       }
+      if( regEx2.test(strs) && functionType === "KPS"){
+        setShow6(true)
+            setExTitle("Błąd składni")
+            setExMessage("Wybrano funkcję KPS, a użyto ' )*( ', co pasuje do KPI")
+            setValid(false)
+            valid2 = false
+      }
+    
+    
+
+    expressions.forEach((element, index) => {
+      let checkExp = Array.from(element)
+      
+      checkExp.forEach((val1, ind1) =>{
+        let spr = false
+        checkExp.forEach((val2, ind2) => {
+          if(val1!=='/' && val1!== '*' && val1!== '+'){
+            if(ind1 !== ind2){
+              if(val1===val2)
+              spr = true
+            }
+          }
+        })
+        if(spr===true){
+          setShow6(true)
+          setExTitle("Błąd składni")
+          setExMessage("Podwójna zmienna w " + parseInt(index+1) +" wyrażeniu (zmienna: " +val1+" )")
+          setValid(false)
+          valid2 = false
+        }
+        
+      })
+    })
+    if ((valid === true && expressions.length === 0) || (valid === false && expressions.length === 0)) {
+      setShow(true)
+      setExTitle("Błąd składni")
+      setExMessage("Nie zmapowano wyrażeń, sprawdź składnię.")
+      setValid(false)
+      valid2 = false
+    } else {
+      setValid(true)
+    }
 
     // truth table map (kays and values) inicjalization - expresion values
     let keysToSet = ExprTotrueKey(expressions, newVarMap, userVarMap, functionType)
@@ -594,11 +655,11 @@ function Diagrams() {
             <div className='ff'>
               <div className="form-check form-check-inline ">
                 <input className="form-check-input" id="optionA" type="radio" value="KPS" onChange={handleChange} name="logType" required />
-                <label className="form-check-label" >KPS</label>
+                <label className="form-check-label" title="Kanoniczna Postać Sumy" >KPS</label>
               </div>
               <div className="form-check form-check-inline">
                 <input className="form-check-input" id="optionB" type="radio" value="KPI" onChange={handleChange} name="logType" required />
-                <label className="form-check-label" >KPI</label>
+                <label className="form-check-label" title="Kanoniczna Postać Iloczynu">KPI</label>
               </div>
             </div>
           </div>
