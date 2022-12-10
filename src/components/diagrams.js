@@ -326,9 +326,9 @@ function Diagrams() {
 
   
 
-  const BDD = <div className="bddContainer"> <Bdd setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
-  const ROBDD = <div className="bddContainer"> <Robdd setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
-  const TrueTable = <div className="bddContainer"> <TruthTable setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
+  const BDD = <div id="bdd" className="bddContainer"> <Bdd setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
+  const ROBDD = <div id="robdd" className="bddContainer "> <Robdd setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
+  const TrueTable = <div id="truthTable" className="bddContainer"> <TruthTable setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
   
 
 
@@ -616,7 +616,7 @@ function Diagrams() {
   const storedFunctions = () => {
     setShow3(true)
   }
-
+ 
 
   let alertKPIKPS
   if (formValues.logType === "KPS") {
@@ -690,6 +690,7 @@ function Diagrams() {
           
         </form>
       </div>
+      
       <div className='d-flex justify-content-center'>
         <button id='BDD' className="button1" onClick={handleClickPage}>BDD/OBDD</button>
         <button id='ROBDD'  className="button1" onClick={handleClickPage}>ROBDD</button>

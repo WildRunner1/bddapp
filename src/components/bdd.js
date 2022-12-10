@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Graph from "react-graph-vis";
+import { faExpand, faRectangleXmark} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function getByValue(map, searchValue) {
   for (let [key, value] of map.entries()) {
@@ -168,6 +170,7 @@ function Bdd(props){
   myGraph.edges.sort(function(a, b){
     return a.to.slice(1) - b.to.slice(1)
   })
+  const [size, setSize] = useState("680px")
    
    const events = {
         select: function(event) {
@@ -215,7 +218,7 @@ function Bdd(props){
       },
   
   },
-    height: "700px"
+  height: size
   };
   let important
   if(functionType === "KPS"){
@@ -235,14 +238,55 @@ function Bdd(props){
   myGraph.edges.forEach( e =>{
     countEdges=countEdges+1
   })
+  
+  const [fullIcon, setFullIcon] = useState(<FontAwesomeIcon icon={faExpand}/>)
+  const [fullTitle, setFullTitle] = useState("Pełny ekran")
+  const [sizeState, setSizeState] = useState("small")
+    const fullScreen = (event) =>{
+      event.preventDefault()
+      
+      if(sizeState === "small"){
+        document.getElementById("bdd").className = "full"
+        document.getElementById("parent").className = "parent2"
+        setFullTitle("Zamknij")
+        setSize("1200px")
+        setFullIcon(<FontAwesomeIcon icon={faRectangleXmark}/>)
+        setSizeState("big")
+      } else {
+        
+        document.getElementById("bdd").className = "bddContainer"
+        document.getElementById("parent").className = "parent"
+        setFullTitle("Pełny ekran")
+        setSize("680px")
+        setFullIcon(<FontAwesomeIcon icon={faExpand}/>)
+        setSizeState("small")
+        
+      }
+      
 
+    }
   countEdges = countEdges -1
   makeExpressions(myGraph, functionType, newVarMap)
   // console.log(myGraph.nodes)
   // console.log(myGraph.edges)
       return (
-        <div className="parent" >
-          
+        <div id="parent" className="parent" >
+          <div className="shorterFunction">
+            <div className="row">
+              <div className=" col-md-3">
+                
+              </div>
+              <div className=" col-md-8">
+               
+                
+              </div>
+              <div className="col-md-1">
+                <button className="butSize" title={fullTitle} id="screen" onClick={fullScreen}>{fullIcon}</button>
+              </div>
+            </div>
+            
+           
+          </div>
           <Graph
             graph={myGraph}
             options={options}

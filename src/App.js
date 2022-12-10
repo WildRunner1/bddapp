@@ -48,7 +48,7 @@ function App() {
  
   
   return (
-    <div className="d-flex flex-column min-vh-100 App" >
+    <div id="body" className="d-flex flex-column min-vh-100 App" >
       
       <header id="min2" className=" navbar navbar-expand-lg navbar-dark bg-dark  justify-content-center fixed-top ">
       
@@ -66,7 +66,7 @@ function App() {
                 <li className='nav-link px-2 text-white display-6 '>|</li>
                 <li><div id="theory" onClick={handleClick} className="nav-link px-2 text-white display-6 aa">Teoria</div></li>
                 <li className='nav-link px-2 text-white display-6 '>|</li>
-                <li><div id="home" onClick={handleClick} className="nav-link px-2 text-white display-6 aa">About</div></li>
+                <li><div id="home" onClick={handleClick} className="nav-link px-2 text-white display-6 aa">O Aplikacji</div></li>
                 {/* <li><div id="about" onClick={handleClick} className="nav-link px-2 text-white display-6 aa">About</div></li> */}
               </ul>
               

@@ -57,7 +57,7 @@ function TruthTable(props){
     setTimeout( () => {
     props.setLoading(10)},2000)
   })
-  
+   
   //console.log(headerTable)
   //console.log(valueTable)
   const varNum = newVarMap.size
@@ -71,14 +71,15 @@ function TruthTable(props){
 
       return (
        
-        <div>
-          <div className={tableWidhtClass}>
-            <table className='table table-light table-striped table-hover '>
-              <thead>{headerTable}</thead>
-              <tbody>{valueTable}</tbody>
-            </table>
+          <div className='parent3'>
+            <div className={tableWidhtClass}>
+              <table className='table table-light table-striped table-hover '>
+                <thead>{headerTable}</thead>
+                <tbody>{valueTable}</tbody>
+              </table>
+            </div>
           </div>
-        </div>
+        
       );
     
 }

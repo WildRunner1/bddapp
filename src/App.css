@@ -39,6 +39,7 @@
 
 body{
   font-family: 'Lato', sans-serif;
+ 
 }
 
 .App {
@@ -299,7 +300,7 @@ ul, #myUL {
 }
 .stats{
   position: absolute;
-    bottom: 0px;
+  bottom: 0px;
   font-size: 1em;
   min-width: 100%;
   background-color: #e0dddd;
@@ -310,6 +311,14 @@ ul, #myUL {
 .parent{
   position: relative;
   height: 720px;
+  
+}
+.parent2{
+  position: relative;
+  height: 100%;
+}
+.parent3{
+  scroll-behavior: smooth;
 }
 .stat1{
   
@@ -501,10 +510,12 @@ a:hover{
 .shorterFunctionBody1{
   text-align: right;
   width: 100%;
+  min-height:1.1em;
   margin-right: 10px;
 }
 .shorterFunctionBody2{
   float:left;
+  min-height:1.1em;
   text-align: left;
   width: 100%;
   
@@ -514,5 +525,29 @@ a:hover{
 #manual{
   cursor: pointer;
 }
-
+.full{
+  background-color: white;
+  position: fixed;
+  width:100%;
+  inset: 0rem;
+  margin: auto;
+  z-index: 2000;
+  opacity: 1;
+  
+}
+.opac{
+  opacity:0.8;
+}
+.butSize{
+  background-color: #ede9e9;
+  transition: all 0.3s;
+  color: #DF7676;
+  border:none;
+  margin-left:60%;
+  min-height: 1.1em;
+}
+.butSize:hover{
+  min-height: 1.1em;
+  color:black
+}
 /* @import url("../node_modules/vis-network/dist/dist/vis-network.min.css") */
