@@ -255,15 +255,36 @@ ul, #myUL {
   max-width: 50%;
   margin-left: 25%;
   font-size: 2em;
+  
+  
 }
 .bigTable{
-  max-width: 100%;
+  max-width: 99%;
   font-size: 1.5em;
 }
 .middleTable{
   max-width: 74%;
   margin-left: 13%;
   font-size: 1.7em;
+}
+.smallTable1{
+  max-width: 50%;
+  margin:auto;
+  font-size: 2em;
+  
+  overflow: auto;
+  
+}
+.bigTable1{
+  max-width: 100%;
+  font-size: 1.5em;
+  overflow: auto;
+}
+.middleTable1{
+  max-width: 74%;
+  margin-left: 13%;
+  font-size: 1.7em;
+  overflow: auto;
 }
 
 .radioInput{
@@ -318,7 +339,12 @@ ul, #myUL {
   height: 100%;
 }
 .parent3{
-  scroll-behavior: smooth;
+  position: relative;
+  max-height: 100%;
+  
+  overflow: auto;
+  overflow-x: hidden;
+ 
 }
 .stat1{
   
