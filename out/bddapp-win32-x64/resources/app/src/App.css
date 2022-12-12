@@ -39,6 +39,7 @@
 
 body{
   font-family: 'Lato', sans-serif;
+ 
 }
 
 .App {
@@ -131,7 +132,7 @@ body{
   max-width: 90vw;
 }
 .diagra{
-  margin-top:60px;
+  margin-top:45px;
 }
 tr td{
   transition: all 0.3s;
@@ -254,15 +255,36 @@ ul, #myUL {
   max-width: 50%;
   margin-left: 25%;
   font-size: 2em;
+  
+  
 }
 .bigTable{
-  max-width: 100%;
+  max-width: 99%;
   font-size: 1.5em;
 }
 .middleTable{
   max-width: 74%;
   margin-left: 13%;
   font-size: 1.7em;
+}
+.smallTable1{
+  max-width: 50%;
+  margin:auto;
+  font-size: 2em;
+  
+  overflow: auto;
+  
+}
+.bigTable1{
+  max-width: 100%;
+  font-size: 1.5em;
+  overflow: auto;
+}
+.middleTable1{
+  max-width: 74%;
+  margin-left: 13%;
+  font-size: 1.7em;
+  overflow: auto;
 }
 
 .radioInput{
@@ -299,7 +321,7 @@ ul, #myUL {
 }
 .stats{
   position: absolute;
-    bottom: 0px;
+  bottom: 0px;
   font-size: 1em;
   min-width: 100%;
   background-color: #e0dddd;
@@ -310,6 +332,26 @@ ul, #myUL {
 .parent{
   position: relative;
   height: 720px;
+  
+  
+}
+.parent2{
+  position: relative;
+  height: 100vh;
+}
+.parent3{
+  position: relative;
+  max-height: 100vh;
+  
+  overflow-y: auto;
+  overflow-x: hidden;
+ 
+}
+.parent4{
+  position: relative;
+  
+  
+  
 }
 .stat1{
   
@@ -501,10 +543,12 @@ a:hover{
 .shorterFunctionBody1{
   text-align: right;
   width: 100%;
+  min-height:1.1em;
   margin-right: 10px;
 }
 .shorterFunctionBody2{
   float:left;
+  min-height:1.1em;
   text-align: left;
   width: 100%;
   
@@ -514,5 +558,32 @@ a:hover{
 #manual{
   cursor: pointer;
 }
-
+.full{
+  background-color: white;
+  position: fixed;
+  width:100%;
+  inset: 0rem;
+  margin: 0;
+  z-index: 2000;
+  min-height: 100vh;
+  max-height: 100vh;
+}
+.opac{
+  opacity:0.8;
+}
+.butSize{
+  background-color: #ede9e9;
+  transition: all 0.3s;
+  color: #DF7676;
+  border:none;
+  margin-left:60%;
+  min-height: 1.1em;
+}
+.butSize:hover{
+  min-height: 1.1em;
+  color:black
+}
+.min{
+  display: none;
+}
 /* @import url("../node_modules/vis-network/dist/dist/vis-network.min.css") */

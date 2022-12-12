@@ -326,9 +326,9 @@ function Diagrams() {
 
   
 
-  const BDD = <div className="bddContainer"> <Bdd setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
-  const ROBDD = <div className="bddContainer"> <Robdd setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
-  const TrueTable = <div className="bddContainer"> <TruthTable setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
+  const BDD = <div id="bdd" className="bddContainer"> <Bdd setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
+  const ROBDD = <div id="robdd" className="bddContainer "> <Robdd setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
+  const TrueTable = <div id="truthTable" className="bddContainer"> <TruthTable setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
   
 
 
@@ -616,7 +616,7 @@ function Diagrams() {
   const storedFunctions = () => {
     setShow3(true)
   }
-
+ 
 
   let alertKPIKPS
   if (formValues.logType === "KPS") {
@@ -647,7 +647,7 @@ function Diagrams() {
    
   ) : (<div></div>)}
     <div className={loading===12 ? "hide" : "visiable"}>
-      <div id="min1"className="container px-5 my-5 ">
+      <div id="min1"className="container diagra">
         <form id="contactForm" onSubmit={handleSubmit}>
           <div className="mb-3">
             <label className="form-label" onClick={handleToolTip}>Funkcja Logiczna (<FontAwesomeIcon id="manual" title="Instrukcja" icon={faQuestion} />)</label>
@@ -689,17 +689,19 @@ function Diagrams() {
             <button className="btn btn-success button4" title="Wyświetl zapisane funkcje" onClick={storedFunctions} type="submit"><FontAwesomeIcon icon={faListUl}/></button>
           
         </form>
-      </div>
-      <div className='d-flex justify-content-center'>
-        <button id='BDD' className="button1" onClick={handleClickPage}>BDD/OBDD</button>
-        <button id='ROBDD'  className="button1" onClick={handleClickPage}>ROBDD</button>
-        <button id='TrueTable'  className="button1" onClick={handleClickPage}>Tablica Prawdy</button>
-      </div> 
       
+      
+        <div className='d-flex justify-content-center'>
+          <button id='BDD' className="button1" onClick={handleClickPage}>BDD/OBDD</button>
+          <button id='ROBDD'  className="button1" onClick={handleClickPage}>ROBDD</button>
+          <button id='TrueTable'  className="button1" onClick={handleClickPage}>Tablica Prawdy</button>
+        </div> 
+      </div>
      {/* <div className={loading===1 ? "hide" : "visiable"}> */}
+     <div className="container">
       {page}
       {/* </div>  */}
-
+      </div>          
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>{exTitle}</Modal.Title>

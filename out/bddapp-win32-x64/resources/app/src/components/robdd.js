@@ -1,4 +1,6 @@
-import React, { useEffect} from 'react';
+import { faExpand, faRectangleXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useEffect, useState} from 'react';
 import Graph from "react-graph-vis";
 
 function splitMap(map, side){
@@ -260,6 +262,7 @@ function Robdd(props){
       select: function(event) {
       }
     };
+    const [size, setSize] = useState("650px")
     
     const options = {
       interaction:{hover:true},
@@ -298,7 +301,7 @@ function Robdd(props){
           },
     
     },
-      height: "650px"
+      height: size
     };
     let important
     if(functionType === "KPS"){
@@ -323,6 +326,43 @@ function Robdd(props){
       setTimeout( () => {
       props.setLoading(10)},2000)
     })
+    const [fullIcon, setFullIcon] = useState(<FontAwesomeIcon icon={faExpand}/>)
+    const [fullTitle, setFullTitle] = useState("Pełny ekran")
+    const [sizeState, setSizeState] = useState("small")
+
+    const fullScreen = (event) =>{
+      event.preventDefault()
+      
+      if(sizeState === "small"){
+        document.getElementById("robdd").className = "full"
+        document.getElementById("parent").className = "parent2"
+        // document.getElementById("min1").className = "min"
+        document.getElementById("min2").className = "min"
+        // document.getElementById("min3").className = ""
+        document.getElementById("diagra").className = ""
+        document.getElementById("body").className = ""
+        setFullTitle("Zamknij")
+        setSize("1200px")
+        setFullIcon(<FontAwesomeIcon icon={faRectangleXmark}/>)
+        setSizeState("big")
+     
+      } else {
+        document.getElementById("robdd").className = "bddContainer"
+        document.getElementById("parent").className = "parent"
+        // document.getElementById("min1").className = "container diagra"
+        document.getElementById("min2").className = "navbar navbar-expand-lg navbar-dark bg-dark  justify-content-center fixed-top"
+        // document.getElementById("min3").className = ""
+        document.getElementById("diagra").className = "container-fluid diagra"
+        document.getElementById("body").className = "d-flex flex-column min-vh-100 App"
+        setFullTitle("Pełny ekran")
+        setSize("650px")
+        setFullIcon(<FontAwesomeIcon icon={faExpand}/>)
+        setSizeState("small")
+        
+      }
+      
+
+    }
     
     makeExpressions(myGraph, functionType, newVarMap)
     let shorterFunction = ""
@@ -367,18 +407,20 @@ function Robdd(props){
       
 
       return (
-        <div  className="parent">
+        <div id="parent" className="parent">
           {/* <div className="shorterFunction">({functionType}) f(x): {shorterFunction}  </div> */}
           <div className="shorterFunction">
             <div className="row">
               <div className=" col-md-3">
                 <div className="shorterFunctionBody1">funkcja uproszczona ({functionType==="KPS" ? functionType : reverseFuncType}):</div>
               </div>
-              <div className=" col-md-9">
+              <div className=" col-md-8">
                 <div className="shorterFunctionBody2">{functionType==="KPS" ? shorterFunction : shorterFunction2}</div>
                 
               </div>
-              
+              <div className="col-md-1">
+                <button className="butSize" title={fullTitle} id="screen" onClick={fullScreen}>{fullIcon}</button>
+              </div>
             </div>
             <div className="row">
               <div className=" col-md-3">
@@ -390,6 +432,7 @@ function Robdd(props){
             </div>
            
           </div>
+          
           {/* <div className="shorterFunction">Funkcja uproszczona ({reverseFuncType}): {shorterFunction2}  </div> */}
           
           <div id="max">

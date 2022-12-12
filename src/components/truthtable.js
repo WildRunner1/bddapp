@@ -69,6 +69,11 @@ function TruthTable(props){
       if(sizeState === "small"){
         document.getElementById("truthTable").className = "full"
         document.getElementById("parent").className = "parent3"
+        document.getElementById("min1").className = "min"
+        document.getElementById("min2").className = "min"
+        document.getElementById("min3").className = "min"
+        document.getElementById("diagra").className = ""
+        document.getElementById("body").className = ""
         setFullTitle("Zamknij")
         
         setFullIcon(<FontAwesomeIcon icon={faRectangleXmark}/>)
@@ -76,7 +81,12 @@ function TruthTable(props){
       } else {
         
         document.getElementById("truthTable").className = "bddContainer"
-        document.getElementById("parent").className = "parent"
+        document.getElementById("parent").className = "parent4"
+        document.getElementById("min1").className = "container diagra"
+        document.getElementById("min2").className = "navbar navbar-expand-lg navbar-dark bg-dark  justify-content-center fixed-top"
+        document.getElementById("min3").className = ""
+        document.getElementById("diagra").className = "container-fluid diagra"
+        document.getElementById("body").className = "d-flex flex-column min-vh-100 App"
         setFullTitle("Pełny ekran")
         
         setFullIcon(<FontAwesomeIcon icon={faExpand}/>)
@@ -113,7 +123,7 @@ function TruthTable(props){
 
       return (
        
-          <div id="parent" className='parent'>
+          <div id="parent" className='parent4'>
             <div className="shorterFunction">
               <div className="row">
                 <div className=" col-md-3">

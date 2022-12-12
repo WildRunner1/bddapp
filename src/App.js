@@ -28,7 +28,7 @@ function App() {
           break;
         // eslint-disable-next-line
         case 'diagrams': {
-            setPage2(<div  className="container-fluid diagra"><Diagrams /></div>)
+            setPage2(<div id="diagra" className="container-fluid diagra"><Diagrams /></div>)
         }
           break;
         // eslint-disable-next-line
@@ -80,9 +80,9 @@ function App() {
         {/* <Header /> */}
         { page2 }
         
-        
+      <div id="min3">
         <Footer />
-        
+      </div>   
     </div>
   );
 }
