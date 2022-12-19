@@ -300,13 +300,14 @@ function Robdd(props){
       countEdges=countEdges+1
     })
 
-    makeExpressions(myGraph, functionType, newVarMap)
+    
     let shorterFunction = ""
     let shorterFunction2 = ""
     if (tauto===true){
       shorterFunction = "TAUTOLOGIA"
       shorterFunction2 = "TAUTOLOGIA"
     }else {
+      makeExpressions(myGraph, functionType, newVarMap)
       myGraph.nodes.forEach(element => {
         if(functionType === "KPS" && element.label === "1"){
             if(shorterFunction.length > 0){
