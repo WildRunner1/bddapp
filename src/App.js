@@ -48,7 +48,7 @@ function App() {
  
   
   return (
-    <div id="body" className="d-flex flex-column min-vh-100 App" >
+    <div id="body1" className="d-flex flex-column min-vh-100 App" >
       
       <header id="min2" className=" navbar navbar-expand-lg navbar-dark bg-dark  justify-content-center fixed-top ">
       

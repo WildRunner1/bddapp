@@ -12,7 +12,10 @@ function createWindow() {
       nodeIntegration: true,
     },
   });
-
+  win.webContents.setWindowOpenHandler((edata) => {
+    shell.openExternal(edata.url);
+    return { action: "deny" };
+  });
   // and load the index.html of the app.
   // win.loadFile("../dbbapp/build/index.html'");
    win.loadURL(

@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Graph from "react-graph-vis";
-import { faExpand, faRectangleXmark} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function getByValue(map, searchValue) {
   for (let [key, value] of map.entries()) {
@@ -62,13 +60,10 @@ function makeExpressions(myGraph, functionType, varM){
         const index6 = myGraph.nodes.findIndex(object => {
           return object.id === element.parent;
         });
-        
         if(index6 >= 0){
           parentExp = myGraph.nodes[index6].exp
           parentLabel = myGraph.nodes[index6].label
-        } else {
-        }
-        
+        } 
       } else {
         parentLabel = varM.get(1)
       }
@@ -103,18 +98,10 @@ function makeExpressions(myGraph, functionType, varM){
  
 }
 function Bdd(props){
-  
   const myGraph = { nodes:[], edges:[] }
   const thruMap = props.truthMap
   const newVarMap = props.newVarMap
   const functionType = props.functionType
-  
-  
-  useEffect(() => {
-    setTimeout( () => {
-    props.setLoading(10)},2000)
-  })
-  
 
   // variable nodes - nonterminal
   for(let i=Math.pow(2,(newVarMap.size-1)); i>=0; i--){
@@ -149,14 +136,12 @@ function Bdd(props){
      
       myGraph.edges.push(
         { from: parent,
-          hoverWidth: 3,//1.5,
+          hoverWidth: 3,
           physics: false,
           shadow:{
             enabled: true,
             color: 'rgba(0,0,0,0.5)',
             size:10
-            // x:5,
-            // y:5 
           },
           to: id,
           type: type,
@@ -170,11 +155,8 @@ function Bdd(props){
   myGraph.edges.sort(function(a, b){
     return a.to.slice(1) - b.to.slice(1)
   })
-  const [size, setSize] = useState("680px")
-   
    const events = {
         select: function(event) {
-          //var { nodes, edges } = event;
         },
         
       };
@@ -218,7 +200,7 @@ function Bdd(props){
       },
   
   },
-  height: size
+  height: "695px"
   };
   let important
   if(functionType === "KPS"){
@@ -238,71 +220,15 @@ function Bdd(props){
   myGraph.edges.forEach( e =>{
     countEdges=countEdges+1
   })
-  
-  const [fullIcon, setFullIcon] = useState(<FontAwesomeIcon icon={faExpand}/>)
-  const [fullTitle, setFullTitle] = useState("Pełny ekran")
-  const [sizeState, setSizeState] = useState("small")
-    const fullScreen = (event) =>{
-      event.preventDefault()
-      
-      if(sizeState === "small"){
-        document.getElementById("bdd").className = "full"
-        document.getElementById("parent").className = "parent2"
-        document.getElementById("min1").className = "min"
-        document.getElementById("min2").className = "min"
-        document.getElementById("min3").className = "min"
-        document.getElementById("diagra").className = ""
-        document.getElementById("body").className = ""
-        setFullTitle("Zamknij")
-        setSize("1200px")
-        setFullIcon(<FontAwesomeIcon icon={faRectangleXmark}/>)
-        setSizeState("big")
-      } else {
-        
-        document.getElementById("bdd").className = "bddContainer"
-        document.getElementById("parent").className = "parent"
-        document.getElementById("min1").className = "container diagra"
-        document.getElementById("min2").className = "navbar navbar-expand-lg navbar-dark bg-dark  justify-content-center fixed-top"
-        document.getElementById("min3").className = ""
-        document.getElementById("diagra").className = "container-fluid diagra"
-        document.getElementById("body").className = "d-flex flex-column min-vh-100 App"
-        setFullTitle("Pełny ekran")
-        setSize("680px")
-        setFullIcon(<FontAwesomeIcon icon={faExpand}/>)
-        setSizeState("small")
-        
-      }
-      
-
-    }
   countEdges = countEdges -1
   makeExpressions(myGraph, functionType, newVarMap)
-  // console.log(myGraph.nodes)
-  // console.log(myGraph.edges)
       return (
-        <div id="parent" className="parent" >
-          <div className="shorterFunction">
-            <div className="row">
-              <div className=" col-md-3">
-                
-              </div>
-              <div className=" col-md-8">
-               
-                
-              </div>
-              <div className="col-md-1">
-                <button className="butSize" title={fullTitle} id="screen" onClick={fullScreen}>{fullIcon}</button>
-              </div>
-            </div>
-            
-           
-          </div>
+        <div className="parent" >
           <Graph
             graph={myGraph}
             options={options}
             events={events}
           />
-         
             <div className="stats" >
               <label className="stat1">STATYSTYKI </label>
               <label className="stat1">Ilość węzłów nieterminalowych: {countNonTerminalNodes}</label>

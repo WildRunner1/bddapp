@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState} from 'react';
 import Graph from "react-graph-vis";
 
+
+
 function splitMap(map, side){
   const tempMap1 = new Map()
   const tempMap2 = new Map()
@@ -30,11 +32,12 @@ function splitMap(map, side){
 function makeItShort(myGraph,map,orgMap,side,n,varM,parent,tree){
   const mapLeft = splitMap(map, "left")
   const mapRight = splitMap(map, "right")
+  
   //  console.log("mapLeft")
   //  console.log(mapLeft)
   //  console.log("mapRight")
   //  console.log(mapRight)
-
+  let tauto = false
   let same = true
   let iterator1 = mapLeft.values()
   let iterator2 = mapRight.values()
@@ -95,11 +98,22 @@ function makeItShort(myGraph,map,orgMap,side,n,varM,parent,tree){
       parent = varM.get(1)
     }
     if(parseInt(sum)===0 || parseInt(sum)===mapLeft.size){
+      if(side === "start"){
+        let label = varM.get(n)
+         id = label//String(n)
+        parent = "-1"
+        tauto = true
       myGraph.nodes.push({id: String(leftKeys[position]), exp: "",exp2: "",  parent: parent, label: leftValues[0],side: side, n: n, to: id, hidden: false, cut: 0, type: "terminal",  shape: "box",  font:{size:30}, borderWidth:2})
+      
+    } else {
+        myGraph.nodes.push({id: String(leftKeys[position]), exp: "",exp2: "",  parent: parent, label: leftValues[0],side: side, n: n, to: id, hidden: false, cut: 0, type: "terminal",  shape: "box",  font:{size:30}, borderWidth:2})
+  
+      }
     } else {
       makeItShort(myGraph,mapLeft,orgMap,side,n+1,varM,parent,side)
     }
   }
+  return(tauto)
 }
 
 
@@ -249,15 +263,17 @@ function Robdd(props){
   const thruMap = props.truthMap
   const newVarMap = props.newVarMap
   const functionType = props.functionType
+  
+  
     let n = 1
-    makeItShort(myGraph,thruMap,thruMap,"start",n,newVarMap,0)
+    let tauto = makeItShort(myGraph,thruMap,thruMap,"start",n,newVarMap,0)
     makeEdges(myGraph)
     myGraph.nodes.sort(function(a, b){
         return a.label - b.label;
       })
      
     makeItColor(myGraph,functionType)
-
+ 
    const events = {
       select: function(event) {
       }
@@ -336,11 +352,11 @@ function Robdd(props){
       if(sizeState === "small"){
         document.getElementById("robdd").className = "full"
         document.getElementById("parent").className = "parent2"
-        // document.getElementById("min1").className = "min"
+         document.getElementById("min1").className = "min"
         document.getElementById("min2").className = "min"
-        // document.getElementById("min3").className = ""
+         document.getElementById("min3").className = ""
         document.getElementById("diagra").className = ""
-        document.getElementById("body").className = ""
+        document.getElementById("body1").className = ""
         setFullTitle("Zamknij")
         setSize("1200px")
         setFullIcon(<FontAwesomeIcon icon={faRectangleXmark}/>)
@@ -349,11 +365,11 @@ function Robdd(props){
       } else {
         document.getElementById("robdd").className = "bddContainer"
         document.getElementById("parent").className = "parent"
-        // document.getElementById("min1").className = "container diagra"
+         document.getElementById("min1").className = "container diagra"
         document.getElementById("min2").className = "navbar navbar-expand-lg navbar-dark bg-dark  justify-content-center fixed-top"
-        // document.getElementById("min3").className = ""
+         document.getElementById("min3").className = ""
         document.getElementById("diagra").className = "container-fluid diagra"
-        document.getElementById("body").className = "d-flex flex-column min-vh-100 App"
+        document.getElementById("body1").className = "d-flex flex-column min-vh-100 App"
         setFullTitle("Pełny ekran")
         setSize("650px")
         setFullIcon(<FontAwesomeIcon icon={faExpand}/>)
@@ -363,40 +379,47 @@ function Robdd(props){
       
 
     }
-    
+    // let tauto = false
     makeExpressions(myGraph, functionType, newVarMap)
     let shorterFunction = ""
-    myGraph.nodes.forEach(element => {
-      if(functionType === "KPS" && element.label === "1"){
-          if(shorterFunction.length > 0){
-            shorterFunction+= " + "+element.exp
-          } else {
-            shorterFunction+= element.exp
-          }
-      } else if(functionType === "KPI" && element.label === "0"){
-        if(shorterFunction.length > 0){
-          shorterFunction+= "* ("+element.exp+") "
-        } else {
-          shorterFunction+= "("+element.exp+") "
-        }
-      }
-    })
     let shorterFunction2 = ""
-    myGraph.nodes.forEach(element => {
-      if(functionType === "KPS" && element.label === "0"){
-          if(shorterFunction2.length > 0){
-            shorterFunction2+= " * ("+element.exp2+") "
+    if (tauto===true){
+      shorterFunction = "TAUTOLOGIA"
+      shorterFunction2 = "TAUTOLOGIA"
+    }else {
+      myGraph.nodes.forEach(element => {
+        if(functionType === "KPS" && element.label === "1"){
+            if(shorterFunction.length > 0){
+              shorterFunction+= " + "+element.exp
+            } else {
+              shorterFunction+= element.exp
+            }
+        } else if(functionType === "KPI" && element.label === "0"){
+          if(shorterFunction.length > 0){
+            shorterFunction+= "* ("+element.exp+") "
           } else {
-            shorterFunction2+= "("+element.exp2+")"
+            shorterFunction+= "("+element.exp+") "
           }
-      } else if(functionType === "KPI" && element.label === "1"){
-        if(shorterFunction2.length > 0){
-          shorterFunction2+= " + "+element.exp2
-        } else {
-          shorterFunction2+= element.exp2
         }
-      }
-    })
+      })
+      
+      myGraph.nodes.forEach(element => {
+        if(functionType === "KPS" && element.label === "0"){
+            if(shorterFunction2.length > 0){
+              shorterFunction2+= " * ("+element.exp2+") "
+            } else {
+              shorterFunction2+= "("+element.exp2+")"
+            }
+        } else if(functionType === "KPI" && element.label === "1"){
+          if(shorterFunction2.length > 0){
+            shorterFunction2+= " + "+element.exp2
+          } else {
+            shorterFunction2+= element.exp2
+          }
+        }
+      })
+    }
+   
       let reverseFuncType = ""
         if(functionType === "KPS"){
           reverseFuncType = "KPI"
@@ -404,7 +427,7 @@ function Robdd(props){
           reverseFuncType = "KPS"
         }
       
-      
+      console.log(myGraph.nodes)
 
       return (
         <div id="parent" className="parent">

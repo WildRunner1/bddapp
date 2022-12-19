@@ -562,8 +562,9 @@ a:hover{
   background-color: white;
   position: fixed;
   width:100%;
-  inset: 0rem;
-  margin: 0;
+  inset: 0em;
+  margin-left: 0;
+  margin-right: 0;
   z-index: 2000;
   min-height: 100vh;
   max-height: 100vh;

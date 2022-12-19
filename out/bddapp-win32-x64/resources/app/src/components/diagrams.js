@@ -44,6 +44,10 @@ function Expressions(strs, functionType, variables) {
     // eslint-disable-next-line
     rx = /(([\/A-Z a-z][*]*)+)/g;
     strs = "+" + strs + "+"
+  } else if (variables.length===1){
+    // eslint-disable-next-line
+    rx = /(([\/A-Z a-z][*]*)+)/g;
+   
   } else {
     rx = /\(([^()]*)\)/g;
   }
@@ -95,7 +99,7 @@ function truthTable(variables) {
 
 }
 // translate expression to truth table keys - inlude missing variables in expressions
-function ExprTotrueKey(expressions, varMap, userVarMap, functionType) {
+function ExprTotrueKey(expressions,varMap, newVarMap, userVarMap, functionType) {
   let nextV01 = ""
   let nextV10 = ""
   if(functionType === "KPS"){
@@ -119,6 +123,7 @@ function ExprTotrueKey(expressions, varMap, userVarMap, functionType) {
       let index = matches[i][j].index - 1;
       let text = String(expressions[i])
       let subS = text.substring(index, index + 1)
+    
       if (subS === '/') {
         if (exptrue[i] === undefined) {
           exptrue[i] = nextV01 //"0"
@@ -129,7 +134,7 @@ function ExprTotrueKey(expressions, varMap, userVarMap, functionType) {
         if (exptrue[i] === undefined) {
           exptrue[i] = nextV10 //"1"
         } else {
-          exptrue[i] = exptrue[i] + nextV10 //"1"
+          exptrue[i] =  exptrue[i] + nextV10  //"1"
         }
       }
     }
@@ -149,6 +154,7 @@ function ExprTotrueKey(expressions, varMap, userVarMap, functionType) {
   }
  
   let keysToSet = []
+ 
   missingMap.forEach((element, key) => {
     
     let value = exptrue[key]
@@ -164,7 +170,6 @@ function ExprTotrueKey(expressions, varMap, userVarMap, functionType) {
       keysToSet.push(miss[i])
     }
   })
- 
   exptrue.forEach(element => {
     if (String(element).length === varMap.size) {
       keysToSet.push(element)
@@ -177,10 +182,15 @@ function ExprTotrueKey(expressions, varMap, userVarMap, functionType) {
 
     for (let j = 0; j < charArr.length; j++) {
       let v2 = charArr[userVarMap.get(j + 1) - 1]
+    
       charArr2[j] = v2
     }
     keysToSet2.push(String(charArr2).replace(/,/g, ''))
   }
+  // console.log("keysToSet")
+  // console.log(keysToSet)
+  // console.log("keysToSet2")
+  // console.log(keysToSet2)
   return (keysToSet2)
 }
 function getByValue(map, searchValue) {
@@ -212,6 +222,7 @@ function Diagrams() {
   const handleClose5 = () => setShow5(false);
   const handleClose6 = () => setShow6(false);
   const [valid, setValid] = useState(false)
+  const[mesWasShow, setMesWasShow] = useState(false)
   const [loading, setLoading] = useState(10)
   const [formValues, setFormValues] = useState({
     logFunction: "",
@@ -344,8 +355,9 @@ function Diagrams() {
     
     
     const variables = Variables(strs)
-    if(variables.length > 10){
+    if(variables.length > 13 && mesWasShow === false){
       setShow6(true)
+      setMesWasShow(true)
       ///setValid(false)
       setExTitle("UWAGA!!")
       setExMessage(<p>Funkcja zawiera {variables.length} zmiennyc,<br></br> program jest w stanie stabilnie obsłużyć fukcję zawierająca do 12 zmiennych<br></br>
@@ -405,17 +417,7 @@ function Diagrams() {
     truthTable2 = truthTable2.sort()
     //console.log(truthTable2)
     // truth table map (kays and values) inicjalization - default values
-    let thruMap = new Map()
-    let keyT = ""
-    for (let i = 0; i < truthTable2.length; i++) {
-      keyT = truthTable2[i].toString().replace(/,/g, '')
-      if (functionType === "KPS") {
-        thruMap.set(keyT, "0")
-      } else {
-        thruMap.set(keyT, "1")
-      }
-
-    }
+    
     const expressions = Expressions(strs, functionType, variables)
     
     //Walidacja formularza
@@ -469,7 +471,7 @@ function Diagrams() {
             }
           }
         })
-        if(spr===true){
+        if(spr===true && variables.length > 1){
           setShow6(true)
           setExTitle("Błąd składni")
           setExMessage("Podwójna zmienna w " + parseInt(index+1) +" wyrażeniu (zmienna: " +val1+" )")
@@ -492,8 +494,17 @@ function Diagrams() {
     // }
 
     // truth table map (kays and values) inicjalization - expresion values
-    let keysToSet = ExprTotrueKey(expressions, newVarMap, userVarMap, functionType)
-
+    let keysToSet = ExprTotrueKey(expressions,varMap, newVarMap, userVarMap, functionType)
+    let thruMap = new Map()
+    let keyT = ""
+    for (let i = 0; i < truthTable2.length; i++) {
+      keyT = truthTable2[i].toString().replace(/,/g, '')
+      if (functionType === "KPS") {
+        thruMap.set(keyT, "0")
+      } else {
+        thruMap.set(keyT, "1")
+      }
+    }
     keysToSet.forEach(element => {
       if (functionType === "KPS") {
         thruMap.set(element, "1")
@@ -534,7 +545,7 @@ function Diagrams() {
 
   const handleClickPage = (event) => {
     event.preventDefault()
-    if (valid === true) {
+    if (valid === true && (formValues.logFunction !== '' && formValues.logFunction !== undefined)  ) {
       switch (event.currentTarget.id) {
         // eslint-disable-next-line
         case 'BDD': {
@@ -592,7 +603,7 @@ function Diagrams() {
         }
       }
 
-    }
+    } 
 
   }
 
@@ -646,7 +657,7 @@ function Diagrams() {
       </div>
    
   ) : (<div></div>)}
-    <div className={loading===12 ? "hide" : "visiable"}>
+    <div id="conteinerFull" className={loading===12 ? "hide" : "visiable"}>
       <div id="min1"className="container diagra">
         <form id="contactForm" onSubmit={handleSubmit}>
           <div className="mb-3">

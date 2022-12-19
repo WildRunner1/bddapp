@@ -1,6 +1,6 @@
 { "logFunctions":[
     {
-      "body":"ABC+/ABC",
+      "body1":"ABC+/ABC",
       "type":"KPS",
       "desc":"test",
       "relation":"KPI - A+B",

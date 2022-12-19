@@ -252,7 +252,7 @@ function Bdd(props){
         document.getElementById("min2").className = "min"
         document.getElementById("min3").className = "min"
         document.getElementById("diagra").className = ""
-        document.getElementById("body").className = ""
+        document.getElementById("body1").className = ""
         setFullTitle("Zamknij")
         setSize("1200px")
         setFullIcon(<FontAwesomeIcon icon={faRectangleXmark}/>)
@@ -265,7 +265,7 @@ function Bdd(props){
         document.getElementById("min2").className = "navbar navbar-expand-lg navbar-dark bg-dark  justify-content-center fixed-top"
         document.getElementById("min3").className = ""
         document.getElementById("diagra").className = "container-fluid diagra"
-        document.getElementById("body").className = "d-flex flex-column min-vh-100 App"
+        document.getElementById("body1").className = "d-flex flex-column min-vh-100 App"
         setFullTitle("Pełny ekran")
         setSize("680px")
         setFullIcon(<FontAwesomeIcon icon={faExpand}/>)

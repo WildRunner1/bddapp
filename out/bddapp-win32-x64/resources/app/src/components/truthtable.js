@@ -73,7 +73,7 @@ function TruthTable(props){
         document.getElementById("min2").className = "min"
         document.getElementById("min3").className = "min"
         document.getElementById("diagra").className = ""
-        document.getElementById("body").className = ""
+        document.getElementById("body1").className = ""
         setFullTitle("Zamknij")
         
         setFullIcon(<FontAwesomeIcon icon={faRectangleXmark}/>)
@@ -86,7 +86,7 @@ function TruthTable(props){
         document.getElementById("min2").className = "navbar navbar-expand-lg navbar-dark bg-dark  justify-content-center fixed-top"
         document.getElementById("min3").className = ""
         document.getElementById("diagra").className = "container-fluid diagra"
-        document.getElementById("body").className = "d-flex flex-column min-vh-100 App"
+        document.getElementById("body1").className = "d-flex flex-column min-vh-100 App"
         setFullTitle("Pełny ekran")
         
         setFullIcon(<FontAwesomeIcon icon={faExpand}/>)
