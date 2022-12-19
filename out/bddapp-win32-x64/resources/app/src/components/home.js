@@ -43,7 +43,7 @@ function Home(){
                   <div className='auth1'>Promotor: </div>
                 </div>
                 <div className=" col-md-6">
-                  <div className='auth2'>dr inż. Jacek Tkacz <a href="http://www.imei.uz.zgora.pl/">(IMEI)</a></div>  
+                  <div className='auth2'>dr inż. Jacek Tkacz <a target="_blank" rel="noopener noreferrer" href="http://www.imei.uz.zgora.pl/">(IMEI)</a></div>  
                 </div>
               </div>
               <div className="row gx-1 ">
@@ -51,7 +51,7 @@ function Home(){
                   <div className='auth1'>Wydział: </div>
                 </div>
                 <div className=" col-md-6">
-                  <div className='auth2'>Wydział Inforamtyki, Elektrotechniki i Automatyki <a href="https://www.wiea.uz.zgora.pl/">(WIEA)</a></div>  
+                  <div className='auth2'>Wydział Inforamtyki, Elektrotechniki i Automatyki <a target="_blank" rel="noopener noreferrer" href="https://www.wiea.uz.zgora.pl/">(WIEA)</a></div>  
                 </div>
               </div>
               <div className="row gx-1 ">
@@ -59,7 +59,7 @@ function Home(){
                   <div className='auth1'>Uczelnia: </div>
                 </div>
                 <div className=" col-md-6">
-                  <div className='auth2'>Uniwersytet Zielonogórski<a href="https://www.uz.zgora.pl/">(UZ)</a></div>  
+                  <div className='auth2'>Uniwersytet Zielonogórski<a target="_blank" rel="noopener noreferrer" href="https://www.uz.zgora.pl/">(UZ)</a></div>  
                 </div>
               </div>
               <div className="row gx-1 ">
@@ -124,7 +124,7 @@ function Home(){
               <div className="techStackList">
                 <label className="labelTech">
                   <h4>
-                    <a href="https://github.com/WildRunner1/bddapp">https://github.com/WildRunner1/bddapp</a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/WildRunner1/bddapp">https://github.com/WildRunner1/bddapp</a>
                   </h4>
                 </label>
               </div>

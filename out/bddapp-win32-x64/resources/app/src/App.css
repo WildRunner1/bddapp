@@ -33,20 +33,12 @@
   src: url(./font/S6uyw4BMUTPHjx4wXg.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-
-
-
-
 body{
-  font-family: 'Lato', sans-serif;
- 
+  font-family: 'Lato', sans-serif; 
 }
-
 .App {
-  text-align: center;
-  
+  text-align: center;  
 }
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -59,18 +51,13 @@ body{
 }
 .aa{
   cursor: pointer;
-  transition: all 0.8s;
-  
+  transition: all 0.8s;  
 }
 .aa:hover{
   border-radius: 2px;
   background-color: #cc0000;
-  transform: scale(1);
-  
-  
+  transform: scale(1);  
 }
-
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -94,10 +81,8 @@ body{
     transform: rotate(360deg);
   }
 }
-
 .button3{
-  width: calc(100% - 2.5em);
-  
+  width: calc(100% - 2.5em);  
 }
 .button4{
   /* width: 3em;
@@ -114,7 +99,6 @@ body{
 .floatLeft{
   float: left;
 }
-
 .techStackList{
   padding:1em;
 }
@@ -127,16 +111,14 @@ body{
 }
 .container-fluid{
   margin-top:100px;
-  margin-bottom: 100px;
-  
+  margin-bottom: 100px;  
   max-width: 90vw;
 }
 .diagra{
   margin-top:45px;
 }
 tr td{
-  transition: all 0.3s;
-  
+  transition: all 0.3s;  
 }
 
 tr:hover{
@@ -192,8 +174,7 @@ ul, #myUL {
   border-bottom: solid 0px;
   border-color: #a6a6a6;
   font-weight: bolder;
-  font-size: 1.2em;
-  
+  font-size: 1.2em;  
 }
 .button2:hover{
   background-color: #e3e3e3;
@@ -204,8 +185,7 @@ ul, #myUL {
 }
 .bddContainer{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-color:#FFFFFF;
-  
+  background-color:#FFFFFF;  
   border-left:  solid 1px;
   border-right: solid 1px;
   border-top: solid 0px;
@@ -235,8 +215,7 @@ ul, #myUL {
   font-size: 1.5em;
 }
 .formText:focus {   
-  border: solid 2px;
-  
+  border: solid 2px;  
   /* border-color:#DF7676; */
   background-color:#f1f1f1;
    /* rgba(242, 222, 186, 1.2); */
@@ -254,9 +233,7 @@ ul, #myUL {
 .smallTable{
   max-width: 50%;
   margin-left: 25%;
-  font-size: 2em;
-  
-  
+  font-size: 2em;  
 }
 .bigTable{
   max-width: 99%;
@@ -270,10 +247,8 @@ ul, #myUL {
 .smallTable1{
   max-width: 50%;
   margin:auto;
-  font-size: 2em;
-  
-  overflow: auto;
-  
+  font-size: 2em;  
+  overflow: auto;  
 }
 .bigTable1{
   max-width: 100%;
@@ -312,8 +287,7 @@ ul, #myUL {
 .articleHeader{
   text-align: left;
   font-size: 1.5em;
-  font-weight: bold;
-   
+  font-weight: bold;   
 }
 .articleBody{
   text-align: justify;
@@ -327,13 +301,10 @@ ul, #myUL {
   background-color: #e0dddd;
   border: 1px solid rgb(162, 161, 161);
   text-align: left;
-
 }
 .parent{
   position: relative;
   height: 720px;
-  
-  
 }
 .parent2{
   position: relative;
@@ -342,16 +313,11 @@ ul, #myUL {
 .parent3{
   position: relative;
   max-height: 100vh;
-  
   overflow-y: auto;
   overflow-x: hidden;
- 
 }
 .parent4{
   position: relative;
-  
-  
-  
 }
 .stat1{
   
@@ -558,33 +524,7 @@ a:hover{
 #manual{
   cursor: pointer;
 }
-.full{
-  background-color: white;
-  position: fixed;
-  width:100%;
-  inset: 0em;
-  margin-left: 0;
-  margin-right: 0;
-  z-index: 2000;
-  min-height: 100vh;
-  max-height: 100vh;
-}
 .opac{
   opacity:0.8;
-}
-.butSize{
-  background-color: #ede9e9;
-  transition: all 0.3s;
-  color: #DF7676;
-  border:none;
-  margin-left:60%;
-  min-height: 1.1em;
-}
-.butSize:hover{
-  min-height: 1.1em;
-  color:black
-}
-.min{
-  display: none;
 }
 /* @import url("../node_modules/vis-network/dist/dist/vis-network.min.css") */

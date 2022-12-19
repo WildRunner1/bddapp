@@ -187,10 +187,6 @@ function ExprTotrueKey(expressions,varMap, newVarMap, userVarMap, functionType) 
     }
     keysToSet2.push(String(charArr2).replace(/,/g, ''))
   }
-  // console.log("keysToSet")
-  // console.log(keysToSet)
-  // console.log("keysToSet2")
-  // console.log(keysToSet2)
   return (keysToSet2)
 }
 function getByValue(map, searchValue) {
@@ -206,6 +202,7 @@ function Diagrams() {
   const [exMessage, setExMessage] = useState("")
   const [exTitle, setExTitle] = useState("")
   const [page, setPage] = useState() 
+  const [generate, setGenereate] = useState(false) 
   const [varItems, setVarItems] = React.useState([])
   const dragItem = React.useRef(null)
   const dragOverItem = React.useRef(null)
@@ -246,8 +243,6 @@ function Diagrams() {
     locSort2.set(localStorage.key(i), localStorage.getItem(localStorage.key(i)))
   }
   locSort.sort()
-  //console.log("locSort")
-  //console.log(locSort)
   localStorage.clear()
   locSort.forEach(element =>{
     localStorage.setItem(element, locSort2.get(element))
@@ -269,11 +264,14 @@ function Diagrams() {
     // } else {
       document.getElementById("optionB").checked = false
     // }
-    
+    setGenereate(false)
+    document.getElementById("pageDisplay").className = "container hide"
+    document.getElementById("BDD").disabled = true
+    document.getElementById("ROBDD").disabled = true
+    document.getElementById("TrueTable").disabled = true
     setFormValues({logFunction : body})
     setShow3(false)
   }
-  //console.log(localStorage)
   const handleDelete = (event) => {
     event.preventDefault()
     localStorage.removeItem(event.currentTarget.id)
@@ -286,8 +284,6 @@ function Diagrams() {
   }
   
     localS.forEach((value, index) => {
-    // Object.keys(localStorage).forEach( index => {
-    //   let value = localStorage.getItem(index)
       value = JSON.parse(value)
       let bodyVal = value.body
       let descVal = value.desc
@@ -298,8 +294,7 @@ function Diagrams() {
       if(String(descVal).length > 30){
         descVal = descVal.slice(0,30)+" ..."
       }
-      fucArr.push(
-        
+      fucArr.push(        
         <div key={index} className="row ">
           <div className="col-6">
           <button title="Wczytaj" id={index} onClick={handleGetSaved} onChange={handleChange} className='btn btn-secondary modalPlusBtn'><FontAwesomeIcon icon={faPlus} /></button>
@@ -328,37 +323,33 @@ function Diagrams() {
     })
     max = max+1
     localS.push(JSON.stringify({"body":body, "type":type, "desc":desc, "editable":false, "locIndex": max}))
-   
     localStorage.setItem(max, JSON.stringify({"body":body, "type":type, "desc":desc, "editable":false, "locIndex": max}))
     setShow4(true)
   }
-
-
-
-  
-
   const BDD = <div id="bdd" className="bddContainer"> <Bdd setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
   const ROBDD = <div id="robdd" className="bddContainer "> <Robdd setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
   const TrueTable = <div id="truthTable" className="bddContainer"> <TruthTable setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
   
-
-
   const handleChange = (event) => {
     // event.preventDefault()
-    
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
-    //console.log(({ ...formValues, [name]: value }))
-    //console.log(formValues.logFunction)
     const strs = document.getElementById("funkcjaLogiczna").value
-    //String(formValues.logFunction)//["(/A*B*C)+(/A*/B*C)+(/A*B*/C)+(/A*/B*/C)+(A*B*/C)"]
-    
-    
+    setGenereate(false)
+    document.getElementById("pageDisplay").className = "container hide"
     const variables = Variables(strs)
+    if(variables.length === 0 ){
+      document.getElementById("BDD").disabled = true
+      document.getElementById("ROBDD").disabled = true
+      document.getElementById("TrueTable").disabled = true
+    } else {
+      document.getElementById("BDD").disabled = false
+      document.getElementById("ROBDD").disabled = false
+      document.getElementById("TrueTable").disabled = false
+    }
     if(variables.length > 13 && mesWasShow === false){
       setShow6(true)
       setMesWasShow(true)
-      ///setValid(false)
       setExTitle("UWAGA!!")
       setExMessage(<p>Funkcja zawiera {variables.length} zmiennyc,<br></br> program jest w stanie stabilnie obsłużyć fukcję zawierająca do 12 zmiennych<br></br>
       Generowanie fukcji powyżej 12 zmienny może spowodować zawieszenie programu</p>)
@@ -377,11 +368,12 @@ function Diagrams() {
   };
  
   const handleSubmit = (event) => {
+    setGenereate(true)
     setValid(false)
     event.preventDefault();
     truthMapToPass.clear()
     newVarMapToPass.clear()
-
+    document.getElementById("pageDisplay").className = "container"
     const functionType = formValues.logType//"KPS" / "KPI"
     let strs1 = document.getElementById("funkcjaLogiczna").value//String(formValues.logFunction)//["(/A*B*C)+(/A*/B*C)+(/A*B*/C)+(/A*/B*/C)+(A*B*/C)"]
     const strs = String(strs1.replace(/ /g, ''))
@@ -415,9 +407,8 @@ function Diagrams() {
 
     }
     truthTable2 = truthTable2.sort()
-    //console.log(truthTable2)
+
     // truth table map (kays and values) inicjalization - default values
-    
     const expressions = Expressions(strs, functionType, variables)
     
     //Walidacja formularza
@@ -455,8 +446,6 @@ function Diagrams() {
             setValid(false)
             valid2 = false
       }
-    
-    
 
     expressions.forEach((element, index) => {
       let checkExp = Array.from(element)
@@ -489,10 +478,6 @@ function Diagrams() {
       valid2 = false
     } 
 
-    // else {
-    //   setValid(true)
-    // }
-
     // truth table map (kays and values) inicjalization - expresion values
     let keysToSet = ExprTotrueKey(expressions,varMap, newVarMap, userVarMap, functionType)
     let thruMap = new Map()
@@ -515,7 +500,6 @@ function Diagrams() {
     thruMap.forEach((value, key) => {
       setTruthMapToPass(new Map(truthMapToPass.set(key, value)))
     })
-    //console.log(truthMapToPass)
     newVarMap.forEach((value, key) => {
       setNewVarMapToPass(new Map(newVarMapToPass.set(key, value)))
 
@@ -545,7 +529,8 @@ function Diagrams() {
 
   const handleClickPage = (event) => {
     event.preventDefault()
-    if (valid === true && (formValues.logFunction !== '' && formValues.logFunction !== undefined)  ) {
+    
+    if (valid === true && generate === true) {
       switch (event.currentTarget.id) {
         // eslint-disable-next-line
         case 'BDD': {
@@ -709,7 +694,7 @@ function Diagrams() {
         </div> 
       </div>
      {/* <div className={loading===1 ? "hide" : "visiable"}> */}
-     <div className="container">
+     <div id="pageDisplay" className="container">
       {page}
       {/* </div>  */}
       </div>          
@@ -747,7 +732,7 @@ function Diagrams() {
         Przykładowa funkcja KPI: <label className='inst1'>(A+B+C)*(/A+B+C)*(A+/B+C)</label><br></br>
         
         {/* Kolejność zmiennych można zdefinować po wpisaniu funkcji przez mechanizm drag'n'drop<br></br> */}
-        <label className='inst2'>*nie wszystkie przypdaki złej składni są uwzględnione, dla większej kontroli w konsoli przeglądarki (f12) wyswietlane są 
+        <label className='inst2'>*nie wszystkie przypdaki złej składni są uwzględnione, dla większej kontroli w konsoli przeglądarki (Ctrl+Shift+I) wyswietlane są 
         zmapowane zmienne i wyrażenia</label>
         
 

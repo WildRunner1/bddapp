@@ -56,7 +56,7 @@ function About(){
               <div className="techStackList">
                 <label className="labelTech">
                   <h4>
-                    <a href="https://github.com/WildRunner1/bddapp">https://github.com/WildRunner1/bddapp</a>
+                    <a  href="https://github.com/WildRunner1/bddapp">https://github.com/WildRunner1/bddapp</a>
                   </h4>
                 </label>
               </div>
