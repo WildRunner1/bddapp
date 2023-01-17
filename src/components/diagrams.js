@@ -41,10 +41,13 @@ function Variables(strs) {
 function Expressions(strs, functionType, variables) {
   let rx
   if (functionType === "KPS") {
+    // eslint-disable-next-line
     rx = /(([\/A-Z a-z][*]*)+)/g;
     strs = "+" + strs + "+"
   } else if (variables.length===1){
+    // eslint-disable-next-line
     rx = /(([\/A-Z a-z][*]*)+)/g;
+   
   } else {
     rx = /\(([^()]*)\)/g;
   }
