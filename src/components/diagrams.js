@@ -86,7 +86,6 @@ function Expressions(strs, functionType, variables) {
 function truthTable(variables) {
   var truthTable = []
   var truthTable2 = []
-
   for (var i = (Math.pow(2, variables.length) - 1); i >= 0; i--) {
     for (var j = (variables.length - 1); j >= 0; j--) {
       truthTable[j] = (i & Math.pow(2, j)) ? "1" : "0"
@@ -96,8 +95,8 @@ function truthTable(variables) {
   }
   truthTable2.sort()
   return (truthTable2)
-
 }
+
 // translate expression to truth table keys - inlude missing variables in expressions
 function ExprTotrueKey(expressions,varMap, newVarMap, userVarMap, functionType) {
   let nextV01 = ""
