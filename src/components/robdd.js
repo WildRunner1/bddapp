@@ -55,6 +55,7 @@ function makeItShort(myGraph,map,orgMap,side,n,varM,parent,tree){
       let label = varM.get(n)
        id = label
       parent = "-1"
+      //push node
       myGraph.nodes.push({id: id, exp: "",exp2: "", label: label,side: "start", n: n, tree: tree, hidden: false, cut: 0, type: "nonterminal",  shape: "eclipse",parent: String(parent),  font:{size:30}, borderWidth:2})
     } else if(side === "left"){
       if(n<=varM.size){
@@ -63,6 +64,7 @@ function makeItShort(myGraph,map,orgMap,side,n,varM,parent,tree){
          shape = "eclipse"
          id = label+String(parent).slice(1,String(parent).length)+"0"
        } 
+       //push node
         myGraph.nodes.push({id: id, exp: "",exp2: "",  label: label,side: "left", n: n, tree: tree, hidden: false, cut: 0, type: type,  shape: shape,parent: parent,  font:{size:30}, borderWidth:2})  
     } else if(side === "right"){
       if(n<=varM.size){
@@ -71,6 +73,7 @@ function makeItShort(myGraph,map,orgMap,side,n,varM,parent,tree){
          shape = "eclipse"
          id = label+String(parent).slice(1,String(parent).length)+"1"
        }
+       //push node
         myGraph.nodes.push({id: id, exp: "",exp2: "", label: label,side: "right", n: n, tree: tree, hidden: false, cut: 0, type: type,  shape: shape,parent: parent,  font:{size:30}, borderWidth:2})  
     } 
     parent = id
@@ -79,6 +82,7 @@ function makeItShort(myGraph,map,orgMap,side,n,varM,parent,tree){
         makeItShort(myGraph,mapRight,orgMap,"right",n+1,varM,parent,side)
     }
     if(n===varM.size){
+      //push node
       myGraph.nodes.push({id: String(leftKeys[position]), exp: "",exp2: "",  parent: parent, label: leftValues[0],side: "left", n: n, to: id, hidden: false, cut: 0, type: "terminal",  shape: "box",  font:{size:30}, borderWidth:2})
       myGraph.nodes.push({id: String(rightKeys[position]), exp: "",exp2: "",  parent: parent, label: rightValues[0],side: "right", n: n, hidden: false, cut: 0, type: "terminal",  shape: "box",  font:{size:30}, borderWidth:2})
     }
