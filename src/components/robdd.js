@@ -66,7 +66,8 @@ function makeItShort(myGraph,map,orgMap,side,n,varM,parent,tree){
        } 
        //push node
         myGraph.nodes.push({id: id, exp: "",exp2: "",  label: label,side: "left", n: n, tree: tree, hidden: false, cut: 0, type: type,  shape: shape,parent: parent,  font:{size:30}, borderWidth:2})  
-    } else if(side === "right"){
+    } else 
+    if(side === "right"){
       if(n<=varM.size){
         type="nonterminal"
          label = varM.get(n)

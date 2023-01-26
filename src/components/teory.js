@@ -7,87 +7,195 @@ function Teory(props){
                 <h1>Teoria</h1>
             </article>
             <nav>
-            <a className='teoryNav' href="#bdd">BDD</a>
+            <a className='teoryNav' href="#logika">Logika</a>
+            <a className='teoryNav' href="#bool">Algebra Boole'a</a>
+            <a className='teoryNav' href="#kpi">KPS i KPI</a>
+            <a className='teoryNav' href="#bdd">BDD i OBDD</a>
             <a className='teoryNav' href="#robdd">ROBDD</a>
-            <a className='teoryNav' href="#shannon">Rozkład Shanonna</a>
-            
-          </nav>  
-          
-         
-          <div id="bdd">
-            <div className='headsd'></div>
-            <div className="articleHeader">BDD</div>
-            <div className="articleBody">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae maximus justo, in vulputate felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vestibulum ut iaculis erat. Donec ultrices quis tortor sed feugiat. Nunc vel lectus placerat, varius turpis eu, placerat neque. Aenean id augue urna. Morbi varius tempus pretium. Proin turpis mi, dignissim ut nisi a, hendrerit ultrices libero. Donec magna mauris, volutpat et ex id, viverra aliquam enim. Maecenas ultricies orci eget dui fermentum sagittis.
+            <a className='teoryNav' href="#shannon">Rozkład Shanonna</a></nav> 
 
-Fusce in laoreet metus. Etiam vel molestie risus. Fusce euismod, est at cursus dictum, sapien ex fringilla orci, eu ultrices lectus nibh vel orci. Donec lobortis libero vel justo ultrices placerat. Donec cursus, arcu vel dapibus fringilla, nisi ante vulputate lacus, quis blandit metus elit mollis lorem. Integer vitae laoreet tellus. Donec consequat odio augue, id aliquet nisi maximus at. Phasellus leo elit, convallis quis suscipit in, malesuada ut neque.
+           
+            <div id="logika">
+              <div className='headsd'></div>
+              <div className="articleHeader">Logika i logika w informatyce</div>
+              <div className="articleBody">
+              <br></br>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              Logika jest dziedziną filozofii, matematyki i nauk formalnych, która zajmuje się badaniem i
+              formalizowaniem myślenia oraz jego struktur. Logika jest narzędziem do analizy i rozumowania,
+              pozwala na formalne opisanie i badanie różnych systemów poznawczych, takich jak języki naturalne,
+              myślenie ludzkie, a także sys-temów formalnych, takich jak języki programowania czy logika matematyczna.
+              <br></br>
+              <br></br>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              Głównym celem logiki jest zrozumienie i opisanie reguł i zasad rządzących myśleniem,
+              rozumowaniem i argumentowaniem. Logika pozwala na weryfikację i ocenę poprawności argumentów i twierdzeń.
+              <br></br>
+              <br></br>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              Logika w informatyce to dziedzina, która zajmuje się badaniem i stosowaniem logiki matematycznej w informatyce. 
+              W informatyce jest używana do projek-towania i analizy algorytmów, a także do opracowywania i weryfikacji systemów 
+              formalnych, takich jak języki programowania, systemy baz danych czy systemy wykonawcze. Logika jest również ważna w 
+              dziedzinie sztucznej inteligencji, gdzie jest stosowana do badania problemów poznawczych i planowania oraz w teorii 
+              komputacji jako podstawy teorii automatów.
+              <br></br>
+              <br></br>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              Logika w informatyce związana jest również z takimi dziedzinami jak teoria formalnych systemów, teoria algorytmów, teoria komunikacji i kryptografia.
+              <br></br>
+              Logika znajduje zastosowanie między innymi w:
+              <br></br>
+              ●	Projektowaniu algorytmów
+              <br></br>
+              ●	Tworzeniu systemów formalnych
+              <br></br>
+              ●	Analizie i optymalizacja systemów
+ 
+              </div>
+            </div>   
 
-Vivamus sed molestie tellus. Nunc pretium molestie metus, eget ullamcorper diam mollis lacinia. Integer ut risus in nisl rhoncus porta eget vel nisl. Integer magna justo, fermentum in dui eu, sagittis rutrum elit. Praesent id purus ut justo pretium tempus vel sit amet libero. Vivamus placerat enim diam, non cursus justo mollis nec. Cras neque est, aliquet nec nisi aliquet, molestie malesuada eros. Nunc vestibulum erat ipsum. Curabitur bibendum lectus eu ipsum imperdiet, a molestie augue tempor. Vestibulum dignissim consectetur congue.
+            <div id="bool">
+              <div className='headsd'></div>
+              <div className="articleHeader">Algebra Boole'a</div>
+              <div className="articleBody">
+              <br></br>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              Algebra Boole'a to dziedzina matematyki zajmująca się operacjami na zmiennych logicznych,
+              czyli zmiennych przyjmujących wartości prawda (ang. true) lub fałsz (ang. false). Nazwa pochodzi
+              od imienia matematyka George'a Boole'a, który jako pierwszy opracował system algebraiczny dla operacji 
+              logicznych. W Algebrze Boole'a używa się operatorów AND, OR i NOT, które pozwalają na modelowanie różnych sytuacji logicznych.
+              <br></br>
+              <br></br>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              Algebra Boole'a jest używana w różnych dziedzinach, takich jak elektronika, komputeryzacja, 
+              automatyka i teoria obwodów. W elektronice i automatyce jest ona stosowana do opracowywania układów logicznych,
+              które służą do przetwarzania sygnałów elektrycznych na sygnały logiczne. W komputeryzacji 
+              jest ona podstawą działania układów scalonych, które służą do przetwarzania informacji.
+              
+              <br></br>
+              <br></br>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              Algebra Boole'a jest także podstawą logiki matematycznej, gdzie pozwala na formułowanie i 
+              rozwiązywanie twierdzeń logicznych. Służy do też do reprezentacji teoretycznej komputera i 
+              pozwala na analizę algorytmów za pomocą pojęcia formalnego.
+              <br></br>
+              <br></br>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              Funkcja logiczna w algebrze Boole'a jest to matematyczna funkcja, 
+              która przypisuje każdemu możliwemu ciągowi wartości prawdy lub fałszu dla danych zmien-nych logicznych.
+              W algebrze Boole'a, zmienne logiczne mają tylko dwie możliwe wartości: prawda (1) i fałsz (0).
+              <br></br>
+              <br></br>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              Funkcja logiczna jest reprezentowana przez wielomiany, 
+              w których zmienne logiczne są reprezentowane przez zmienne binarne, 
+              a operacje logiczne są reprezen-towane przez operatory algebraiczne.
+              <br></br>
+              <br></br>
+              W algebrze Boole'a istnieją trzy podstawowe operacje logiczne:
+              <br></br>
+              ●	koniunkcja (˄,AND, &, &&, *) 
+              <br></br>
+              ●	alternatywa (˅,OR, |, ||, +)
+              <br></br>
+              ●	negacja (¬,NOT, !, ‘, /)
 
-In mi mauris, ultrices eu maximus condimentum, sagittis eget augue. Nunc feugiat orci sed ipsum elementum, et accumsan diam tempor. Mauris rhoncus, magna vel dignissim tempor, sem tortor fringilla sem, at tincidunt augue libero quis diam. Etiam viverra ex in leo eleifend, ut dignissim diam vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consectetur scelerisque urna iaculis finibus. Donec faucibus a mi sed ultrices. Proin fringilla aliquet feugiat. Etiam dignissim, risus ac convallis porttitor, augue sapien suscipit enim, ut hendrerit ante lectus in neque. Vestibulum erat quam, vehicula in maximus eget, ultricies sit amet sapien.
-
-Suspendisse nec commodo mi. Phasellus venenatis orci ac elementum fringilla. Donec molestie venenatis lorem, nec eleifend leo mollis tempus. Maecenas elementum arcu dui, et dictum diam vestibulum ut. Mauris porttitor semper nisi, sit amet eleifend turpis gravida nec. Curabitur ut eleifend eros. Maecenas pulvinar aliquam egestas.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae maximus justo, in vulputate felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vestibulum ut iaculis erat. Donec ultrices quis tortor sed feugiat. Nunc vel lectus placerat, varius turpis eu, placerat neque. Aenean id augue urna. Morbi varius tempus pretium. Proin turpis mi, dignissim ut nisi a, hendrerit ultrices libero. Donec magna mauris, volutpat et ex id, viverra aliquam enim. Maecenas ultricies orci eget dui fermentum sagittis.
-
-Fusce in laoreet metus. Etiam vel molestie risus. Fusce euismod, est at cursus dictum, sapien ex fringilla orci, eu ultrices lectus nibh vel orci. Donec lobortis libero vel justo ultrices placerat. Donec cursus, arcu vel dapibus fringilla, nisi ante vulputate lacus, quis blandit metus elit mollis lorem. Integer vitae laoreet tellus. Donec consequat odio augue, id aliquet nisi maximus at. Phasellus leo elit, convallis quis suscipit in, malesuada ut neque.
-
-Vivamus sed molestie tellus. Nunc pretium molestie metus, eget ullamcorper diam mollis lacinia. Integer ut risus in nisl rhoncus porta eget vel nisl. Integer magna justo, fermentum in dui eu, sagittis rutrum elit. Praesent id purus ut justo pretium tempus vel sit amet libero. Vivamus placerat enim diam, non cursus justo mollis nec. Cras neque est, aliquet nec nisi aliquet, molestie malesuada eros. Nunc vestibulum erat ipsum. Curabitur bibendum lectus eu ipsum imperdiet, a molestie augue tempor. Vestibulum dignissim consectetur congue.
-
-In mi mauris, ultrices eu maximus condimentum, sagittis eget augue. Nunc feugiat orci sed ipsum elementum, et accumsan diam tempor. Mauris rhoncus, magna vel dignissim tempor, sem tortor fringilla sem, at tincidunt augue libero quis diam. Etiam viverra ex in leo eleifend, ut dignissim diam vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consectetur scelerisque urna iaculis finibus. Donec faucibus a mi sed ultrices. Proin fringilla aliquet feugiat. Etiam dignissim, risus ac convallis porttitor, augue sapien suscipit enim, ut hendrerit ante lectus in neque. Vestibulum erat quam, vehicula in maximus eget, ultricies sit amet sapien.
-
-Suspendisse nec commodo mi. Phasellus venenatis orci ac elementum fringilla. Donec molestie venenatis lorem, nec eleifend leo mollis tempus. Maecenas elementum arcu dui, et dictum diam vestibulum ut. Mauris porttitor semper nisi, sit amet eleifend turpis gravida nec. Curabitur ut eleifend eros. Maecenas pulvinar aliquam egestas.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae maximus justo, in vulputate felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vestibulum ut iaculis erat. Donec ultrices quis tortor sed feugiat. Nunc vel lectus placerat, varius turpis eu, placerat neque. Aenean id augue urna. Morbi varius tempus pretium. Proin turpis mi, dignissim ut nisi a, hendrerit ultrices libero. Donec magna mauris, volutpat et ex id, viverra aliquam enim. Maecenas ultricies orci eget dui fermentum sagittis.
-
-Fusce in laoreet metus. Etiam vel molestie risus. Fusce euismod, est at cursus dictum, sapien ex fringilla orci, eu ultrices lectus nibh vel orci. Donec lobortis libero vel justo ultrices placerat. Donec cursus, arcu vel dapibus fringilla, nisi ante vulputate lacus, quis blandit metus elit mollis lorem. Integer vitae laoreet tellus. Donec consequat odio augue, id aliquet nisi maximus at. Phasellus leo elit, convallis quis suscipit in, malesuada ut neque.
-
-Vivamus sed molestie tellus. Nunc pretium molestie metus, eget ullamcorper diam mollis lacinia. Integer ut risus in nisl rhoncus porta eget vel nisl. Integer magna justo, fermentum in dui eu, sagittis rutrum elit. Praesent id purus ut justo pretium tempus vel sit amet libero. Vivamus placerat enim diam, non cursus justo mollis nec. Cras neque est, aliquet nec nisi aliquet, molestie malesuada eros. Nunc vestibulum erat ipsum. Curabitur bibendum lectus eu ipsum imperdiet, a molestie augue tempor. Vestibulum dignissim consectetur congue.
-
-In mi mauris, ultrices eu maximus condimentum, sagittis eget augue. Nunc feugiat orci sed ipsum elementum, et accumsan diam tempor. Mauris rhoncus, magna vel dignissim tempor, sem tortor fringilla sem, at tincidunt augue libero quis diam. Etiam viverra ex in leo eleifend, ut dignissim diam vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consectetur scelerisque urna iaculis finibus. Donec faucibus a mi sed ultrices. Proin fringilla aliquet feugiat. Etiam dignissim, risus ac convallis porttitor, augue sapien suscipit enim, ut hendrerit ante lectus in neque. Vestibulum erat quam, vehicula in maximus eget, ultricies sit amet sapien.
-
-Suspendisse nec commodo mi. Phasellus venenatis orci ac elementum fringilla. Donec molestie venenatis lorem, nec eleifend leo mollis tempus. Maecenas elementum arcu dui, et dictum diam vestibulum ut. Mauris porttitor semper nisi, sit amet eleifend turpis gravida nec. Curabitur ut eleifend eros. Maecenas pulvinar aliquam egestas.</div>
-          </div>
-          <div id="robdd">
-            <div className='headsd'></div>
-            <div className="articleHeader">ROBDD</div>
-            <div className="articleBody">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae maximus justo, in vulputate felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vestibulum ut iaculis erat. Donec ultrices quis tortor sed feugiat. Nunc vel lectus placerat, varius turpis eu, placerat neque. Aenean id augue urna. Morbi varius tempus pretium. Proin turpis mi, dignissim ut nisi a, hendrerit ultrices libero. Donec magna mauris, volutpat et ex id, viverra aliquam enim. Maecenas ultricies orci eget dui fermentum sagittis.
-
-Fusce in laoreet metus. Etiam vel molestie risus. Fusce euismod, est at cursus dictum, sapien ex fringilla orci, eu ultrices lectus nibh vel orci. Donec lobortis libero vel justo ultrices placerat. Donec cursus, arcu vel dapibus fringilla, nisi ante vulputate lacus, quis blandit metus elit mollis lorem. Integer vitae laoreet tellus. Donec consequat odio augue, id aliquet nisi maximus at. Phasellus leo elit, convallis quis suscipit in, malesuada ut neque.
-
-Vivamus sed molestie tellus. Nunc pretium molestie metus, eget ullamcorper diam mollis lacinia. Integer ut risus in nisl rhoncus porta eget vel nisl. Integer magna justo, fermentum in dui eu, sagittis rutrum elit. Praesent id purus ut justo pretium tempus vel sit amet libero. Vivamus placerat enim diam, non cursus justo mollis nec. Cras neque est, aliquet nec nisi aliquet, molestie malesuada eros. Nunc vestibulum erat ipsum. Curabitur bibendum lectus eu ipsum imperdiet, a molestie augue tempor. Vestibulum dignissim consectetur congue.
-
-In mi mauris, ultrices eu maximus condimentum, sagittis eget augue. Nunc feugiat orci sed ipsum elementum, et accumsan diam tempor. Mauris rhoncus, magna vel dignissim tempor, sem tortor fringilla sem, at tincidunt augue libero quis diam. Etiam viverra ex in leo eleifend, ut dignissim diam vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consectetur scelerisque urna iaculis finibus. Donec faucibus a mi sed ultrices. Proin fringilla aliquet feugiat. Etiam dignissim, risus ac convallis porttitor, augue sapien suscipit enim, ut hendrerit ante lectus in neque. Vestibulum erat quam, vehicula in maximus eget, ultricies sit amet sapien.
-
-Suspendisse nec commodo mi. Phasellus venenatis orci ac elementum fringilla. Donec molestie venenatis lorem, nec eleifend leo mollis tempus. Maecenas elementum arcu dui, et dictum diam vestibulum ut. Mauris porttitor semper nisi, sit amet eleifend turpis gravida nec. Curabitur ut eleifend eros. Maecenas pulvinar aliquam egestas.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae maximus justo, in vulputate felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vestibulum ut iaculis erat. Donec ultrices quis tortor sed feugiat. Nunc vel lectus placerat, varius turpis eu, placerat neque. Aenean id augue urna. Morbi varius tempus pretium. Proin turpis mi, dignissim ut nisi a, hendrerit ultrices libero. Donec magna mauris, volutpat et ex id, viverra aliquam enim. Maecenas ultricies orci eget dui fermentum sagittis.
-
-Fusce in laoreet metus. Etiam vel molestie risus. Fusce euismod, est at cursus dictum, sapien ex fringilla orci, eu ultrices lectus nibh vel orci. Donec lobortis libero vel justo ultrices placerat. Donec cursus, arcu vel dapibus fringilla, nisi ante vulputate lacus, quis blandit metus elit mollis lorem. Integer vitae laoreet tellus. Donec consequat odio augue, id aliquet nisi maximus at. Phasellus leo elit, convallis quis suscipit in, malesuada ut neque.
-
-Vivamus sed molestie tellus. Nunc pretium molestie metus, eget ullamcorper diam mollis lacinia. Integer ut risus in nisl rhoncus porta eget vel nisl. Integer magna justo, fermentum in dui eu, sagittis rutrum elit. Praesent id purus ut justo pretium tempus vel sit amet libero. Vivamus placerat enim diam, non cursus justo mollis nec. Cras neque est, aliquet nec nisi aliquet, molestie malesuada eros. Nunc vestibulum erat ipsum. Curabitur bibendum lectus eu ipsum imperdiet, a molestie augue tempor. Vestibulum dignissim consectetur congue.
-
-In mi mauris, ultrices eu maximus condimentum, sagittis eget augue. Nunc feugiat orci sed ipsum elementum, et accumsan diam tempor. Mauris rhoncus, magna vel dignissim tempor, sem tortor fringilla sem, at tincidunt augue libero quis diam. Etiam viverra ex in leo eleifend, ut dignissim diam vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consectetur scelerisque urna iaculis finibus. Donec faucibus a mi sed ultrices. Proin fringilla aliquet feugiat. Etiam dignissim, risus ac convallis porttitor, augue sapien suscipit enim, ut hendrerit ante lectus in neque. Vestibulum erat quam, vehicula in maximus eget, ultricies sit amet sapien.
-
-Suspendisse nec commodo mi. Phasellus venenatis orci ac elementum fringilla. Donec molestie venenatis lorem, nec eleifend leo mollis tempus. Maecenas elementum arcu dui, et dictum diam vestibulum ut. Mauris porttitor semper nisi, sit amet eleifend turpis gravida nec. Curabitur ut eleifend eros. Maecenas pulvinar aliquam egestas.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae maximus justo, in vulputate felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vestibulum ut iaculis erat. Donec ultrices quis tortor sed feugiat. Nunc vel lectus placerat, varius turpis eu, placerat neque. Aenean id augue urna. Morbi varius tempus pretium. Proin turpis mi, dignissim ut nisi a, hendrerit ultrices libero. Donec magna mauris, volutpat et ex id, viverra aliquam enim. Maecenas ultricies orci eget dui fermentum sagittis.
-
-Fusce in laoreet metus. Etiam vel molestie risus. Fusce euismod, est at cursus dictum, sapien ex fringilla orci, eu ultrices lectus nibh vel orci. Donec lobortis libero vel justo ultrices placerat. Donec cursus, arcu vel dapibus fringilla, nisi ante vulputate lacus, quis blandit metus elit mollis lorem. Integer vitae laoreet tellus. Donec consequat odio augue, id aliquet nisi maximus at. Phasellus leo elit, convallis quis suscipit in, malesuada ut neque.
-
-Vivamus sed molestie tellus. Nunc pretium molestie metus, eget ullamcorper diam mollis lacinia. Integer ut risus in nisl rhoncus porta eget vel nisl. Integer magna justo, fermentum in dui eu, sagittis rutrum elit. Praesent id purus ut justo pretium tempus vel sit amet libero. Vivamus placerat enim diam, non cursus justo mollis nec. Cras neque est, aliquet nec nisi aliquet, molestie malesuada eros. Nunc vestibulum erat ipsum. Curabitur bibendum lectus eu ipsum imperdiet, a molestie augue tempor. Vestibulum dignissim consectetur congue.
-
-In mi mauris, ultrices eu maximus condimentum, sagittis eget augue. Nunc feugiat orci sed ipsum elementum, et accumsan diam tempor. Mauris rhoncus, magna vel dignissim tempor, sem tortor fringilla sem, at tincidunt augue libero quis diam. Etiam viverra ex in leo eleifend, ut dignissim diam vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consectetur scelerisque urna iaculis finibus. Donec faucibus a mi sed ultrices. Proin fringilla aliquet feugiat. Etiam dignissim, risus ac convallis porttitor, augue sapien suscipit enim, ut hendrerit ante lectus in neque. Vestibulum erat quam, vehicula in maximus eget, ultricies sit amet sapien.
-
-Suspendisse nec commodo mi. Phasellus venenatis orci ac elementum fringilla. Donec molestie venenatis lorem, nec eleifend leo mollis tempus. Maecenas elementum arcu dui, et dictum diam vestibulum ut. Mauris porttitor semper nisi, sit amet eleifend turpis gravida nec. Curabitur ut eleifend eros. Maecenas pulvinar aliquam egestas.</div>
-          </div>
-          
-          
-          <div id="shannon">
-            <div className='headsd'></div>
-            <div className="articleHeader">Rozwinięcie Shanonna</div>
-            <div className="articleBody">
-            Rozwinięcie Shannona, inaczej nazywany teorią dekompozycji funkcji logicznych, to metoda polegająca na podzieleniu funkcji logicznej na mniejsze, prostsze pod-funkcje, które mogą być łatwiej zrozumiałe i zoptymalizowane. Metoda ta została opracowana przez Claude'a Shannon'a, amerykańskiego matematyka i inżyniera, który jest uważany za ojca teorii informacji.
-Rozwinięcie Shannona polega na rozdzieleniu funkcji logicznej na dwie części: podstawowy term logiczny (minterm) i komplementarny term (maxterm). Następnie, pozwala na skonstruowanie nowej funkcji logicznej jako sumy iloczynów minter-mów (KPS) lub iloczynów sum maxtermów (KPI).
-Rozwinięcie Shannona pozwala na uproszczenie i minimalizację funkcji logicz-nych poprzez znalezienie i usunięcie zbędnych termów. Jest to przydatne w projek-towaniu układów logicznych, szczególnie tych składających się z dużej liczby bra-mek logicznych, ponieważ pozwala na zwiększenie wydajności i zmniejszenie zło-żoności układu.
-
+           
+              </div>
             </div>
-          
+            <div id="kpi">
+              <div className='headsd'></div>
+              <div className="articleHeader">KPS i KPI</div>
+              <div className="articleBody">
+              <br></br>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              Kanoniczna postać sumy (ang. canonical sum-of-products form) i kanoniczna postać iloczynu (ang. canonical product-of-sums form) to dwie standardowe formy reprezentacji funkcji logicznych.
+              <br></br>
+              <br></br>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              Kanoniczna postać sumy jest reprezentacją funkcji logicznej jako sumy iloczynów (OR-ów i AND-ów) poszczególnych mintermów (podstawowych termów logicznych). 
+              <br></br>
+              Przykład:
+              <br></br>
+              F(A,B,C) = A'B'C + A'BC' + AB'C'
+              <br></br>
+              <br></br>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              Kanoniczna postać iloczynu jest reprezentacją funkcji logicznej jako iloczynów sum (AND-ów i OR-ów) poszczególnych maxtermów (komplementary terms).              <br></br>
+              Przykład:
+              <br></br>
+              F(A,B,C) = (A+B+C')(A+B'+C)(A'+B+C)
+              <br></br>
+              <br></br>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              Obie formy są równoważne, oznacza to że jeśli znamy jedną reprezentację to możemy przekształcić ją na drugą.
+              Przedstawienie funkcji logicznej w kanonicznej postaci sumy lub kanonicznej postaci iloczynu jest przydatne w celu uproszczenia i minimalizacji układów logicznych oraz w celu ich testowania.
+              </div>
+            </div>
+            <div id="bdd">
+              <div className='headsd'></div>
+              <div className="articleHeader">BDD i OBDD</div>
+              <div className="articleBody">
+              <br></br>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              Diagram BDD (ang. Binary Decision Diagram) jest graficzną reprezentacją funkcji logicznej, która pozwala na łatwą analizę i minimalizację funkcji. 
+              Struktura diagramu BDD składa się z węzłów i krawędzi. Każdy węzeł reprezentuje stan logiczny dla jednej zmiennej z wyjątkiem węzła terminującego, 
+              który oznacza wartość końcową dla danego ciągu wartości zmiennych. Krawędzie reprezentują przejście pomiędzy węzłami. 
+              Krawędzie oznaczone "0" oznaczają przejście po wartości "false" dla danej zmiennej, 
+              natomiast krawędzie oznaczone "1" oznaczają przejście po wartości "true" dla danej zmiennej. 
+              Struktura diagramu BDD składa się z węzłów i krawędzi. Każdy węzeł reprezentuje stan logiczny dla jednej zmiennej z wyjątkiem węzła terminującego,
+               który oznacza wartość końcową dla danego ciągu wartości zmiennych.
+              <br></br>
+              <br></br>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              Uporządkowaną wersją diagramu BDD jest diagram OBDD. 
+              W przypadku opisywanego programu, będzie to główny model jakim będziemy się posługiwać. 
+              OBDD jest podobny do BDD, ale posiada dodatkową funkcjonalność w postaci uporządkowania zmiennych według ich indeksów.
+              OBDD jest bardziej skuteczny w reprezentacji funkcji logicznych o dużej liczbie zmiennych, 
+              ponieważ pozwala na eliminację niepotrzebnych kombinacji zmiennych i redukuje rozmiar grafu, 
+              w wyniku tych operacji otrzymamy opisany poniżej diagram ROBDD. W skrócie BDD reprezentuje funkcje logiczne, 
+              a OBDD jest bardziej wydajną reprezentacją tych funkcji.
+ 
+              </div>
+            </div>
+            <div id="robdd">
+              <div className='headsd'></div>
+              <div className="articleHeader">ROBDD</div>
+              <div className="articleBody">
+              <br></br>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              Diagram ROBDD to specjalny rodzaj OBDD, w którym są uwzględnione korelacje między zmiennymi. 
+              W ROBDD, jeśli dwie gałęzie diagramu reprezentują tę samą funkcję logiczną, to tylko jeden z nich jest zachowywany,
+              reszta jest odrzucana. Dzięki temu pozwala na dalsze skompresowanie reprezentacji funkcji logicznej. 
+              To pozwala na zredukowanie ilości pamięci potrzebnej do przechowywania diagramu, a także przyspiesza operacje na nim.
+              </div>
+            </div>
+            
+            
+            <div id="shannon">
+              <div className='headsd'></div>
+              <div className="articleHeader">Rozwinięcie Shanonna</div>
+              <div className="articleBody">
+              <br></br>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              Rozwinięcie Shannona, inaczej nazywany teorią dekompozycji funkcji logicz-nych, to metoda polegająca na podzieleniu funkcji logicznej na mniejsze, prostsze podfunkcje, które mogą być łatwiej zrozumiałe i zoptymalizowane. Metoda ta zo-stała opracowana przez Claude'a Shannon'a, amerykańskiego matematyka i inżynie-ra, który jest uważany za ojca teorii informacji.
+              <br></br>
+              <br></br>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              Rozwinięcie Shannona polega na rozdzieleniu funkcji logicznej na dwie części: podstawowy term logiczny (minterm) i komplementarny term (maxterm). Następ-nie, pozwala na skonstruowanie nowej funkcji logicznej jako sumy iloczynów min-termów (KPS) lub iloczynów sum maxtermów (KPI).
+              <br></br>
+              <br></br>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              Rozwinięcie Shannona pozwala na uproszczenie i minimalizację funkcji lo-gicznych poprzez znalezienie i usunięcie zbędnych termów. Jest to przydatne w projektowaniu układów logicznych, szczególnie tych składających się z dużej licz-by bramek logicznych, ponieważ pozwala na zwiększenie wydajności i zmniejsze-nie złożoności układu. 
+              <br></br>
+              <br></br>
+              Rozwinięcie Shannona opisujemy wzorem (7): 
+              <br></br>
+              <div className="containerMenu"><img alt="*" src="shannon.png" width="1000px"/></div>
+              
+              </div>
+            
+          </div>
         </div>
     )
 }
