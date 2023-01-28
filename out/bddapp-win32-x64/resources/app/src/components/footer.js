@@ -5,7 +5,7 @@ function Footer(props){
         <footer className="footer mt-auto py-3 bg-dark">
             <div className="container">
                 <div className="text-center">
-                    <span className="text-muted">UZ WIEA Jakub Błaszyk 2022 v1.07</span>
+                    <span className="text-muted">UZ WIEA Jakub Błaszyk 2022 v1.08</span>
                 </div>
             </div>
         </footer>

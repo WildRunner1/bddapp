@@ -745,7 +745,7 @@ function Diagrams() {
       </Modal>
       <Modal dialogClassName="my_modal" show={show3} onHide={handleClose3}>
         <Modal.Header closeButton>
-          <Modal.Title>Zapisz/Wczytaj fukcję</Modal.Title>
+          <Modal.Title>Zapisz/Wczytaj funkcję</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form >

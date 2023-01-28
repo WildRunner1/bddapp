@@ -115,12 +115,12 @@ function Bdd(props){
         value = String(value+val)
       }
       id = String(element+value)
-        myGraph.nodes.push({type: "nonterminal",exp:"",  id: String(id), label: element, shape: "eclipse",parent: String(newVarMap.get(key-1))+String(value).slice(0,String(value).length-1),  font:{size:30}, borderWidth:2})
+        myGraph.nodes.push({type: "nonterminal",  id: String(id), label: element, parent: String(newVarMap.get(key-1))+String(value).slice(0,String(value).length-1), shape: "eclipse", exp:"",  font:{size:30}, borderWidth:2})
     }
   }
   // value nodes - terminal
   for (const [key, value] of thruMap.entries()) {
-    myGraph.nodes.push({type: "terminal", exp:"", id: String(key), label: String(value),parent: String(newVarMap.get(newVarMap.size))+String(key).slice(0,String(key).length-1), shape: "box", font:{size:30}})
+    myGraph.nodes.push({type: "terminal", id: String(key), label: String(value),parent: String(newVarMap.get(newVarMap.size))+String(key).slice(0,String(key).length-1), shape: "box",  exp:"", font:{size:30}})
   }
 
   myGraph.nodes.sort(function(a, b){
