@@ -24,7 +24,7 @@ function Teory(props){
               Logika jest dziedziną filozofii, matematyki i nauk formalnych, która zajmuje się badaniem i
               formalizowaniem myślenia oraz jego struktur. Logika jest narzędziem do analizy i rozumowania,
               pozwala na formalne opisanie i badanie różnych systemów poznawczych, takich jak języki naturalne,
-              myślenie ludzkie, a także sys-temów formalnych, takich jak języki programowania czy logika matematyczna.
+              myślenie ludzkie, a także systemów formalnych, takich jak języki programowania czy logika matematyczna.
               <br></br>
               <br></br>
               &nbsp;&nbsp;&nbsp;&nbsp;
@@ -34,7 +34,7 @@ function Teory(props){
               <br></br>
               &nbsp;&nbsp;&nbsp;&nbsp;
               Logika w informatyce to dziedzina, która zajmuje się badaniem i stosowaniem logiki matematycznej w informatyce. 
-              W informatyce jest używana do projek-towania i analizy algorytmów, a także do opracowywania i weryfikacji systemów 
+              W informatyce jest używana do projektowania i analizy algorytmów, a także do opracowywania i weryfikacji systemów 
               formalnych, takich jak języki programowania, systemy baz danych czy systemy wykonawcze. Logika jest również ważna w 
               dziedzinie sztucznej inteligencji, gdzie jest stosowana do badania problemów poznawczych i planowania oraz w teorii 
               komputacji jako podstawy teorii automatów.
@@ -82,14 +82,14 @@ function Teory(props){
               <br></br>
               &nbsp;&nbsp;&nbsp;&nbsp;
               Funkcja logiczna w algebrze Boole'a jest to matematyczna funkcja, 
-              która przypisuje każdemu możliwemu ciągowi wartości prawdy lub fałszu dla danych zmien-nych logicznych.
+              która przypisuje każdemu możliwemu ciągowi wartości prawdy lub fałszu dla danych zmiennych logicznych.
               W algebrze Boole'a, zmienne logiczne mają tylko dwie możliwe wartości: prawda (1) i fałsz (0).
               <br></br>
               <br></br>
               &nbsp;&nbsp;&nbsp;&nbsp;
               Funkcja logiczna jest reprezentowana przez wielomiany, 
               w których zmienne logiczne są reprezentowane przez zmienne binarne, 
-              a operacje logiczne są reprezen-towane przez operatory algebraiczne.
+              a operacje logiczne są reprezentowane przez operatory algebraiczne.
               <br></br>
               <br></br>
               W algebrze Boole'a istnieją trzy podstawowe operacje logiczne:
@@ -178,15 +178,15 @@ function Teory(props){
               <div className="articleBody">
               <br></br>
               &nbsp;&nbsp;&nbsp;&nbsp;
-              Rozwinięcie Shannona, inaczej nazywany teorią dekompozycji funkcji logicz-nych, to metoda polegająca na podzieleniu funkcji logicznej na mniejsze, prostsze podfunkcje, które mogą być łatwiej zrozumiałe i zoptymalizowane. Metoda ta zo-stała opracowana przez Claude'a Shannon'a, amerykańskiego matematyka i inżynie-ra, który jest uważany za ojca teorii informacji.
+              Rozwinięcie Shannona, inaczej nazywany teorią dekompozycji funkcji logicznych, to metoda polegająca na podzieleniu funkcji logicznej na mniejsze, prostsze podfunkcje, które mogą być łatwiej zrozumiałe i zoptymalizowane. Metoda ta zoształa opracowana przez Claude'a Shannon'a, amerykańskiego matematyka i inżyniera, który jest uważany za ojca teorii informacji.
               <br></br>
               <br></br>
               &nbsp;&nbsp;&nbsp;&nbsp;
-              Rozwinięcie Shannona polega na rozdzieleniu funkcji logicznej na dwie części: podstawowy term logiczny (minterm) i komplementarny term (maxterm). Następ-nie, pozwala na skonstruowanie nowej funkcji logicznej jako sumy iloczynów min-termów (KPS) lub iloczynów sum maxtermów (KPI).
+              Rozwinięcie Shannona polega na rozdzieleniu funkcji logicznej na dwie części: podstawowy term logiczny (minterm) i komplementarny term (maxterm). Następnie, pozwala na skonstruowanie nowej funkcji logicznej jako sumy iloczynów minermów (KPS) lub iloczynów sum maxtermów (KPI).
               <br></br>
               <br></br>
               &nbsp;&nbsp;&nbsp;&nbsp;
-              Rozwinięcie Shannona pozwala na uproszczenie i minimalizację funkcji lo-gicznych poprzez znalezienie i usunięcie zbędnych termów. Jest to przydatne w projektowaniu układów logicznych, szczególnie tych składających się z dużej licz-by bramek logicznych, ponieważ pozwala na zwiększenie wydajności i zmniejsze-nie złożoności układu. 
+              Rozwinięcie Shannona pozwala na uproszczenie i minimalizację funkcji logicznych poprzez znalezienie i usunięcie zbędnych termów. Jest to przydatne w projektowaniu układów logicznych, szczególnie tych składających się z dużej liczby bramek logicznych, ponieważ pozwala na zwiększenie wydajności i zmniejszenie złożoności układu. 
               <br></br>
               <br></br>
               Rozwinięcie Shannona opisujemy wzorem (7): 
