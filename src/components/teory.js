@@ -34,7 +34,7 @@ function Teory(props){
               <br></br>
               &nbsp;&nbsp;&nbsp;&nbsp;
               Logika w informatyce to dziedzina, która zajmuje się badaniem i stosowaniem logiki matematycznej w informatyce. 
-              W informatyce jest używana do projektowania i analizy algorytmów, a także do opracowywania i weryfikacji systemów 
+              Jest używana do projektowania i analizy algorytmów, a także do opracowywania i weryfikacji systemów 
               formalnych, takich jak języki programowania, systemy baz danych czy systemy wykonawcze. Logika jest również ważna w 
               dziedzinie sztucznej inteligencji, gdzie jest stosowana do badania problemów poznawczych i planowania oraz w teorii 
               komputacji jako podstawy teorii automatów.
@@ -45,11 +45,11 @@ function Teory(props){
               <br></br>
               Logika znajduje zastosowanie między innymi w:
               <br></br>
-              ●	Projektowaniu algorytmów
+              &nbsp;&nbsp;●	Projektowaniu algorytmów
               <br></br>
-              ●	Tworzeniu systemów formalnych
+              &nbsp;&nbsp;●	Tworzeniu systemów formalnych
               <br></br>
-              ●	Analizie i optymalizacja systemów
+              &nbsp;&nbsp;●	Analizie i optymalizacja systemów
  
               </div>
             </div>   
