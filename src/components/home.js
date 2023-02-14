@@ -17,8 +17,8 @@ function Home(){
             <div className='articleBody'>
               Aplikacja powstała w ramach pracy dyplomowej inżynierskiej na kierunku Informatyka na
               Wydział Informatyki, Elektrotechniki i Automatyki - Uniwesytet Zielonogórski.
-              Celem aplikacji jest budowa diagramów BDD i ROBDD na podstwie podanej przez użytkownika funkcji logicznej w postaci KPS lub KPI.
-              Wynikową działania jest również budowa tablicy prawdy w układzie kodu Greya.
+              Celem aplikacji jest budowa diagramów OBDD i ROBDD na podstwie podanej przez użytkownika funkcji logicznej w postaci KPS lub KPI.
+              Wynikową działania jest również budowa tablicy prawdy w układzie kodu binarnego.
             </div>
             <br></br>
             <div className="container">
