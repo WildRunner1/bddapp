@@ -527,4 +527,4 @@ a:hover{
 .opac{
   opacity:0.8;
 }
-/* @import url("../node_modules/vis-network/dist/dist/vis-network.min.css") */
+@import url("../node_modules/vis-network/dist/dist/vis-network.min.css")
