@@ -1,6 +1,9 @@
 import React from 'react';
 import Graph from "react-graph-vis";
 
+import  pl from '../translations/polski.json'
+import  en from '../translations/english.json'
+
 function splitMap(map, side){
   const tempMap1 = new Map()
   const tempMap2 = new Map()
@@ -245,7 +248,13 @@ function Robdd(props){
   const thruMap = props.truthMap
   const newVarMap = props.newVarMap
   const functionType = props.functionType
-  
+  const language = props.language
+  let lang
+  if(language === 'pl'){
+    lang = pl
+  }else{
+    lang = en
+  }
   
   let n = 1
   let tauto = makeItShort(myGraph,thruMap,thruMap,"start",n,newVarMap,0)
@@ -309,8 +318,8 @@ function Robdd(props){
     let shorterFunction = ""
     let shorterFunction2 = ""
     if (tauto===true){
-      shorterFunction = "TAUTOLOGIA"
-      shorterFunction2 = "TAUTOLOGIA"
+      shorterFunction = lang.translation.ROBDD.tautology
+      shorterFunction2 = lang.translation.ROBDD.tautology
     }else {
       makeExpressions(myGraph, functionType, newVarMap)
       myGraph.nodes.forEach(element => {
@@ -345,12 +354,15 @@ function Robdd(props){
         }
       })
     }
-   
+    let functionTitle = ""
+    
     let reverseFuncType = ""
       if(functionType === "KPS"){
-        reverseFuncType = "KPI"
+        reverseFuncType = lang.translation.diagrams.KPI
+        functionTitle = lang.translation.diagrams.KPS
       } else {
-        reverseFuncType = "KPS"
+        reverseFuncType = lang.translation.diagrams.KPS
+        functionTitle = lang.translation.diagrams.KPI
       }
     
       return (
@@ -358,7 +370,7 @@ function Robdd(props){
           <div className="shorterFunction">
             <div className="row">
               <div className=" col-md-3">
-                <div className="shorterFunctionBody1">funkcja uproszczona ({functionType==="KPS" ? functionType : reverseFuncType}):</div>
+                <div className="shorterFunctionBody1">{lang.translation.statusBar.minKPS} ({functionType==="KPS" ? functionTitle : reverseFuncType}):</div>
               </div>
               <div className=" col-md-9">
                 <div className="shorterFunctionBody2">{functionType==="KPS" ? shorterFunction : shorterFunction2}</div>
@@ -366,7 +378,7 @@ function Robdd(props){
             </div>
             <div className="row">
               <div className=" col-md-3">
-                <div className="shorterFunctionBody1">funkcja uproszczona ({functionType==="KPI" ? functionType : reverseFuncType}):</div>
+                <div className="shorterFunctionBody1">{lang.translation.statusBar.minKPI} ({functionType==="KPI" ? functionTitle : reverseFuncType}):</div>
               </div>
               <div className=" col-md-9">
                 <div className="shorterFunctionBody2">{functionType==="KPI" ? shorterFunction : shorterFunction2}</div>
@@ -379,12 +391,12 @@ function Robdd(props){
               events={events}
             />
           <div className="stats">
-              <label className="stat1">STATYSTYKI </label>
-              <label className="stat1">Ilość węzłów nieterminalowych: <label className='stat2'>{countNonTerminalNodes}</label></label>
-              <label className="stat1">Ilość węzłów terminalowych: <label className='stat2'>{countTerminalNodes}</label></label>
-              <label className="stat1">Ilość węzłów razem: <label className='stat2'>{countNodes}</label></label>
-              <label className="stat1">Ilość węzłów terminalowych znaczących ({functionType}): <label className='stat2'>{countNodesTerminalImportant}</label></label>
-              <label className="stat1">Ilość krawędzi: <label className='stat2'>{countEdges}</label></label>
+              <label className="stat1">{lang.translation.statusBar.statistic}: </label>
+              <label className="stat1">{lang.translation.statusBar.nonTerminal}: <label className='stat2'>{countNonTerminalNodes}</label></label>
+              <label className="stat1">{lang.translation.statusBar.terminal}: <label className='stat2'>{countTerminalNodes}</label></label>
+              <label className="stat1">{lang.translation.statusBar.allNodes}: <label className='stat2'>{countNodes}</label></label>
+              <label className="stat1">{lang.translation.statusBar.importantNodes} ({functionTitle}): <label className='stat2'>{countNodesTerminalImportant}</label></label>
+              <label className="stat1">{lang.translation.statusBar.edges}: <label className='stat2'>{countEdges}</label></label>
             </div>
         </div>
       );

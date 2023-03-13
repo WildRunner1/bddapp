@@ -8,6 +8,8 @@ import { Robdd } from './';
 import { TruthTable } from './';
 import { logFunctions } from '../data.json';
 import { BallTriangle } from 'react-loader-spinner'
+import  pl from '../translations/polski.json'
+import  en from '../translations/english.json'
 
 
 //get the variables from expressions
@@ -194,7 +196,7 @@ function getByValue(map, searchValue) {
       return key;
   }
 }
-function Diagrams() {
+function Diagrams(props) {
 
   const [truthMapToPass, setTruthMapToPass] = useState(new Map())
   const [newVarMapToPass, setNewVarMapToPass] = useState(new Map())
@@ -218,6 +220,7 @@ function Diagrams() {
   const handleClose5 = () => setShow5(false);
   const handleClose6 = () => setShow6(false);
   const [valid, setValid] = useState(false)
+  
   const[mesWasShow, setMesWasShow] = useState(false)
   const [loading, setLoading] = useState(10)
   const [formValues, setFormValues] = useState({
@@ -225,6 +228,15 @@ function Diagrams() {
     logType: ""
 
   });
+  let lang
+  let language = props.language
+  if(props.language === 'pl'){
+    lang = pl
+  }else{
+    lang = en
+  }
+  console.log(lang)
+  console.log(props.language)
   
   const localS = []
   //localStorage.clear()
@@ -296,14 +308,14 @@ function Diagrams() {
       fucArr.push(        
         <div key={index} className="row ">
           <div className="col-6">
-          <button title="Wczytaj" id={index} onClick={handleGetSaved} onChange={handleChange} className='btn btn-secondary modalPlusBtn'><FontAwesomeIcon icon={faPlus} /></button>
+          <button title={lang.translation.fucntionStorage.load} id={index} onClick={handleGetSaved} onChange={handleChange} className='btn btn-secondary modalPlusBtn'><FontAwesomeIcon icon={faPlus} /></button>
             <label title={value.body}>{bodyVal}</label>
           </div>
           <div className="col-5">
             <label title={descVal}>{value.type} - {value.desc}</label>
           </div>
           <div className="col-1 ">
-          <button title="Usuń" id={locIndex} disabled={value.editable} onClick={handleDelete} className='btn btn-secondary modalMinusBtn'><FontAwesomeIcon icon={faMinus} /></button>
+          <button title={lang.translation.fucntionStorage.delete} id={locIndex} disabled={value.editable} onClick={handleDelete} className='btn btn-secondary modalMinusBtn'><FontAwesomeIcon icon={faMinus} /></button>
           </div>
         </div>
       )
@@ -325,9 +337,9 @@ function Diagrams() {
     localStorage.setItem(max, JSON.stringify({"body":body, "type":type, "desc":desc, "editable":false, "locIndex": max}))
     setShow4(true)
   }
-  const BDD = <div id="bdd" className="bddContainer"> <Bdd setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
-  const ROBDD = <div id="robdd" className="bddContainer "> <Robdd setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
-  const TrueTable = <div id="truthTable" className="bddContainer"> <TruthTable setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
+  const BDD = <div id="bdd" className="bddContainer"> <Bdd language={props.language} setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
+  const ROBDD = <div id="robdd" className="bddContainer "> <Robdd language={props.language} setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
+  const TrueTable = <div id="truthTable" className="bddContainer"> <TruthTable language={language} setLoading={setLoading} truthMap={truthMapToPass} newVarMap={newVarMapToPass} functionType={formValues.logType} /> </div>
   
   const handleChange = (event) => {
     // event.preventDefault()
@@ -350,7 +362,7 @@ function Diagrams() {
       setShow6(true)
       setMesWasShow(true)
       setExTitle("UWAGA!!")
-      setExMessage(<p>Funkcja zawiera {variables.length} zmiennyc,<br></br> program jest w stanie stabilnie obsłużyć fukcję zawierająca do 12 zmiennych<br></br>
+      setExMessage(<p>Funkcja zawiera {variables.length} zmiennych,<br></br> program jest w stanie stabilnie obsłużyć fukcję zawierająca do 12 zmiennych<br></br>
       Generowanie fukcji powyżej 12 zmienny może spowodować zawieszenie programu</p>)
     } 
     const varMap = new Map()
@@ -645,23 +657,23 @@ function Diagrams() {
       <div id="min1"className="container diagra">
         <form id="contactForm" onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label className="form-label" onClick={handleToolTip}>Funkcja Logiczna (<FontAwesomeIcon id="manual" title="Instrukcja" icon={faQuestion} />)</label>
-            <input className="form-control" name="logFunction" onChange={handleChange} id="funkcjaLogiczna" type="text" placeholder="Funkcja Logiczna" required/>
+            <label className="form-label" onClick={handleToolTip}>{lang.translation.diagrams.function} (<FontAwesomeIcon id="manual" title={lang.translation.instruction.title} icon={faQuestion} />)</label>
+            <input className="form-control" name="logFunction" onChange={handleChange} id="funkcjaLogiczna" type="text" placeholder={lang.translation.diagrams.function} required/>
           </div>
           <div className="mb-3 ">
-            <label className="form-label d-block">Typ Funkcji</label>
+            <label className="form-label d-block">{lang.translation.diagrams.functionType}</label>
             <div className='ff'>
               <div className="form-check form-check-inline ">
                 <input className="form-check-input" id="optionA" type="radio" value="KPS" onChange={handleChange} name="logType" required />
-                <label className="form-check-label" title="Kanoniczna Postać Sumy" >KPS</label>
+                <label className="form-check-label" title={lang.translation.diagrams.KPStitle} >{lang.translation.diagrams.KPS}</label>
               </div>
               <div className="form-check form-check-inline">
                 <input className="form-check-input" id="optionB" type="radio" value="KPI" onChange={handleChange} name="logType" required />
-                <label className="form-check-label" title="Kanoniczna Postać Iloczynu">KPI</label>
+                <label className="form-check-label" title={lang.translation.diagrams.KPItitle}>{lang.translation.diagrams.KPI}</label>
               </div>
             </div>
           </div>
-          <label>Zmień kolejność zmiennych (drag'n'drop)</label>
+          <label>{lang.translation.diagrams.change}</label>
           <div className='d-flex justify-content-center ff' >
             {varItems.map((item, index) => (
               <div
@@ -676,12 +688,12 @@ function Diagrams() {
                 <h3>{item}</h3>
               </div>
             ))}
-
-          </div>
-
          
-            <button title="Generuj" className="btn btn-secondary  btn-lg button3" id="submitButton"  type="submit">Generuj</button>
-            <button className="btn btn-success button4" title="Wyświetl zapisane funkcje" onClick={storedFunctions} type="submit"><FontAwesomeIcon icon={faListUl}/></button>
+          </div>
+                  
+         
+            <button title={lang.translation.diagrams.generate} className="btn btn-secondary  btn-lg button3" id="submitButton"  type="submit">{lang.translation.diagrams.generate}</button>
+            <button className="btn btn-success button4" title={lang.translation.fucntionStorage.tip} onClick={storedFunctions} type="submit"><FontAwesomeIcon icon={faListUl}/></button>
           
         </form>
       
@@ -689,7 +701,7 @@ function Diagrams() {
         <div className='d-flex justify-content-center'>
           <button id='BDD' className="button1" onClick={handleClickPage}>BDD/OBDD</button>
           <button id='ROBDD'  className="button1" onClick={handleClickPage}>ROBDD</button>
-          <button id='TrueTable'  className="button1" onClick={handleClickPage}>Tablica Prawdy</button>
+          <button id='TrueTable'  className="button1" onClick={handleClickPage}>{lang.translation.diagrams.truthTable}</button>
         </div> 
       </div>
      {/* <div className={loading===1 ? "hide" : "visiable"}> */}
@@ -704,7 +716,7 @@ function Diagrams() {
         <Modal.Body>{exMessage}<br></br>Składnia dla {formValues.logType} powinna wyglądać np: {alertKPIKPS}</Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={handleClose} onKeyUp={(e) => { if (e.key === "Enter" && !e.defaultPrevented) e.currentTarget.click(); }}>
-            Zamknij
+          {lang.translation.fucntionStorage.close}
           </Button>
 
         </Modal.Footer>
@@ -716,67 +728,66 @@ function Diagrams() {
         <Modal.Body>{exMessage}</Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={handleClose6} onKeyUp={(e) => { if (e.key === "Enter" && !e.defaultPrevented) e.currentTarget.click(); }}>
-            Zamknij
+          {lang.translation.fucntionStorage.close}
           </Button>
 
         </Modal.Footer>
       </Modal>
       <Modal show={show2} onHide={handleClose2}>
         <Modal.Header closeButton>
-          <Modal.Title>Instrukcja</Modal.Title>
+          <Modal.Title>{lang.translation.instruction.title}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Zmienne: <label className='inst1'>A-Z lub a-z</label> <br></br>
-        Negacja: <label className='inst1'>/</label><br></br>
-        Przykładowa funkcja KPS: <label className='inst1'>ABC+/ABC+A/BC</label><br></br>
-        Przykładowa funkcja KPI: <label className='inst1'>(A+B+C)*(/A+B+C)*(A+/B+C)</label><br></br>
+        <Modal.Body>{lang.translation.instruction.line1} <label className='inst1'>{lang.translation.instruction.line2}</label> <br></br>
+        {lang.translation.instruction.line3} <label className='inst1'>{lang.translation.instruction.line4}</label><br></br>
+        {lang.translation.instruction.line5} <label className='inst1'>ABC+/ABC+A/BC</label><br></br>
+        {lang.translation.instruction.line7} <label className='inst1'>(A+B+C)*(/A+B+C)*(A+/B+C)</label><br></br>
         
         {/* Kolejność zmiennych można zdefinować po wpisaniu funkcji przez mechanizm drag'n'drop<br></br> */}
-        <label className='inst2'>*nie wszystkie przypdaki złej składni są uwzględnione, dla większej kontroli w konsoli przeglądarki (Ctrl+Shift+I) wyswietlane są 
-        zmapowane zmienne i wyrażenia</label>
+        <label className='inst2'>{lang.translation.instruction.line9}</label>
         
 
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose2}>
-            Zamknij
+          {lang.translation.fucntionStorage.close}
           </Button>
 
         </Modal.Footer>
       </Modal>
       <Modal dialogClassName="my_modal" show={show3} onHide={handleClose3}>
         <Modal.Header closeButton>
-          <Modal.Title>Zapisz/Wczytaj funkcję</Modal.Title>
+          <Modal.Title>{lang.translation.fucntionStorage.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form >
           <div className="mb-3">
-          <p className='text-center'>----------  Zapisz  ----------</p>
+          <p className='text-center'>{lang.translation.fucntionStorage.saveTitle}</p>
             {/* <label className="form-label" >Funkcja Logiczna</label> */}
-            <input className="form-control" name="body" onChange={handleChange} defaultValue={formValues.logFunction} id="body" type="text" placeholder="Funkcja Logiczna" required/>
+            <input className="form-control" name="body" onChange={handleChange} defaultValue={formValues.logFunction} id="body" type="text" placeholder={lang.translation.fucntionStorage.function} required/>
           </div>
           <div className="mb-3 ">
           <div className="form-floating mb-3">
             <select className="form-select" id="type" onChange={handleChange} defaultValue={formValues.logType} aria-label="New Field">
-                <option value="KPI">KPI</option>
-                <option value="KPS">KPS</option>
+                <option value="KPI">{lang.translation.fucntionStorage.KPI}</option>
+                <option value="KPS">{lang.translation.fucntionStorage.KPS}</option>
             </select>
-            <label >Typ funkcji</label>
+            <label >{lang.translation.fucntionStorage.functionType}</label>
         </div>
           </div>
           <div className="mb-3">
             {/* <label className="form-label" >Opis</label> */}
-            <input className="form-control" name="desc" onChange={handleChange} id="desc" type="text" placeholder="Opis" required/>
+            <input className="form-control" name="desc" onChange={handleChange} id="desc" type="text" placeholder={lang.translation.fucntionStorage.description} required/>
           </div>
-            <input className='="btn btn-lg btnSave' type='submit' onClick={handleSave} value="Zapisz"/>
+            <input className='="btn btn-lg btnSave' type='submit' onClick={handleSave} value={lang.translation.fucntionStorage.save}/>
           </form>
-          <p className='text-center'>----------  Wczytaj  ----------</p>
+          <p className='text-center'>{lang.translation.fucntionStorage.loadTitle}</p>
           {fucArr}
         
         
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={handleClose3} onKeyUp={(e) => { if (e.key === "Enter" && !e.defaultPrevented) e.currentTarget.click(); }}>
-            Zamknij
+          {lang.translation.fucntionStorage.close}
           </Button>
 
         </Modal.Footer>
@@ -784,22 +795,22 @@ function Diagrams() {
 
       <Modal show={show4} onHide={handleClose4} >
         <Modal.Header  closeButton>
-          <Modal.Title>Zapisano</Modal.Title>
+          <Modal.Title>{lang.translation.modals.stored}</Modal.Title>
         </Modal.Header>
         <Modal.Footer className="savedMod">
           <Button variant="secondary" onClick={handleClose4}>
-            Zamknij
+          {lang.translation.fucntionStorage.close}
           </Button>
 
         </Modal.Footer>
       </Modal>
       <Modal show={show5} onHide={handleClose5} >
         <Modal.Header closeButton>
-          <Modal.Title>Usunięto</Modal.Title>
+          <Modal.Title>{lang.translation.modals.deleted}</Modal.Title>
         </Modal.Header>
         <Modal.Footer className="savedMod2">
           <Button variant="secondary" onClick={handleClose5}>
-            Zamknij
+          {lang.translation.fucntionStorage.close}
           </Button>
 
         </Modal.Footer>

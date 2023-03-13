@@ -14,9 +14,15 @@ function Header(props){
                 <li><a href="/diagrams" className="nav-link px-2 text-white display-6">Diagramy</a></li>
                 
                 <li><a href="/theory" className="nav-link px-2 text-white display-6">Teoria</a></li>
-                <li><a href="/about" className="nav-link px-2 text-white display-6">About</a></li>
+                <li><a href="/about" className="nav-link px-2 text-white display-6">Abaout</a></li>
               </ul>
               
+            </div>
+            <div>
+              <ul>
+                <li>Polski</li>
+                <li>Angielski</li>
+              </ul>
             </div>
           </div>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -1,10 +1,21 @@
 import React from 'react';
 
+
+import  pl from '../translations/polski.json'
+import  en from '../translations/english.json'
+
 function Teory(props){
+  const language = props.language
+  let lang
+  if(language === 'pl'){
+    lang = pl
+  }else{
+    lang = en
+  }
     return (
         <div>
             <article>
-                <h1>Teoria</h1>
+                <h1>{lang.translation.menu.theory}</h1>
             </article>
             <nav>
             <a className='teoryNav' href="#logika">Logika</a>
