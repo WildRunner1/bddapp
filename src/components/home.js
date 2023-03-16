@@ -17,7 +17,7 @@ function Home(props){
       return (
         <div>
 
-          <h2>{lang.translation.about.title}</h2>
+          <h3>{lang.translation.about.title}</h3>
           
           {/* <div className='articleHeader'>{lang.translation.about.purposeOfWork}</div>
             <div className='articleBody'>
