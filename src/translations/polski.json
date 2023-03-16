@@ -75,7 +75,13 @@
             "faculty":"Wydział:",
             "college":"Uczelnia:",
             "collageName":"Uniwersytet Zielonogórski",
-            "defense":"Obrona:"
+            "defense":"Obrona:",
+            "author1":"inż. Jakub Błaszyk",
+            "study1":"Informatyka",
+            "supervisor1":"dr inż. Jacek Tkacz",
+            "faculty1":"Wydział Inforamtyki, Elektrotechniki i Automatyki ",
+            "defense1":"Semestr zimowy 2022-2023"
+
 
 
         }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -34,7 +34,7 @@ function Variables(strs) {
     })
  // });
   variables.sort() //sort variables A-Z order
-  console.log("Zmienne")
+  console.log("Variables")
   console.log(variables)
   
   return (variables)
@@ -80,7 +80,7 @@ function Expressions(strs, functionType, variables) {
     func2.push(funcTemp)
   })
 
-  console.log("Wyrażenia")
+  console.log("Expressions")
   console.log(func2)
   return (func2)
 }
@@ -228,15 +228,21 @@ function Diagrams(props) {
     logType: ""
 
   });
-  let lang
-  let language = props.language
-  if(props.language === 'pl'){
-    lang = pl
-  }else{
-    lang = en
-  }
-  console.log(lang)
-  console.log(props.language)
+  
+  
+  
+  // eslint-disable-next-line
+  const [language, setLanguage] = useState(props.language)
+  
+  let lang = en
+  
+    if(language === 'pl'){
+      lang = pl
+    }else{
+      lang = en
+    }
+ 
+  
   
   const localS = []
   //localStorage.clear()
@@ -524,7 +530,7 @@ function Diagrams(props) {
       setDisable("TrueTable", true)
       setClass("BDD", "button1")
       setDisable("BDD", false)
-      console.log("Wartości z fromularza");
+      console.log("Form Values");
       console.log(formValues);
       setLoading(1)
       setValid(true)
@@ -654,6 +660,7 @@ function Diagrams(props) {
    
   ) : (<div></div>)}
     <div id="conteinerFull" className={loading===12 ? "hide" : "visiable"}>
+    <h1>{lang.translation.about.title}</h1>
       <div id="min1"className="container diagra">
         <form id="contactForm" onSubmit={handleSubmit}>
           <div className="mb-3">

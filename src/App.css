@@ -500,8 +500,12 @@ a:hover{
 .shorterFunction{
   font-size: 1.2em;
   min-width: 100%;
+  max-height: 3.5em;
   background-color: #ede9e9;
   border: 1px solid rgb(172, 171, 171);
+  overflow-x: hidden;
+  overflow-y: auto;
+   ;
 }
 .vis-tooltip{
   z-index: 2000;

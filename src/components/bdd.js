@@ -234,12 +234,12 @@ function Bdd(props){
   makeExpressions(myGraph, functionType, newVarMap)
   let functionTitle = ""
     
-    let reverseFuncType = ""
+    
       if(functionType === "KPS"){
-        reverseFuncType = lang.translation.diagrams.KPI
+      
         functionTitle = lang.translation.diagrams.KPS
       } else {
-        reverseFuncType = lang.translation.diagrams.KPS
+        
         functionTitle = lang.translation.diagrams.KPI
       }
       return (

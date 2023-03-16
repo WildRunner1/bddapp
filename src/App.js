@@ -3,7 +3,6 @@ import './App.css';
 import React, { useState } from 'react';
 import { Footer } from './components';
 import {Home} from './components';
-import {About} from './components';
 import {Teory} from './components';
 import {Diagrams} from './components';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -15,7 +14,7 @@ import  en from './translations/english.json'
 
 function App() {
   
-  const [page2, setPage2] = useState(<div className="container-fluid artic"><Home /></div>)
+  const [page2, setPage2] = useState(<div className="container-fluid artic"><Diagrams /></div>)
   const [langSe, setLangSe] = useState(<div><span className="fi fi-gb"></span>&nbsp;EN</div>)
   const[language, setLanguage] = useState('en')
   let lang
@@ -32,15 +31,10 @@ function App() {
         case 'home': {
             setPage2(<div className="container-fluid artic"><Home language={language}/></div>)
         }
-          break;
-        // eslint-disable-next-line
-        case 'about': {
-            setPage2(<div className="container-fluid artic" ><About language={language}/></div>)
-        }
-          break;
+          break;        
         // eslint-disable-next-line
         case 'diagrams': {
-            setPage2(<div id="diagra" className="container-fluid diagra"><Diagrams language={language}/></div>)
+            setPage2(<div id="diagra" className="container-fluid artic"><Diagrams language={language}/></div>)
         }
           break;
         // eslint-disable-next-line
@@ -101,8 +95,8 @@ function App() {
                 <li></li>
                 <li><div id="diagrams" onClick={handleClick}  className="nav-link px-2 text-white display-6 aa">{lang.translation.menu.diagrams}</div></li>
                 <li className='nav-link px-2 text-white display-6 '>|</li>
-                <li><div id="theory" onClick={handleClick} className="nav-link px-2 text-white display-6 aa">{lang.translation.menu.theory}</div></li>
-                <li className='nav-link px-2 text-white display-6 '>|</li>
+                {/* <li><div id="theory" onClick={handleClick} className="nav-link px-2 text-white display-6 aa">{lang.translation.menu.theory}</div></li>
+                <li className='nav-link px-2 text-white display-6 '>|</li> */}
                 <li><div id="home" onClick={handleClick} className="nav-link px-2 text-white display-6 aa">{lang.translation.menu.about}</div></li>
                 <li>
                   <Dropdown>

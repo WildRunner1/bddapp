@@ -16,12 +16,13 @@ function Home(props){
    
       return (
         <div>
+
+          <h1>{lang.translation.about.title}</h1>
           
-          <h3>{lang.translation.about.title}</h3>
-          <div className='articleHeader'>{lang.translation.about.purposeOfWork}</div>
+          {/* <div className='articleHeader'>{lang.translation.about.purposeOfWork}</div>
             <div className='articleBody'>
             {lang.translation.about.purposeOfWorkText1}
-            </div>
+            </div> */}
   
           <div className='articleHeader'>{lang.translation.about.about}</div>
             <div className='articleBody'>
@@ -34,7 +35,7 @@ function Home(props){
                   <div className='auth1'>{lang.translation.about.author} </div>
                 </div>
                 <div className=" col-md-6">
-                  <div className='auth2'>Jakub Błaszyk</div>  
+                  <div className='auth2'>{lang.translation.about.author1}</div>  
                 </div>
               </div>
               <div className="row gx-1 ">
@@ -42,7 +43,7 @@ function Home(props){
                   <div className='auth1'>{lang.translation.about.study} </div>
                 </div>
                 <div className=" col-md-6">
-                  <div className='auth2'>Informatyka</div>  
+                  <div className='auth2'>{lang.translation.about.study1}</div>  
                 </div>
               </div>
               <div className="row gx-1 ">
@@ -50,7 +51,7 @@ function Home(props){
                   <div className='auth1'>{lang.translation.about.supervisor} </div>
                 </div>
                 <div className=" col-md-6">
-                  <div className='auth2'>dr inż. Jacek Tkacz <a target="_blank" rel="noopener noreferrer" href="http://www.imei.uz.zgora.pl/">(IMEI)</a></div>  
+                  <div className='auth2'>{lang.translation.about.supervisor1} <a target="_blank" rel="noopener noreferrer" href="http://www.imei.uz.zgora.pl/">(IMEI)</a></div>  
                 </div>
               </div>
               <div className="row gx-1 ">
@@ -58,7 +59,7 @@ function Home(props){
                   <div className='auth1'>{lang.translation.about.faculty} </div>
                 </div>
                 <div className=" col-md-6">
-                  <div className='auth2'>Wydział Inforamtyki, Elektrotechniki i Automatyki <a target="_blank" rel="noopener noreferrer" href="https://www.wiea.uz.zgora.pl/">(WIEA)</a></div>  
+                  <div className='auth2'>{lang.translation.about.faculty1}<a target="_blank" rel="noopener noreferrer" href="https://www.wiea.uz.zgora.pl/">(WIEA)</a></div>  
                 </div>
               </div>
               <div className="row gx-1 ">
@@ -74,7 +75,7 @@ function Home(props){
                   <div className='auth1'>{lang.translation.about.defense} </div>
                 </div>
                 <div className=" col-md-6">
-                  <div className='auth2'>Semestr zimowy 2022-2023</div>  
+                  <div className='auth2'>{lang.translation.about.defense1}</div>  
                 </div>
               </div>
               

@@ -66,7 +66,7 @@
             "purposeOfWorkText1":"",
             "about":"About",
             "aboutText1":"",
-            "tech":"Technology / Libriaries",
+            "tech":"Tech scope",
             "tools":"Tools",
             "links":"Urls",
             "author":"Author:",
@@ -75,9 +75,12 @@
             "faculty":"Faculty:",
             "college":"University:",
             "collageName":"University of Zeilona Góra",
-            "defense":"Defense:"
-
-
+            "defense":"Defense:",
+            "author1":"eng. Jakub Błaszyk",
+            "study1":"Computer Sience",
+            "supervisor1":"PhD eng. Jacek Tkacz",
+            "faculty1":"Faculty of Computer, Electrical and Control Engineering ",
+            "defense1":"Winter semester 2022-2023"
         }
     }
 }
