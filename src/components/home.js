@@ -70,14 +70,14 @@ function Home(props){
                   <div className='auth2'>{lang.translation.about.collageName}<a target="_blank" rel="noopener noreferrer" href="https://www.uz.zgora.pl/">(UZ)</a></div>  
                 </div>
               </div>
-              <div className="row gx-1 ">
+              {/* <div className="row gx-1 ">
                 <div className=" col-md-6">
                   <div className='auth1'>{lang.translation.about.defense} </div>
                 </div>
                 <div className=" col-md-6">
                   <div className='auth2'>{lang.translation.about.defense1}</div>  
                 </div>
-              </div>
+              </div> */}
               
             </div>
             <article>
