@@ -6,10 +6,10 @@ import { faQuestion, faPlus, faMinus, faListUl } from '@fortawesome/free-solid-s
 import { Bdd } from './';
 import { Robdd } from './';
 import { TruthTable } from './';
-import { logFunctions } from '../data.json';
-import { BallTriangle } from 'react-loader-spinner'
-import  pl from '../translations/polski.json'
-import  en from '../translations/english.json'
+import  logFunctions  from '../data.json';
+import { BallTriangle } from 'react-loader-spinner';
+import  pl from '../translations/polski.json';
+import  en from '../translations/english.json';
 
 
 //get the variables from expressions
@@ -246,8 +246,8 @@ function Diagrams(props) {
   
   const localS = []
   //localStorage.clear()
-  
-  logFunctions.forEach( (element, index) => {
+    const arr = Array.from(logFunctions.logFunctions)
+  arr.forEach( (element, index) => {
     if(localStorage.length < 3){
     localStorage.setItem(index,JSON.stringify(element))
     }
@@ -300,32 +300,7 @@ function Diagrams(props) {
     setShow5(true)
   }
   
-    localS.forEach((value, index) => {
-      value = JSON.parse(value)
-      let bodyVal = value.body
-      let descVal = value.desc
-      let locIndex = value.locIndex
-      if(String(bodyVal).length > 10){
-        bodyVal = bodyVal.slice(0,10)+" ..."
-      }
-      if(String(descVal).length > 30){
-        descVal = descVal.slice(0,30)+" ..."
-      }
-      fucArr.push(        
-        <div key={index} className="row ">
-          <div className="col-6">
-          <button title={lang.translation.fucntionStorage.load} id={index} onClick={handleGetSaved} onChange={handleChange} className='btn btn-secondary modalPlusBtn'><FontAwesomeIcon icon={faPlus} /></button>
-            <label title={value.body}>{bodyVal}</label>
-          </div>
-          <div className="col-5">
-            <label title={descVal}>{value.type} - {value.desc}</label>
-          </div>
-          <div className="col-1 ">
-          <button title={lang.translation.fucntionStorage.delete} id={locIndex} disabled={value.editable} onClick={handleDelete} className='btn btn-secondary modalMinusBtn'><FontAwesomeIcon icon={faMinus} /></button>
-          </div>
-        </div>
-      )
-    })
+    
 
   const handleSave = (event) => {
     event.preventDefault()
@@ -383,7 +358,32 @@ function Diagrams(props) {
     truthMapToPass.clear()
     newVarMapToPass.clear()
   };
- 
+  localS.forEach((value, index) => {
+    value = JSON.parse(value)
+    let bodyVal = value.body
+    let descVal = value.desc
+    let locIndex = value.locIndex
+    if(String(bodyVal).length > 10){
+      bodyVal = bodyVal.slice(0,10)+" ..."
+    }
+    if(String(descVal).length > 30){
+      descVal = descVal.slice(0,30)+" ..."
+    }
+    fucArr.push(        
+      <div key={index} className="row ">
+        <div className="col-6">
+        <button title={lang.translation.fucntionStorage.load} id={index} onClick={handleGetSaved} onChange={handleChange} className='btn btn-secondary modalPlusBtn'><FontAwesomeIcon icon={faPlus} /></button>
+          <label title={value.body}>{bodyVal}</label>
+        </div>
+        <div className="col-5">
+          <label title={descVal}>{value.type} - {value.desc}</label>
+        </div>
+        <div className="col-1 ">
+        <button title={lang.translation.fucntionStorage.delete} id={locIndex} disabled={value.editable} onClick={handleDelete} className='btn btn-secondary modalMinusBtn'><FontAwesomeIcon icon={faMinus} /></button>
+        </div>
+      </div>
+    )
+  })
   const handleSubmit = (event) => {
     setGenereate(true)
     setValid(false)
