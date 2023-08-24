@@ -78,6 +78,41 @@
             "defense":"Obrona:"
 
 
+        },
+        "teory":{
+            "teoryNav1":"Logika",
+            "teoryNav2":"Algebra Boole'a",
+            "teoryNav3":"KPS i KPI",
+            "teoryNav4":"BDD i OBDD",
+            "teoryNav5":"ROBDD",
+            "teoryNav6":"Rozkład Shanonna",
+            "article1Title":"Logika i logika w informatyce",
+            "article1_1":"Logika jest dziedziną filozofii, matematyki i nauk formalnych, która zajmuje się badaniem i formalizowaniem myślenia oraz jego struktur. Logika jest narzędziem do analizy i rozumowania, pozwala na formalne opisanie i badanie różnych systemów poznawczych, takich jak języki naturalne, myślenie ludzkie, a także systemów formalnych, takich jak języki programowania czy logika matematyczna.",
+            "article1_2":"Głównym celem logiki jest zrozumienie i opisanie reguł i zasad rządzących myśleniem, rozumowaniem i argumentowaniem. Logika pozwala na weryfikację i ocenę poprawności argumentów i twierdzeń.",
+            "article1_3":"Logika w informatyce związana jest również z takimi dziedzinami jak teoria formalnych systemów, teoria algorytmów, teoria komunikacji i kryptografia.",
+            "article1_4":"Logika znajduje zastosowanie między innymi w:",
+            "article1_5":"● Projektowaniu algorytmów",
+            "article1_6":"● Tworzeniu systemów formalnych",
+            "article1_7":"● Analizie i optymalizacja systemów",
+            "article2Title":"Algebra Boole'a",
+            "article2_1":"Algebra Boole'a to dziedzina matematyki zajmująca się operacjami na zmiennych logicznych, czyli zmiennych przyjmujących wartości prawda (ang. true) lub fałsz (ang. false). Nazwa pochodzi od imienia matematyka George'a Boole'a, który jako pierwszy opracował system algebraiczny dla operacji logicznych. W Algebrze Boole'a używa się operatorów AND, OR i NOT, które pozwalają na modelowanie różnych sytuacji logicznych.",
+            "article2_2":"Algebra Boole'a jest także podstawą logiki matematycznej, gdzie pozwala na formułowanie i rozwiązywanie twierdzeń logicznych. Służy do też do reprezentacji teoretycznej komputera i pozwala na analizę algorytmów za pomocą pojęcia formalnego.",
+            "article2_3":"Funkcja logiczna w algebrze Boole'a jest to matematyczna funkcja, która przypisuje każdemu możliwemu ciągowi wartości prawdy lub fałszu dla danych zmiennych logicznych. W algebrze Boole'a, zmienne logiczne mają tylko dwie możliwe wartości: prawda (1) i fałsz (0).",
+            "article2_4":" Funkcja logiczna jest reprezentowana przez wielomiany, w których zmienne logiczne są reprezentowane przez zmienne binarne, a operacje logiczne są reprezentowane przez operatory algebraiczne.",
+            "article2_5":"W algebrze Boole'a istnieją trzy podstawowe operacje logiczne:",
+            "article2_6":"● koniunkcja (˄,AND, &, &&, *) ",
+            "article2_7":"● alternatywa (˅,OR, |, ||, +)",
+            "article2_8":"● negacja (¬,NOT, !, ‘, /)",
+            "article3Title":"",
+            "article3":"",
+            "article4Title":"",
+            "article4":"",
+            "article5Title":"",
+            "article5":"",
+            "article6Title":"",
+            "article6":"",
+            "teory":"Teoria"
         }
     }
 }
+
