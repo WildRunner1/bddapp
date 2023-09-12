@@ -82,11 +82,11 @@ function App() {
     <div id="body1" className="d-flex flex-column min-vh-100 App" >
       
       <header id="min2" className=" navbar navbar-expand-lg navbar-dark bg-dark  justify-content-center fixed-top ">
-      
+      <img src="android-chrome-192x192.png" className="bi me-2" width="80"  role="img" aria-label="Bootstrap" />
         <div className="containerMenu">
         
           <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            {/* <img src="bdd.png" className="bi me-2 " width="80"  role="img" aria-label="Bootstrap"/> */}
+          
             
             <nav className="collapse navbar-collapse shift " id="navbarSupportedContent">
               

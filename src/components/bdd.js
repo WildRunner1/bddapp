@@ -147,11 +147,13 @@ function Bdd(props){
       myGraph.edges.push(
         { from: parent,
           hoverWidth: 3,
-          physics: false,
+          // physics: true,
+          
+    
           shadow:{
-            enabled: true,
+            enabled: false,
             color: 'rgba(0,0,0,0.5)',
-            size:10
+            size:30
           },
           to: id,
           type: type,
@@ -172,8 +174,58 @@ function Bdd(props){
       };
   const options = {
     interaction:{hover:true},
+    // physics:{
+    //   enabled: true
+    // },
+    
     physics:{
-      enabled: true
+      enabled: true,
+      barnesHut: {
+        theta: 0.5,
+        gravitationalConstant: -2000,
+        centralGravity: 0.3,
+        springLength: 95,
+        springConstant: 0.04,
+        damping: 0.09,
+        avoidOverlap: 0
+      },
+      forceAtlas2Based: {
+        theta: 0.5,
+        gravitationalConstant: -50,
+        centralGravity: 0.01,
+        springConstant: 0.08,
+        springLength: 100,
+        damping: 0.4,
+        avoidOverlap: 0
+      },
+      repulsion: {
+        centralGravity: 0.2,
+        springLength: 200,
+        springConstant: 0.05,
+        nodeDistance: 100,
+        damping: 0.09
+      },
+      hierarchicalRepulsion: {
+        centralGravity: 0.0,
+        springLength: 100,
+        springConstant: 0.01,
+        nodeDistance: 120,
+        damping: 0.09,
+        avoidOverlap: 0
+      },
+      maxVelocity: 50,
+      minVelocity: 0.1,
+      solver: 'barnesHut',
+      stabilization: {
+        enabled: true,
+        iterations: 1000,
+        updateInterval: 100,
+        onlyDynamicEdges: false,
+        fit: true
+      },
+      timestep: 0.5,
+      adaptiveTimestep: true,
+      wind: { x: 0, y: 0 }
     },
     autoResize: true,
     layout: {
@@ -195,7 +247,7 @@ function Bdd(props){
     },
     nodes: {
       //color: "#FFFFFF",
-      borderWidth: 1,
+      borderWidth: 0.7,
       color: {
         border: '#a6a6a6',
         background: '#FFFFFF',
