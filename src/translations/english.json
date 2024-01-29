@@ -3,7 +3,18 @@
         "menu":{
             "diagrams":"Diagrams",
             "theory":"Theory",
-            "about":"About"
+            "about":"About",
+            "contact":"Contact"
+        },
+        "contact":{
+            "send": "Send",
+            "email":"Email Address",
+            "name":"Your Name",
+            "textarea":"Your Message",
+            "emailsent":", the email has been sent.",
+            "thanks":"Thank you ",
+            "emailsentF":"Message sending failed, please try again later."
+            
         },
         "diagrams":{
             "function":"Logical function",

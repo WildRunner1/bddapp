@@ -3,8 +3,19 @@
         "menu":{
             "diagrams":"Diagramy",
             "theory":"Teoria",
-            "about":"O Aplikacji"
+            "about":"O Aplikacji",
+            "contact":"Kontakt"
         },
+        "contact":{
+            "send": "Wyślij",
+            "email":"Adres email",
+            "name":"Imię i Nazwisko",
+            "textarea":"Twoja wiadomość",
+            "emailsent":", email został wysłany.",
+            "thanks":"Dziękuję ",
+            "emailsentF":"Wysyłka wiadomości nieudana, spróbuj póżniej."
+        },
+
         "diagrams":{
             "function":"Funkcja logiczna",
             "functionType":"Typ Funkcji",

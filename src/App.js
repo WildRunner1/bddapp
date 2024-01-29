@@ -3,7 +3,7 @@ import './App.css';
 import React, { useState } from 'react';
 import { Footer } from './components';
 import {Home} from './components';
-import {Teory} from './components';
+import {Contact} from './components';
 import {Diagrams} from './components';
 import Dropdown from 'react-bootstrap/Dropdown';
 import "../node_modules/flag-icons/css/flag-icons.min.css";
@@ -38,8 +38,8 @@ function App() {
         }
           break;
         // eslint-disable-next-line
-        case 'theory': {
-            setPage2(<div className="container-fluid artic"><Teory language={language}/></div>)
+        case 'contact': {
+            setPage2(<div className="container-fluid artic"><Contact language={language}/></div>)
         }
           break;
         default: {
@@ -82,7 +82,7 @@ function App() {
     <div id="body1" className="d-flex flex-column min-vh-100 App" >
       
       <header id="min2" className=" navbar navbar-expand-lg navbar-dark bg-dark  justify-content-center fixed-top ">
-      <img src="android-chrome-192x192.png" className="bi me-2" width="80"  role="img" aria-label="Bootstrap" />
+      <img src="android-chrome-192x192.png" className="bi me-2" width="80"   aria-label="Bootstrap" alt="B" id="B" />
         <div className="containerMenu">
         
           <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -98,6 +98,8 @@ function App() {
                 {/* <li><div id="theory" onClick={handleClick} className="nav-link px-2 text-white display-6 aa">{lang.translation.menu.theory}</div></li>
                 <li className='nav-link px-2 text-white display-6 '>|</li> */}
                 <li><div id="home" onClick={handleClick} className="nav-link px-2 text-white display-6 aa">{lang.translation.menu.about}</div></li>
+                <li className='nav-link px-2 text-white display-6 '>|</li>
+                <li><div id="contact" onClick={handleClick} className="nav-link px-2 text-white display-6 aa">{lang.translation.menu.contact}</div></li>
                 <li>
                   <Dropdown>
                     <Dropdown.Toggle variant="dark" id="dropdown-basic">
